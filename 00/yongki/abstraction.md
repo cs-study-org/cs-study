@@ -5,6 +5,8 @@
 - 서양철학의 사고방식과 OOP
 - 분류(Classification)
 - 추상화(Abstraction)
+- 추상화의 한계
+- 위임(Delegation)으로 극복
 
 ### 서양철학의 사고방식과 OOP
 
@@ -21,7 +23,7 @@
 
 이러한 사고방식이 자연스레 프로그래밍 언어에 녹아든다. OOP가 대표적이다.
 
-```Java
+```csharp
 class Chair{
   ...
 }
@@ -93,21 +95,38 @@ public class Message{
 public class BodyRequest : Body{
   // +++ field
   // +++ constructor
-  public byte[] GetBytes(){ ... }; 
+  public byte[] GetBytes(){ ... };
   public int GetSize() { ... };
 }
 
 public class BodyResponse: Body{
   // +++ field
   // +++ constructor
-  public byte[] GetBytes(){ ... }; 
+  public byte[] GetBytes(){ ... };
   public int GetSize() { ... };
 }
 ```
+
 여기서 주목할 점은 Body 인터페이스를 상속받은 클래스들이 Body 인터페이스로 분류되었다는 점이다. 쉽게 분류되었음을 통해 클라이언트-서버간에 메시징을 만드는 작업에서 프로그래밍적으로 명시적이게 되었다.
+
+### 추상화의 한계
+
+추상화를 사용한 분류는 유연성이 없다.
+
+예로, 개체의 속성을 토대로 돌고래라는 개체를 포유류로 분류해버렸지만, 내가 종(species)이라는 분류 매커니즘이 아닌 다른 분류 매커니즘에서 돌고래를 사용하고 싶을때는 어떨까?
+
+불필요한 포유류라는 상위 클래스에 정의된 필드와 메서드들을 그대로 사용해야되기 때문이다.
+
+위임은 이 한계를 극복한다.
+
+### 위임으로 극복
+
+> 예시로 올린 코드 `issue.js`와 해결방안된 `solution.js`를 참고해주기 바란다.
 
 <hr/>
 
 **참고문헌**
 
 [자바스크립트는 왜 프로토타입을 선택했을까](https://medium.com/@limsungmook/%EC%9E%90%EB%B0%94%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8%EB%8A%94-%EC%99%9C-%ED%94%84%EB%A1%9C%ED%86%A0%ED%83%80%EC%9E%85%EC%9D%84-%EC%84%A0%ED%83%9D%ED%96%88%EC%9D%84%EA%B9%8C-997f985adb42)
+
+[리팩토링 2판](http://www.yes24.com/Product/Goods/89649360)
