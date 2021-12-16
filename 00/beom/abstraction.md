@@ -7,19 +7,13 @@
 추상화란 단어는 미술에서 파생되어 나온 단어이기에 조사해보았다.
 정의 : 대상의 **구체적인 형상을 나타낸 것이 아니라** 점, 선, 면, 색과 같은 순수한 조형 요소로 표현한 미술의 한 가지 흐름이다.
 
-#### 컴퓨터 프로그래밍에서 추상화
-복잡한 소프트웨어 시스템을 효율적으로 설계하고 구현할 수 있는 방법
-
 #### 컴퓨터 과학에서 추상화
 복잡한 자료, 모듈, 시스템 등으로부터 핵심적인 개념 또는 기능을 간추려 내는 것을 말함
 
 #### 소프트웨어 개발 관점에서 추상화
-인터페이스에 의존하고, 구체적인 구현에는 의존하지 않는다.
+구체적인 것을 감추고, 전체적인 특성을 들어내는 것을 의미한다.
 보통 함수를 기본적인 추상화 방법으로 사용한다.
 ex) printf() // 실제 출력에 대해 어떻게 동작하는지 알지 못하지만 무엇을 하는지 알고 사용한다.
-
-#### 토비의 스프링에서 추상화 정의
-추상화란 하위 시스템의 공통점을 뽑아내서 분리시키는 것을 말한다. 그렇게 하면 하위 시스템이 어떤 것인지 알지 못해도, 또는 하위 시스템이 바뀌더라도 일관된 방법으로 접근할 수가 있다.
 
 
 ### 추상화를 사용해야하는 이유
@@ -27,23 +21,115 @@ ex) printf() // 실제 출력에 대해 어떻게 동작하는지 알지 못하�
 - 가독성 향상
 - 생산성 증가
 - 에러감소
-//결론 : 유지보수 시간 단축
 
-#### 객체지향적 프로그래밍에서 추상화를 사용해야하는 이유
-객체지향적 프로그래밍에서 추상화를 사용하는 이유는 결국 객체들을 '부품'으로 취급하기 위함이다.
-예를 들어 자동차라는 객체를 개발하기위해 타이어, 범퍼, 유리, 핸들 들의 수많은 부품를 결합하여 자동차 객체를 만들수 있다.
+> 아래 예시 코드를 참고하면
+
+> Ultimate 메서드를 추상화하여 재사용한다.
+> attackHammer(), attackGun()을 Ultimate로 통합하였기 때문에 가독성이 증가한다.
+> Ultimate 메서드는 궁국기라는 뜻을 포괄하기 때문에 에러를 줄일 수 있다.
 
 
-abstract class car{
-      abstract fun carName() : String
-
-      abstract fun carWheel() : String
-
-      abstract fun carHandle() : String
+#### 추상화 전
+```
+class Hero {
+    public String name;
+    Hero (String name) {
+        this.name = name;
+    }
 }
-이러한 추상화가 된 클래스가 있다고 생각해볼때
-car라는 클래스를 상속 받을 경우 다양한 이름, 바퀴, 핸들을 사용할 수 있다.
-어떤 바퀴인지를 몰라도 그것이 바퀴의 기능을 가지고 있다면 위 abstract fun carWheel에 들어갈 수 있다.
+
+class Reinhardt extends Hero {
+    Reinhardt () {
+        super("reinhardt");
+    }
+
+    public void attackHammer () {
+        System.out.println("망치 나가신다!");
+    }
+}
+
+class McCree extends Hero {
+    McCree () {
+        super("mccree");
+    }
+    public void attackGun () {
+        System.out.println("석양이 진다. 빵야빵야");
+    }
+}
+
+------------main
+
+class Main {
+    public static void main (String[] args) {
+        Reinhardt myReinhardt = new Reinhardt();
+        McCree myMcCree = new McCree();
+
+        Main.doUltimate(myReinhardt);
+        Main.doUltimate(myMcCree);
+    }
+
+    public static void doUltimate (Hero hero) {
+        if (hero instanceof Reinhardt) {
+            Reinhardt myHero = (Reinhardt)hero;
+            myHero.attackHammer();
+        }
+        else if (hero instanceof McCree) {
+            McCree myHero = (McCree)hero;
+            myHero.attackGun();
+        }
+    }
+}
+
+```
+
+
+#### 추상화 후
+```
+abstract class Hero {
+    public String name;
+    Hero (String name) {
+        this.name = name;
+    }
+
+    // 내부 구현체가 없는 추상 메소드를 선언한다.
+    public abstract void ultimate ();
+}
+
+class Reinhardt extends Hero {
+    Reinhardt () {
+        super("reinhardt");
+    }
+
+    public void ultimate () {
+        System.out.println("망치 나가신다!");
+    }
+}
+
+class McCree extends Hero {
+    McCree () {
+        super("mccree");
+    }
+    public void ultimate () {
+        System.out.println("석양이 진다. 빵야빵야");
+    }
+}
+
+-------------main
+class Main {
+    public static void main (String[] args) {
+        Reinhardt myReinhardt = new Reinhardt();
+        McCree myMcCree = new McCree();
+
+        Main.doUltimate(myReinhardt);
+        Main.doUltimate(myMcCree);
+    }
+
+    public static void doUltimate (Hero hero) {
+        hero.ultimate();
+    }
+}
+```
+
 
 ### 잘된 추상화의 조건
 **강한 응집력과 약한 결합도**
