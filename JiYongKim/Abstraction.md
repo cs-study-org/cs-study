@@ -238,3 +238,14 @@ public class AbstractionExample {
 
 #발표자료
 [Abstraction.pptx](https://github.com/cs-study-org/cs-study/files/7732255/Abstraction.pptx)
+
+
+## 대표적 참고 문헌 블로그 3가지 올려드립니다 ##
+
+[추상화의 기본 개념 인지에 도움을 준 블로그](http://www.ktword.co.kr/test/view/view.php?m_temp1=3026)
+
+[객체 지향 프로그래밍에서의 추상화 참고 블로그](https://evan-moon.github.io/2019/08/24/what-is-object-oriented-programming/)
+
+[추상화의 예시 참고 블로그](https://black7375.tistory.com/6)
+
+
