@@ -235,3 +235,6 @@ public class AbstractionExample {
 유지보수 -> call메소드와 number와 같은 변수를 상위 클래스에서 관리하기에 유지보수에 용이 하다.
 */
 ```
+
+#발표자료
+[Abstraction.pptx](https://github.com/cs-study-org/cs-study/files/7732255/Abstraction.pptx)
