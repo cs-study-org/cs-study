@@ -4,7 +4,7 @@
 
 - 서양철학의 사고방식과 OOP
 - 분류(Classification)
-- 추상화(Abstraction)
+- 추상화(Abstraction)와 경험사례
 
 ### 서양철학의 사고방식과 OOP
 
@@ -33,7 +33,7 @@ Chair theChair = new Chair();
 
 코드상으로 존재하는 (추상적) Chair 클래스가 메모리로 (구체적 존재) 인스턴스화 하게 된다.
 
-### Classification
+### 분류(Classification)
 
 서양철학의 사고방식은 분류란 개념으로 정립된다.
 
@@ -47,7 +47,7 @@ Chair theChair = new Chair();
 
 즉, 분류하기 위함이다.
 
-### Abstraction
+### 추상화(Abstraction)와 경험사례
 
 추상화는 「공통된 속성을 추려 일반화하는 과정」이다. 이는 곳 앞서 분류의 정의와 같은 맥락으로 이해하였다.
 
@@ -89,7 +89,7 @@ public class Message{
 }
 ```
 
-다음은 Body 클래스를 살펴보자. Body 클래스는 위 코드에서 보았듯이 Hedaer에서 명시해준 타입에 따라 요청에 대한 Body 인지 응답에 대한 Body인지 선별된다.
+다음은 Body 클래스를 살펴보자. Body 클래스는 위 코드에서 보았듯이 Header에서 명시해준 타입에 따라 요청에 대한 Body 인지 응답에 대한 Body인지 선별된다.
 
 ```csharp
 public class BodyRequest : Body{
