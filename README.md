@@ -24,16 +24,17 @@
       
 
       <details>
-      <summary>위 최종확인 끝난다면, PR에 `approve`를 남긴다.</summary>
+      <summary>위 최종확인 끝난다면, PR에 approve를 남긴다.</summary>
    
       <div markdown="1">       
 
       1. PR > files changed에서 review changes 버튼을 누른다.
 
-      2. approve 라디오버튼을 체크한 뒤, 승인한다는 멘트를 남기고 submit review 한다.
+      2. approve 라디오버튼을 체크한 뒤 submit review 한다.
 
       3. 아래와 같은 코맨트가 달렸다면 성공이다.
-         ![merge approve](https://user-images.githubusercontent.com/53007747/146631214-29a6e0e9-b6f0-417b-815c-1210b1c887d6.jpg)
+            
+            ![merge approve](https://user-images.githubusercontent.com/53007747/146631596-97e621d5-8315-44c1-9b89-9e6d30d1154a.jpg)
 
       </div>
       </details>
