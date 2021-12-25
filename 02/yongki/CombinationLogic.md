@@ -19,7 +19,7 @@
 
 다음은 계산자 사진예시 이고, 아날로그 계산의 정밀도 문제를 기술하겠다.
 
-![image](assets/slide_ruler.png){: width="50%"}{: .center}
+<center><img src="assets/slide_ruler.png" width="50%"></center>
 
 계산자를 보면 알 수 있듯이 눈금을 통해 `1.1`은 측정할 수 있되 `1.05`는 측정할 수 있을까?
 
@@ -50,7 +50,7 @@
 
 특정 위치를 얼만큼 세밀하게 기준잡느냐에 따라 아날로그 형태와 유사하겠지만, 그래도 손실은 존재한다.
 
-![image](assets/sampling.jpg) {: width="60%"}{: .center}
+<center><img src="assets/sampling.jpg" width="50%"></center>
 
 이 작업을 하는 과정에서 2진수가 적합하다.
 
@@ -69,7 +69,7 @@
 
 이를 활용해, A회로의 출력을 B회로의 입력으로 구동하여 컴퓨터에 필요한 복잡한 논리를 만들 수 있다.
 
-![image](assets/relay.gif){: width="50%"}{: .center}
+<center><img src="assets/relay.gif" width="50%"></center>
 
 문제는 릴레이의 단점 중에 전자석의 전원을 갑자기 끄면 초고압이 발생한다는 사실과 이 현상이 일어나는 부분이 마모된다.
 
@@ -89,6 +89,40 @@
 
 ## (번외) 불리언 연산 코딩 문제 리뷰
 
+1. 주어진 배열에서 빠진 요소 구하기
+
+```javascript
+// +++ my solution
+var missingNumber = function(nums) {
+  nums.sort((a, b) => a - b);    
+  
+  for(let i = 0; i < nums.length; i++){
+      if(nums[i] !== i)
+          return i;
+  }    
+  
+  return nums.length;
+};
+```
+위 코드는 정렬을 하는 비용이 든다. 
+
+`XOR`는 이를 해결하는데, 이에 앞서 `XOR`의 성질을 알아보자.
+
+`a ^ b ^ b = a` 처럼 동일한 숫자와 `XOR` 연산을 수행하면 동일한 숫자들이 제거되는데, 이를 활용한다.
+
+```javascript
+// +++ use xor solution
+var missingNumber = function(nums) {    
+  let xor = 0;
+  
+  for (let i = 0; i < nums.length; i++) {
+    xor = xor ^ i ^ nums[i];
+  }
+
+  return xor ^ i;
+};
+```
+
 <hr/>
 
 ## 참고 문헌
@@ -99,4 +133,4 @@
 
 [릴레이 사진자료](https://blog.naver.com/PostView.nhn?isHttpsRedirect=true&blogId=roboholic84&logNo=220460268471&parentCategoryNo=7&categoryNo=&viewDate=&isShowPopularPosts=true&from=search) -- DIY 메카솔루션 오픈랩
 
-
+[All about Bitwise Operations [Beginner-Intermediate]](https://leetcode.com/discuss/general-discussion/1073221/All-about-Bitwise-Operations-Beginner-Intermediate) -- Yashjain
