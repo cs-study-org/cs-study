@@ -1,10 +1,19 @@
 # 전자 회로의 조합 논리
+- [전자 회로의 조합 논리](#전자-회로의-조합-논리)
+  - [들어가며](#들어가며)
+  - [아날로그와 디지털](#아날로그와-디지털)
+    - [하드웨어 크기의 중요성](#하드웨어-크기의-중요성)
+    - [아날로그의 문제점](#아날로그의-문제점)
+    - [아날로그를 디지털로](#아날로그를-디지털로)
+  - [조합 논리](#조합-논리)
+  - [(번외) 비트 연산 코딩 문제 리뷰](#번외-비트-연산-코딩-문제-리뷰)
+  - [참고 문헌](#참고-문헌)
 
 ## 들어가며
 
 비트에 대해 논의한 내용은 추상적이다.
 
-비트 연산 중 불리언 대수를 구현하는 하드웨어[^hardware]를 알아보자.
+비트 연산을 구현하는 하드웨어[^hardware]를 알아보자.
 
 [^hardware]: 비트에 대해 동작하는 장치를 포함한 모든 물리적인 장치
 
@@ -19,7 +28,12 @@
 
 다음은 계산자 사진예시 이고, 아날로그 계산의 정밀도 문제를 기술하겠다.
 
-<center><img src="assets/slide_ruler.png" width="50%"></center>
+<center>
+  <img 
+    src="assets/slide_ruler.png" 
+    style="max-width: 100%; height: auto"
+  />
+</center>
 
 계산자를 보면 알 수 있듯이 눈금을 통해 `1.1`은 측정할 수 있되 `1.05`는 측정할 수 있을까?
 
@@ -50,7 +64,12 @@
 
 특정 위치를 얼만큼 세밀하게 기준잡느냐에 따라 아날로그 형태와 유사하겠지만, 그래도 손실은 존재한다.
 
-<center><img src="assets/sampling.jpg" width="50%"></center>
+<center>
+  <img 
+    src="assets/sampling.jpg" 
+    style="max-width: 100%; height: auto"
+  />
+</center>
 
 이 작업을 하는 과정에서 2진수가 적합하다.
 
@@ -66,7 +85,7 @@
 
 여기서 `AND`와 `OR` 게이트보다 `NAND`와 `NOR` 게이트가 효율적이라고 한다.
 
-그 이유는 `NAND`, `NOR`만 있으면 `OR, AND, NOT`을 모두 표현할 수 있기 때문이고 `NAND`를 통해 이를 알아보자.
+그 이유는 `NAND` 또는 `NOR`만 있으면 `OR, AND, NOT`을 모두 표현할 수 있기 때문이고 `NAND`를 통해 이를 알아보자.
 
     NAND는 OR의 두 입력을 반전 시킨 것과 같다.
 
@@ -95,7 +114,5 @@
 [계산자 사진자료](https://homoscience.kr/3372/) -- 과학하는 인간
 
 [ADC 사진자료](http://itnovice1.blogspot.com/2019/09/blog-post_31.html) -- IT 내맘대로 끄적끄적
-
-[릴레이 사진자료](https://blog.naver.com/PostView.nhn?isHttpsRedirect=true&blogId=roboholic84&logNo=220460268471&parentCategoryNo=7&categoryNo=&viewDate=&isShowPopularPosts=true&from=search) -- DIY 메카솔루션 오픈랩
 
 [조합논리회로 - NAND, NOR 게이트 변환](https://e-funny.tistory.com/11) -- EBOO
