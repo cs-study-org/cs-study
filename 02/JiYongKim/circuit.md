@@ -10,15 +10,17 @@
   * 어떠한 양 또는 데이터를 <U>**연속적으로**</U> 변하는 물리량을 표현한 것
   * 곡선의 형태로 정보를 전달
   * 연속으로 표현되는 정보
-    <br>
-    [아날로그 신호 이미지]
+
+    <img width="354" alt="아날로그" src="https://user-images.githubusercontent.com/81874493/147508333-666a005a-f79f-4905-8313-1e7cb7b47436.png">
+
 <br><br>
 * 디지털이란?
   *  어떤 양 또는 데이터를 2진수로 표현하는 것을 의미
   * 1과 0 이라는 숫자를 통해 정보를 전달
   * 이산적으로 표현되는 정보
   
-    [디지털 신호 이미지]
+    <img width="327" alt="디지털" src="https://user-images.githubusercontent.com/81874493/147508349-6e42110b-c5c7-400e-bb89-08e3675368ef.png">
+
 
 <br><br>
 
@@ -54,8 +56,9 @@
 - **트랜지스터**
   
   <br>
+  
+  <img width="624" alt="트랜지스터" src="https://user-images.githubusercontent.com/81874493/147508371-6a7eb979-9bdf-46d5-ab62-0cddb3bdc9c6.png">
 
-  [트렌지스터 이미지]
   
   <br>
     트랜지스터란 전자 회로 내에서 전자의 증폭과 스위칭을 담당하는 소자이다.
@@ -77,7 +80,10 @@
     
     전자회로는 전자 소자등으로 구성된 회로로 <u>**주어진 어떠한 신호를 원하는 형태로 바꾸는 일련의 시스템**</U>을 의미한다.
     <br><br>
-    [전자 회로 이미지]
+    
+    <img width="628" alt="전자회로 예시" src="https://user-images.githubusercontent.com/81874493/147508383-49794bec-f058-4a4a-a856-329c14ecc785.png">
+
+
     
     마이크 - 스피커 예시
     
@@ -94,7 +100,8 @@
 * **직접 회로**
   <br>
 
-    [직접 회로 이미지]
+    <img width="397" alt="직접 회로" src="https://user-images.githubusercontent.com/81874493/147508397-70fbb230-92ad-412a-9ae2-f4f7811c5eaf.png">
+
 
     직접 회로( IC )는 <U>반도체에 만든 전자회로의 집합</U>을 의미하며 트랜지스터, 저항 등을 하나의 실리콘 결정의 기판에 회로를 집적한 것이다.
 
@@ -114,41 +121,62 @@
 
 
     - **기본 논리 회로**
+       
+       <br>
+       
         - NOT 게이트
             
-            [not gate 이미지]
+           <img width="336" alt="not gate" src="https://user-images.githubusercontent.com/81874493/147508410-cc6afe93-1571-46ba-bc3c-b86a0a31bf17.png"> 
 
+       <br><br>
             
         - 버퍼 게이트
 
-            [buffer gate 이미지]
+          <img width="294" alt="buffer gate" src="https://user-images.githubusercontent.com/81874493/147508431-51998dbb-e004-464f-b779-b399cac254b8.png">
+
+       <br><br>
 
         - AND 게이트
+       
 
-            [and gate 이미지]
+          <img width="629" alt="and gate" src="https://user-images.githubusercontent.com/81874493/147508449-552b66de-afb6-41d8-8ca2-5b18b06222eb.png">
+
+       <br><br>
             
         - OR 게이트
 
-            [ or gate 이미지]
-            
+
+          <img width="611" alt="or gate" src="https://user-images.githubusercontent.com/81874493/147508465-81a452ba-fdf6-43db-9887-78c7697692bd.png">
+
+       <br><br>
+
         - NAND 게이트
 
-            [not and gate 이미지]
+
+          <img width="604" alt="notand" src="https://user-images.githubusercontent.com/81874493/147508488-9c060507-4a39-490b-8e20-188e5bd39f31.png">
+       
+       <br><br>
             
         - NOR 게이트
 
-            [not or 이미지]
-        
+          <img width="605" alt="not or" src="https://user-images.githubusercontent.com/81874493/147508499-fcf98f33-f195-4a1b-bba8-816c8af484e4.png">
+
+       <br><br>
+       
         - XOR 게이트
 
-            [xor 이미지]
-            
-        
+
+          <img width="604" alt="xor gate" src="https://user-images.githubusercontent.com/81874493/147508508-8ef47fc1-e0be-486c-91d5-b5be3b32ddb4.png">
+
+       <br><br>
+       
         - XNOR 게이트
 
-            [x not or 이미지]
 
-            <br>
+          <img width="619" alt="x nor gate" src="https://user-images.githubusercontent.com/81874493/147508515-2c27b706-315b-47f5-bcce-1a45f21d21c9.png">
+
+       <br><br>
+       
 
     - **논리 회로의 구분**
         
@@ -168,8 +196,9 @@
 
                 <br>
 
-            [순차 논리 회로 이미지]
-            
+
+              <img width="314" alt="순차 논리" src="https://user-images.githubusercontent.com/81874493/147508536-5c5de8c0-f781-4e85-98d8-fb08c7206761.png">
+
             - 위의 그림과 같이 순차 논리회로는 조합 논리회로 + 기억회로로 구성
             - 조합 논리회로에서는 기억 회로의 정보와 함께 입력의 조합으로 출력이 결정되며 이 출력 값은 다시 기억회로에 저장된다.
 
@@ -203,9 +232,10 @@
     | 1 | 1 | 0 | 1 |
     |  |  | XOR 게이트 | AND 게이트 |
     
-    [반 가산기 이미지]
-    
-    <br>
+
+    <img width="250" alt="반 가산기" src="https://user-images.githubusercontent.com/81874493/147508569-4926afde-4de0-4463-b021-afc3c74e4041.png">
+
+    <br><br>
 
 - **전 가산기**
     - 덧셈 연산을 수행하기 위한 논리 회로
@@ -213,7 +243,7 @@
     - 3개의 입력값(A, B, C0) 과 2개의 출력값 (S, C1)을 갖는다.
     - 2개의 반사기와 1개의 OR게이트로 구성
     
-    <br>
+    <br><br>
 
     <진리표>
     
@@ -230,9 +260,10 @@
     
     <br>
 
-    [전 가산기 이미지]
-    
-    <br>
+
+    <img width="506" alt="전 가산기" src="https://user-images.githubusercontent.com/81874493/147508573-2ccc4e93-f3f0-4bab-b7b4-26e7c2a2b0db.png">
+
+    <br><br>
     
 - **디코더(Decoder / 해독기)**
     - 인코더가 한 암호화 또는 컴퓨터가 인식할 수 있는 것들을 해독하여 사람이 읽을 수 있게 바꾸는 해독기 역할을 한다.
@@ -249,9 +280,10 @@
     | 1 | 1 | 0 | 0 | 0 | 1 |
     
     <br>
-    [디코더 이미지]
-    
-    <br>
+
+    <img width="467" alt="디코더" src="https://user-images.githubusercontent.com/81874493/147508581-adabcf08-3084-45ef-80e3-e20e87e27bfa.png">
+
+    <br><br>
     
 
 - **멀티 플랙서 (Multiplexer, MUX)**
@@ -268,7 +300,7 @@
     | 1 | 0 | 0 | 0 | 1 | 0 |
     | 1 | 1 | 0 | 0 | 0 | 1 |
     
-    [멀티 플렉서 이미지]
+    <img width="540" alt="멀티 플랙서" src="https://user-images.githubusercontent.com/81874493/147508587-90615d4d-a9ca-4a94-becf-021f618758bd.png">
 
 
 
