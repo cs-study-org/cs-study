@@ -1,6 +1,10 @@
 ## 비트 연산 코딩 문제 리뷰
 
-1. 주어진 배열에서 빠진 요소 구하기
+
+<details>
+<summary>1. Missing Number</summary>
+
+<div markdown="1">  
 
 ```javascript
 // +++ my solution
@@ -33,6 +37,44 @@ var missingNumber = function(nums) {
   return xor ^ i;
 };
 ```
+
+</div>
+</details>
+
+<details>
+<summary>2. Bitwise ORs of Subarrays</summary>
+
+<div markdown="1">
+
+```javascript
+var subarrayBitwiseORs = function(arr) {
+  const result = new Set();
+  const singleDigit = new Set();    
+  
+  arr.forEach(each => {
+    result.add(each);
+    singleDigit.add(each);
+  });
+  
+  for(const each of singleDigit){                
+    for(let j = 0; j < arr.length; j++){            
+      if(each === arr[j])
+          continue;
+      
+      if(result.has(each | arr[j]))
+          continue;
+                  
+      result.add(each | arr[j]);
+    }
+  }
+  console.log(result);
+  return result.size;
+};
+```
+위 코드는 제출 승인 되지 않았지만, 문제의 의도대로 결과가 나왔다고 판단한다.
+
+</div>
+</details>
 
 ## 참고 문헌
 
