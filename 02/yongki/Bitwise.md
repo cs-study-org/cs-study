@@ -16,6 +16,8 @@
 
 <div markdown="1">  
 
+**문제 풀이**
+
 ```javascript
 // +++ my solution
 var missingNumber = function(nums) {
@@ -38,13 +40,12 @@ var missingNumber = function(nums) {
 ```javascript
 // +++ use xor solution
 var missingNumber = function(nums) {    
-  let xor = 0;
-  
-  for (let i = 0; i < nums.length; i++) {
-    xor = xor ^ i ^ nums[i];
-  }
-
-  return xor ^ i;
+  let xor = 0, i = 0;
+	for (i = 0; i <= nums.length; i++) {
+		xor = xor ^ i ^ nums[i];
+	}
+    
+	return xor;
 };
 ```
 
@@ -68,7 +69,7 @@ var missingNumber = function(nums) {
 
        [1, 1], [1, 2], [1, 1, 2]
 
-    2. 이 요소들을 각자 묶여있는 배열 안에서 or 연산을 하면,
+    2. 이 요소들을 각자 묶여있는 배열 안에서 or 연산을 하면 결과는 다음과 같다.
    
         1, 1, 2, 1, 3, 3
 
@@ -76,6 +77,8 @@ var missingNumber = function(nums) {
         Output: 3
 
 <div markdown="1">
+
+**문제 풀이**
 
 ```javascript
 var subarrayBitwiseORs = function(arr) {
@@ -118,10 +121,10 @@ var subarrayBitwiseORs = function(arr) {
        입력값은 위와 같고, arr의 2진수는 아래와 같다. 
        queries는 arr의 범위를 지정하는 좌표들이다.
 
-          1 = 0001 
-          3 = 0011 
-          4 = 0100 
-          8 = 1000 
+        1 = 0001 
+        3 = 0011 
+        4 = 0100 
+        8 = 1000 
 
     2. arr의 범위 내에 모든 요소들을 xor 연산한다.
    
@@ -133,6 +136,8 @@ var subarrayBitwiseORs = function(arr) {
     3. Output: [2,7,14,8]
 
 <div markdown="1">
+
+**문제 풀이**
 
 ```javascript
 var xorQueries = function(arr, queries) {
@@ -149,6 +154,72 @@ var xorQueries = function(arr, queries) {
   })
 };
 ```
+</div>
+</details>
+
+<details>
+<summary>4. Minimum Flips to Make a OR b Equal to c</summary>
+
+**문제 3줄 요약**
+
+    1. Input: a = 2, b = 6, c = 5
+
+        a = 0010
+        b = 0110
+
+        a OR b = 0110
+             c = 0101
+
+        a OR b == c 이여야 하지만 현재 같지 않다.        
+
+    2.  a와 b 어느 부분이든 비트 전환을 하여 c가 되게 해야한다.
+        
+        a = 0010 → 0001 (비트 전환 2회)
+        b = 0110 → 0100 (비트 전환 1회)
+
+    3. Output: 3
+
+<div markdown="1">
+
+**문제 풀이**
+
+문제에서 입력 값의 범위가 양의 정수 10의 9승으로 2진수로 변환할 때,
+
+표현 범위는 32비트가 된다.
+
+아래는 풀이 과정이다. 비트 연산보단 문자열 처리에 가깝다고 볼 수 있다.
+
+성능 차이가 많이 나는지에 대한 여부가 있는지 궁금증이 남아있다.
+
+```javascript
+var minFlips = function(a, b, c) {
+  const zerofill = value => value.padStart(32, '0');
+  
+  const binaryA = zerofill(a.toString(2));
+  const binaryB = zerofill(b.toString(2));
+  const binaryC = zerofill(c.toString(2));
+  
+  console.log(binaryA, binaryB, binaryC);
+  let flipCount = 0;
+  
+  for(let i = 31; i >= 0; i--){        
+    if(binaryC[i] === String(binaryA[i] | binaryB[i]))
+      continue;    
+    else{      
+      if(binaryC[i] === "1")
+        flipCount += 1;
+      else{
+       if(binaryA[i] === "1" && binaryB[i] === "1") 
+         flipCount += 2;
+       else
+         flipCount += 1;
+      }
+    }
+  }
+  return flipCount;
+};
+```
+
 </div>
 </details>
 
