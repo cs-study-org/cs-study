@@ -95,11 +95,11 @@
 
 ![nand](http://www.signoffsemi.com/wp-content/uploads/2020/03/all-1.png)
 
-또한 `NAND`를 `NOR`로 
+또한 `NAND`를 `NOR`로부터
 
 ![nand-to-nor](https://upload.wikimedia.org/wikipedia/commons/thumb/2/2b/NAND_from_NOR.svg/420px-NAND_from_NOR.svg.png)
 
-그 반대인 `NOR`를 `NAND`로 표현 가능하다.
+그 반대인 `NOR`를 `NAND`로부터 표현 가능하다.
 
 ![nor-to-nand](https://upload.wikimedia.org/wikipedia/commons/thumb/4/4e/NOR_from_NAND.svg/420px-NOR_from_NAND.svg.png)
 
