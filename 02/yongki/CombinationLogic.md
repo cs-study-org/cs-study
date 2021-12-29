@@ -89,24 +89,19 @@
 
 여기서 `AND`와 `OR` 게이트보다 `NAND`와 `NOR` 게이트가 효율적이라고 한다.
 
-그 이유는 `NAND` 또는 `NOR`만 있으면 `OR, AND, NOT`을 모두 표현할 수 있기 때문이고 `NAND`를 통해 이를 알아보자.
+그 이유는 `NAND` 또는 `NOR`만 있으면 `NOT, OR, AND, XOR`을 모두 표현할 수 있기 때문이다.
 
-    NAND는 OR의 두 입력을 반전 시킨 것과 같다.
+아래 활용 사진을 참고하자.
 
-![Logic Gate](assets/nand-or.drawio.svg)
+![nand](http://www.signoffsemi.com/wp-content/uploads/2020/03/all-1.png)
 
-    NAND의 출력에 인버터를 연결하면 AND가 된다.
+또한 `NAND`를 `NOR`로 
 
-![Logic Gate](assets/nand-and.drawio.svg)
+![nand-to-nor](https://upload.wikimedia.org/wikipedia/commons/thumb/2/2b/NAND_from_NOR.svg/420px-NAND_from_NOR.svg.png)
 
-위 논리 게이트는 가독성을 위해 사용하였고, 증명은 아래 진리표를 확인해보자.
+그 반대인 `NOR`를 `NAND`로 표현 가능하다.
 
-|   A   |   B   | (NOT A) OR (NOT B) | A NAND B | NOT(A AND B) |
-| :---: | :---: | :----------------: | :------: | :----------: |
-|   0   |   0   |         1          |    1     |      1       |
-|   0   |   1   |         1          |    1     |      1       |
-|   1   |   0   |         1          |    1     |      1       |
-|   1   |   1   |         0          |    0     |      0       |
+![nor-to-nand](https://upload.wikimedia.org/wikipedia/commons/thumb/4/4e/NOR_from_NAND.svg/420px-NOR_from_NAND.svg.png)
 
 ## 대표적인 조합 논리 회로
 
@@ -179,6 +174,6 @@
 
 [ADC 사진자료](http://itnovice1.blogspot.com/2019/09/blog-post_31.html) -- IT 내맘대로 끄적끄적
 
-[조합논리회로 - NAND, NOR 게이트 변환](https://e-funny.tistory.com/11) -- EBOO
+[NAND, NOR 게이트 변환](http://www.signoffsemi.com/logic-gates-and-boolean-expressions/) -- signoff-scribe
 
 [「컴퓨터 아키텍처: 컴퓨터 구조 및 동작 원리」](http://www.yes24.com/Product/Goods/14148792) -- 우종정
