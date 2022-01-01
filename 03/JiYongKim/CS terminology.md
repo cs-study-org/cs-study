@@ -179,8 +179,9 @@ CharSet 은 문자 집합으로 인코딩과 디코딩할때의  기준을 의�
 
 - ASCII
     
-    [AscII image]
-    
+
+    <img width="687" alt="ASCII" src="https://user-images.githubusercontent.com/81874493/147850242-3e845433-ff27-46a1-95d7-df94b57cde6a.png">
+
     최초의 문자집합인 ASCII(American Standard Code for Information Interchange) 테이블은 가장 대표적인 문자집합
     
     - 문자집합과 인코딩이 똑같은 형태이고 7비트의 고정 길이를 가진다.
@@ -190,8 +191,8 @@ CharSet 은 문자 집합으로 인코딩과 디코딩할때의  기준을 의�
     
 - 유니 코드(Unicode)
     
-    [unicode image]
-    
+    <img width="691" alt="Unicode" src="https://user-images.githubusercontent.com/81874493/147850245-102ca412-3b84-43c8-98b6-aaf346f2b139.png">
+
     - 다른 국가 사람들이 컴퓨터를 이용하다보니 자국어도 컴퓨터로 표시하고 싶어졌고
         
         ⇒ 1byte 안에 임의대로 알파벳 대신 자국어를 할당해서 사용
@@ -218,7 +219,7 @@ CharSet 은 문자 집합으로 인코딩과 디코딩할때의  기준을 의�
 
 >⇒ UTF라는 문자열 인코딩 규칙으로 문자를 코드로 표현하는 것
 
-[문자열 인코딩 이미지]
+<img width="711" alt="문자열 인코딩" src="https://user-images.githubusercontent.com/81874493/147850249-9f2d12e5-a71b-42e4-aa64-d311517af8f4.png">
 
 <br>
 
@@ -272,8 +273,9 @@ UTF는 **유니코드 문자를 인코딩하는 방식**을 나타낸다.
     
 - UTF-8 인코딩 방식
     
-    [utf-8 image]
-    
+
+    <img width="764" alt="utf-8" src="https://user-images.githubusercontent.com/81874493/147850256-5dab60d8-2226-427a-ab7d-577a339298d5.png">
+
     1.  7비트 이내의 코드값(0-127)에는 맨 앞 비트를 0으로 붙인다. 아스키 코드에 해당하는 0번부터 127번까지의 문자 128개는 정확하게 7비트로 표현 가능하다. 1바이트는 8비트이므로, 맨 앞에 0을 붙이고 나머지 7비트를 사용해 127까지를 기록한다. 00000000은 아스키 코드 0번에 해당하며,NULL(통칭 '널문자')을 뜻한다.
 
 
