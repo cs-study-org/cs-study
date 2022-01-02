@@ -23,7 +23,8 @@
 
     cpu란 컴퓨터의 중앙 처리 장치로  4대 주요 기능 (기억 ,해석, 연산, 제어)를 관할 하는 장치 이다.
 
-[하드웨어 내부구조 이미지]
+
+<img width="694" alt="하드웨어 구조" src="https://user-images.githubusercontent.com/81874493/147878638-e664db92-072f-48f2-97e6-49ccad4154e9.png">
 
 **내부 구성**
 
@@ -76,8 +77,9 @@ Bus Interface 는 <U>**CPU 외부와 데이터를 주고 받는 통로**</U> 이
     
     시스템 버스는 다른 하드웨어 구성 요소 사이에서 데이터를 교환하기 위해 거치는 통로 이다.
     
-    [하드웨어 내부 구조 이미지]
-    
+
+    <img width="694" alt="하드웨어 구조" src="https://user-images.githubusercontent.com/81874493/147878644-c43feb9c-2a67-4d5c-9a67-abdfd8749691.png">
+
     - 그림에서 CPU와 메모리,I/O 장치(키보드, 마우스..etc)와 연결되어 구성 요소 사이의 데이터 입출력이 가능해진다.
     - 시스템 버스 에서 전송되는 데이터에 따라 버스가 분류된다.
 
@@ -406,7 +408,8 @@ Bus Interface 는 <U>**CPU 외부와 데이터를 주고 받는 통로**</U> 이
         
         >빅엔디안 방식으로 저장
         
-        [빅 엔디안 이미지]
+
+        <img width="487" alt="빅 엔디안" src="https://user-images.githubusercontent.com/81874493/147878656-3cd7a892-0e4a-42d8-b765-936097802978.png">
 
        <br>
 
@@ -425,8 +428,9 @@ Bus Interface 는 <U>**CPU 외부와 데이터를 주고 받는 통로**</U> 이
         
         >리틀엔디안 방식으로 저장
     
-    [리틀 엔디안 이미지]
-    
+
+    <img width="625" alt="리틀 엔디안" src="https://user-images.githubusercontent.com/81874493/147878674-bb909237-8659-4135-80c4-8dc6182def5c.png">
+
     <br>
 
 - 빅 엔디안 vs 리틀 엔디안 
