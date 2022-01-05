@@ -1,3 +1,28 @@
+# 5장 컴퓨터 아키텍처와 운영체제
+
+<br>
+
+## 목차
+1. 컴퓨터 아키텍처란?
+2. 폰노이만 구조 & 하버드 구조
+3. CPU, Processor, Core
+4. 캐시
+5. 인터럽트
+6. 상대주소 & 절대 주소
+7. CPU 스케줄링
+8. 스케줄링 알고리즘
+9. 메모리 관리
+10. 가상 메모리
+11. 자료구조 (Stack , Queue, Tree)
+12. 메모리 구조
+
+<br>
+
+* * *
+
+<br>
+
+
 ## 컴퓨터 아키텍처란?
 
 컴퓨터 에서의 하드웨어, 소프트웨어의 개별적인 기술뿐 아니라 <U>**컴퓨터 시스템 전체 에서의 종합적인 설계방식**</U>을 뜻한다.
@@ -16,7 +41,7 @@
 
 ⇒ 폰 노이만의 가장 큰 업적은 현재와 같은 CPU, 메모리, 프로그램 구조를 갖는 범용 컴퓨터 **구조의 확립**
 
-[폰노이만 이미지]
+<img width="677" alt="폰노이만" src="https://user-images.githubusercontent.com/81874493/148178904-42c9de8b-0f7d-4fb1-a103-3a0da8163b53.png">
 
 <br>
 
@@ -75,7 +100,8 @@
 
 <br>
 
-[하버드 구조 이미지]
+<img width="685" alt="하버드" src="https://user-images.githubusercontent.com/81874493/148178936-a91b2b63-4901-4490-b0a0-ac84580e53e5.png">
+
 
 - 병목 현상이 일어나는 근본적 원인
     
@@ -102,7 +128,7 @@
 
 **현대**
 
-[현대 구조 이미지]
+<img width="677" alt="현재 구조" src="https://user-images.githubusercontent.com/81874493/148178959-20c18085-a28d-4451-8e9f-dee9d3209f31.png">
 
 현대의 구조에는 
 
@@ -122,7 +148,7 @@
 
 ## CPU, Processor, Core
 
-[cpu processor image]
+<img width="688" alt="cpu processor" src="https://user-images.githubusercontent.com/81874493/148178976-1aae55db-6164-49fb-b60d-aee216329f0f.png">
 
 **Processor**
 
@@ -152,7 +178,7 @@ CPU의 Core 즉 CPU의 핵심적인 역할을 수행해내는 중심부 역할�
 
  ⇒ CPU에서의 코어가 많은 경우 컴퓨터의 성능을 가장 좌우한다고 볼수도 있으며, 코어의 갯수가 늘어남에 따라 명칭은 다르게 사용된다.
 
-[core image]
+<img width="712" alt="core" src="https://user-images.githubusercontent.com/81874493/148178993-658d231f-e533-4471-8613-87417dc2d0eb.png">
 
 <br>
 
@@ -210,8 +236,8 @@ CPU의 Core 즉 CPU의 핵심적인 역할을 수행해내는 중심부 역할�
                 <br>
 - 인터럽트 벡터
     
-    [iterrupt image]
-    
+    <img width="668" alt="interrupt vector" src="https://user-images.githubusercontent.com/81874493/148179031-0c42f8db-621b-4e98-9737-22a16d1dbe82.png">
+
     - 시스템에는 많은 인터럽트가 존재하고 각 인터럽트는 한번에 한나씩 발생하는 것이 아니라 한순간 여러개가 동시에 발생하기도 한다.
         
         ⇒ 이렇게 동시에 발생하는 인터럽트를 하나로 묶어서 처리하는 개념이 인터럽트 벡터 이다.
@@ -251,8 +277,8 @@ CPU의 Core 즉 CPU의 핵심적인 역할을 수행해내는 중심부 역할�
 
 - 메모리 영역의 구분
     
-    [메모리 구조 이미지]
-    
+    <img width="685" alt="절대 주소 상대 주소" src="https://user-images.githubusercontent.com/81874493/148179061-f1cc974a-d4a9-489b-a9ee-d9b8260f64d8.png">
+
     - 메모리 관리 장치 (MMU) 는 메모리를 운영체제와 사용자 영역으로 나누어 관리한다.
         - 운영체제 영역 : 운영체제 시스템에서 사용하는 메모리 영역
         - 사용자 영역 : 사용자 프로세스에서 사용하는 메모리 영역
@@ -319,8 +345,8 @@ CPU 스케줄러는 프로세스가 생성되고 종료 될 때까지 모든 상
 
 - 스케줄링의 단계
     
-    [스케줄링 단계 이미지]
-    
+    <img width="672" alt="스케줄링 단계" src="https://user-images.githubusercontent.com/81874493/148179082-f1d69901-334b-40eb-90b5-b5d51590f57a.png">
+
     - 고수준 스케줄링
         - 고수준 스케줄링에서의 작업의 단위는 운영체제에서 다루는 일의 가장 큰단위 이며, 1개 또는 여러 개의 프로세스로 이루어진다.
         - 고수준 스케줄링은 시스템 내의 전체 작업 수를 조절하는 것을 지칭한다.
@@ -518,8 +544,8 @@ CPU 스케줄러는 프로세스가 생성되고 종료 될 때까지 모든 상
 
 - 다단계 피드백 큐 스케줄링
     
-    [다단계 큐 이미지]
-    
+    <img width="578" alt="다단계 피드백 큐" src="https://user-images.githubusercontent.com/81874493/148179110-bc6f498a-0036-4385-b9d4-90b5c6540fa9.png">
+
     - 우선순위에 따라 준비큐를 여러개 사용하는 방식
     - 각 큐의 서비스 단계에서는 CPU 할당받아 실행될때 마다 프로세스의 우선순위를 낮추어 낮은 프로세스의 실행이 연기되는 문제를 완화
     - 우선순위가 낮아질수록 해당 큐의 타임 슬라이스가 커짐
@@ -649,7 +675,7 @@ CPU 스케줄러는 프로세스가 생성되고 종료 될 때까지 모든 상
 
 **스택(Stack)..(선형 자료구조)**
 
-[Stack image]
+<img width="639" alt="스택" src="https://user-images.githubusercontent.com/81874493/148179154-9584c82b-c854-48ec-98b7-9c2920602859.png">
 
 ⇒ 스택은 컴퓨터의 기본 자료구조 중 하나로 한쪽 끝에서만 자료를 넣거나 뺄 수 있는 LIFO 형식의 자료 구조
 
@@ -678,7 +704,7 @@ CPU 스케줄러는 프로세스가 생성되고 종료 될 때까지 모든 상
 - 큐는 한쪽에서는 데이터가 추가되고 한쪽에서는 데이터가 삭제되는 구조를 가지고 있다.
 - 큐에서 **삽입(Enqueue)** 이 일어나는 곳을 **Rear** 라고 하며 **삭제(Dequeue)** 가 일어나는 곳을 **Front** 라고 한다.
 
-<br>
+<img width="692" alt="큐" src="https://user-images.githubusercontent.com/81874493/148179170-ffacf174-3903-49d0-9f4d-223fa9ffd80a.png">
 
 - 큐의 종류
     - Linear Queue(선형 **큐**)
@@ -704,14 +730,14 @@ CPU 스케줄러는 프로세스가 생성되고 종료 될 때까지 모든 상
 
 **트리(Tree) .. (비선형 자료구조)**
 
-[트리 이미지]
+<img width="700" alt="트리" src="https://user-images.githubusercontent.com/81874493/148179187-2c9b3820-58c9-44f1-8622-ed0d1ac41c8d.png">
 
 트리는 노드들이 나무 가지 처럼 연결된 비선형 계층적 자료구조이다.
 
 - 트리는 트리내에 다른 하위 트리가 있고 그 하위 트리안에 다른 하위 트리가 있는 재귀적 자료구조 이기도 하다.
 - 컴퓨터 구조가 트리의 대표적인 예시이다.
     
-    [directory structure image]
+    <img width="685" alt="디렉토리 구조" src="https://user-images.githubusercontent.com/81874493/148179241-afa1d8cf-e55f-4a3e-b34c-b4eaae97a644.png">
 
 <br>
 
@@ -720,8 +746,8 @@ CPU 스케줄러는 프로세스가 생성되고 종료 될 때까지 모든 상
 
 <div markdown="1">
     
-[트리 구조 이미지]
-    
+<img width="683" alt="트리 구조 용어" src="https://user-images.githubusercontent.com/81874493/148179288-c52bb162-b226-435b-9fa9-e3bac9e03a87.png">
+
 - Node
     - 트리를 구성하고 있는 기본 요소
     - 노드에는 키 또는 값과 하위 노드에 대한 포인터를 가진다.
@@ -925,7 +951,7 @@ CPU 스케줄러는 프로세스가 생성되고 종료 될 때까지 모든 상
 
 <메모리 구조>
 
-[메모리 구조 이미지 ]
+<img width="634" alt="메모리 구조" src="https://user-images.githubusercontent.com/81874493/148179346-62a170ad-9868-4a4a-8857-75d4e9574f9b.png">
 
 <br>
 
