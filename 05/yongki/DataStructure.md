@@ -2,6 +2,10 @@
 
 - [데이터 구조와 처리](#데이터-구조와-처리)
   - [Javascript 빌트인 자료형](#javascript-빌트인-자료형)
+    - [객체](#객체)
+      - [Indexed collections: 배열](#indexed-collections-배열)
+      - [Keyed collections: Map](#keyed-collections-map)
+      - [Keyed collections: Set](#keyed-collections-set)
   - [v8엔진의 가비지 컬렉터, Orinoco](#v8엔진의-가비지-컬렉터-orinoco)
     - [마이너 GC](#마이너-gc)
     - [메이저 GC](#메이저-gc)
@@ -12,7 +16,58 @@
 
 ## Javascript 빌트인 자료형
 
-    ...
+들어가기 앞서 기저 지식을 밟고 진행하자.
+
+1. 시간 복잡도에서 계산 기준은 다음과 같다.
+
+    > a. 최악의 상황을 고려한다.
+    > b. 상수는 제거한다.
+
+2. 공간 복잡도에 영향을 미치는 요소는 다음과 같다.
+
+    > 변수, 자료구조, 함수 호출, 할당
+
+3. 공간 복잡도를 계산할 때 입력 값은 중요한 부분이 아니다.
+
+### 객체
+
+#### Indexed collections: 배열
+
+**정의**
+
+    배열은 정수 키를 가진 속성과 length 속성 사이에 특별한 연관을 지어놓은 일반 객체이다.
+
+**Time Complexity**
+
+| Access | Search | Insertion | Deletion |
+| :----: | :----: | :-------: | :------: |
+|        |        |           |          |
+
+#### Keyed collections: Map
+
+**정의**
+
+    Map은 
+
+**Time Complexity**
+
+| Access | Search | Insertion | Deletion |
+| :----: | :----: | :-------: | :------: |
+|        |  O(n)  |           |          |
+
+#### Keyed collections: Set
+
+**정의**
+
+    Set은 
+
+**Time Complexity**
+
+| Access | Search | Insertion | Deletion |
+| :----: | :----: | :-------: | :------: |
+|        |        |           |          |
+
+<hr/>
 
 ## v8엔진의 가비지 컬렉터, Orinoco
 
@@ -233,3 +288,7 @@ LinkedList는 재귀적으로 정의된 자료구조이다.
 [V8 Minor GC](https://speakerdeck.com/deepu105/v8-minor-gc) -- Deepu K Sasidharan
 
 [The Orinoco garbage collector](https://v8.dev/blog/trash-talk) -- Peter Marshall
+
+[시간복잡도 with Javascript](https://overcome-the-limits.tistory.com/entry/자료구조-시간복잡도-with-JavaScript?category=910696#big-o-계산-규칙) -- const_p
+
+[Javascript의 타입과 자료구조](https://developer.mozilla.org/ko/docs/Web/JavaScript/Data_structures) -- MDN
