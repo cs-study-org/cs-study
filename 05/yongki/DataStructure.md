@@ -6,12 +6,13 @@
       - [Indexed collections: 배열](#indexed-collections-배열)
       - [Keyed collections: Map](#keyed-collections-map)
       - [Keyed collections: Set](#keyed-collections-set)
+  - [LinkedList(연결리스트) vs Array(배열)](#linkedlist연결리스트-vs-array배열)
+    - [연결리스트](#연결리스트)
+    - [배열](#배열)
   - [v8엔진의 가비지 컬렉터, Orinoco](#v8엔진의-가비지-컬렉터-orinoco)
     - [마이너 GC](#마이너-gc)
     - [메이저 GC](#메이저-gc)
     - [GC 컨텍스트](#gc-컨텍스트)
-  - [LinkedList vs DynamicArray](#linkedlist-vs-dynamicarray)
-    - [LinkedList](#linkedlist)
   - [참고문헌](#참고문헌)
 
 ## Javascript 빌트인 자료형
@@ -66,6 +67,59 @@
 | Access | Search | Insertion | Deletion |
 | :----: | :----: | :-------: | :------: |
 |        |        |           |          |
+
+## LinkedList(연결리스트) vs Array(배열)
+
+### 연결리스트
+
+**정의**
+
+    메모리 상에 불연속적으로 배치된 자료구조
+
+**Time Complexity**
+
+| Access | Search | Insertion | Deletion |
+| :----: | :----: | :-------: | :------: |
+|  O(n)  |  O(n)  |   O(1)    |   O(1)   |
+
+**장점**
+    
+    Insertion, Deletion O(1): 삽입/삭제 시, 다음 노드를 가리키는 주소(포인터)만 바꾸면 된다. 이로 인해, 동적 할당을 해도 필요한 메모리 공간만 사용한다.
+
+    단, 이를 검색하는데 O(n)이 걸린다.
+
+
+**단점**
+
+    동적 할당으로 인해 쌓이는 힙 메모리의 데이터 주소가 분산되어 있어, Cache Locality가 좋지 못하다. 
+
+    Access, Search O(n): 검색 시 처음 노드부터 순차 접근해야하기 떄문이다.
+
+### 배열
+
+**정의**
+
+    메모리 상에 연속적이며, 타입이 같은 데이터를 배치한 자료구조
+
+**Time Complexity**
+
+| Access | Search | Insertion | Deletion |
+| :----: | :----: | :-------: | :------: |
+|  O(1)  |  O(n)  |   O(n)    |   O(n)   |
+
+**장점**    
+
+    Cache Locality 중 특히 공간 지역성이 좋아 Cache Hit할 가능성이 크다.
+
+    Access O(1): 인덱스로 랜덤 접근이 가능하다.
+
+**단점**
+
+    메모리에 최초 할당 시 고정된 메모리를 사용해야 한다.
+    
+    ArrayList(동적 배열)은 배열의 갯수가 많아지면 크기를 2배로 늘리고, 적으면 2배로 줄여 이 한계를 극복한다.
+
+    Insertion, Deletion O(n): 삽입/삭제한 인덱스보다 큰 인덱스를 shift 해야하기 때문이다.
 
 <hr/>
 
@@ -268,17 +322,6 @@ New Space는 크기가 같은 To Space과 From Space로 나뉜다.
   </tr>
 </table>
 
-## LinkedList vs DynamicArray
-
-### LinkedList
-
-LinkedList는 재귀적으로 정의된 자료구조이다.
-
-먼저 살펴볼 부분은 재귀 함수 호출시 **무한루프 방지 조건**이다.
-
-1. 재귀로 호출한 함수가 끝날때까지 그 이후 명령문은 수행되지 않아야한다.
-2. 종료조건이 포함되어야한다.
-
 <hr/>
 
 ## 참고문헌
@@ -292,3 +335,7 @@ LinkedList는 재귀적으로 정의된 자료구조이다.
 [시간복잡도 with Javascript](https://overcome-the-limits.tistory.com/entry/자료구조-시간복잡도-with-JavaScript?category=910696#big-o-계산-규칙) -- const_p
 
 [Javascript의 타입과 자료구조](https://developer.mozilla.org/ko/docs/Web/JavaScript/Data_structures) -- MDN
+
+[「개발자 인터뷰 팁 그리고 질문 모음과 답변」 레포지토리](https://github.com/yoonje/developer-interview-questions-and-answers/blob/master/Datastructure/README.md) -- yoonje
+
+[캐쉬, 배열, 링크드리스트, 동적배열](https://velog.io/@injoon2019/CS-정리-캐쉬-배열-링크드리스트-동적배열) -- june.log
