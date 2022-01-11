@@ -44,9 +44,6 @@
 <br>
 
 ## Cache
-[https://hpotter1993.tistory.com/12](https://hpotter1993.tistory.com/12)
-
-[https://chelseashin.tistory.com/43](https://chelseashin.tistory.com/43)
 
 - 정의 : 데이터나 값을 미리 복사해 놓는 임시 저장소를 가리킨다.
 
