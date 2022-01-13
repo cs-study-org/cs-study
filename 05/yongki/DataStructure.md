@@ -2,9 +2,11 @@
 
 - [데이터 구조와 처리](#데이터-구조와-처리)
   - [Javascript Native Object](#javascript-native-object)
-    - [Classic 해시 테이블](#classic-해시-테이블)
-    - [Map의 Deterministic(결정적) 해시 테이블](#map의-deterministic결정적-해시-테이블)
-    - [v8엔진의 해시 테이블 최적화](#v8엔진의-해시-테이블-최적화)
+    - [HashTable](#hashtable)
+      - [Load Factor](#load-factor)
+    - [Map의 Deterministic HashTable](#map의-deterministic-hashtable)
+      - [`Deterministic HashTable`의 구현체](#deterministic-hashtable의-구현체)
+    - [v8엔진의 HashTable 최적화](#v8엔진의-hashtable-최적화)
     - [Array(Javascript 배열)](#arrayjavascript-배열)
   - [LinkedList(연결리스트) vs Array(일반 배열)](#linkedlist연결리스트-vs-array일반-배열)
     - [연결리스트](#연결리스트)
@@ -15,9 +17,6 @@
     - [메이저 GC](#메이저-gc)
     - [GC 컨텍스트](#gc-컨텍스트)
   - [참고문헌](#참고문헌)
-    - [GC 관련](#gc-관련)
-    - [자바스크립트 빌트인 객체 관련](#자바스크립트-빌트인-객체-관련)
-    - [자료구조 비교 관련](#자료구조-비교-관련)
 
 ## Javascript Native Object
 
@@ -35,12 +34,12 @@
 
     ![Classify DataStructure](assets/classify-data-structure.drawio.svg)
 
-    **Javascript Native Object는 모두 내부적으로 해시 테이블 자료구조이다.**
+    **Javascript Native Object는 모두 내부적으로 HashTable 자료구조이다.**
     <br/>
 
-    다만, 이 해시 테이블을 변형한 자료형들이 있다. 변형이 되지 않는 해시 테이블(이하 `Classic 해시 테이블`) 부터 짚고 넘어가보자.
+    다만, 이 HashTable을 변형한 자료형들이 있다. 변형이 되지 않는 HashTable부터 짚고 넘어가보자.
 
-### Classic 해시 테이블
+### HashTable
 
 **정의**
 
@@ -64,55 +63,95 @@
 
 🤔 찾아본 예시 사진에서 Access가 N/A라고 나올까? 위키피디아는 O(n)인데
 
-### Map의 Deterministic(결정적) 해시 테이블
+#### Load Factor
+
+    ...
+
+### Map의 Deterministic HashTable
+
+**Map 정의**
+
+    Map 객체는 key-value 쌍을 보유하고 key의 원래 삽입 순서를 기억한다.
 
 **특징**
     
-[Classic 해시 테이블](#classic-해시-테이블)과 비교해보자
+[HashTable](#hashtable)과 비교해보자
 
-    Map을 반복하는 동안 삽입 순서를 유지해야한다.
+    Map을 반복할 시 삽입 순서를 유지해야한다.
 
-Map의 내부에서 `Deterministic 해시 테이블`이 어떻게 작동하는지 알아보자.
+Map의 내부에서 `Deterministic HashTable`이 어떻게 작동하는지 알아보자.
 
-정의된 추상체부터 알아보자. 
-  - 타입을 명시해야해서 타입스크립트를 사용하였다.
-  - Entry는 단일 연결리스트 자료구조이다.
+#### `Deterministic HashTable`의 구현체
+
+  - 실제 구현체는 C++이지만, 의사코드용으로 타입스크립트 언어를 사용하였다.
+  - Entry 인터페이스는 단일 연결리스트 자료구조이다.
+  - Entry 인터페이스의 chain 필드는 다음 순서의 Entry를 나타내는 포인터이다.
+  - CloseTable 인터페이스의 dataTable 필드는 Entry 타입 배열이며, 삽입 순서대로 들어온다.
 
 ```typescript
 interface Entry{
   key: any;
   value: any;
-  chain: number;  // 다음 순서의 Entry 구조체를 나타내는 포인터
+  chain: number;
 }
 
 interface CloseTable{
-  hashTable: number[];
-  dataTable: Entry[]; // 삽입 순서대로 들어온 Entry 구조체
+  hashTable: number[]; 
+  dataTable: Entry[];
   nextSlot: number;
   size: number;
 }
 ```
 
-상황은 dataTable는 최대 4개의 size를 가진다. size를 초과하면 `Deterministic 해시 테이블`는 재해싱해야한다.
+- 삽입 상황은 이렇다.
+  ```typescript
+  table.set(0, 'a');
+  table.set(1, 'b');
+  table.set(2, 'c'); // +++ last one
+  ```
+    
+- `Deterministic HashTable`에 새 항목이 들어오면, dataTable 배열에 들어오는데, nextSlot 다음의 수를 인덱스로 하는 곳에 삽입된다.
+  ```typescript
+  const tableInternals = {
+    hashTable: [0, 1],
+    dataTable: [
+      {
+        key: 0,
+        value: 'a',
+        chain: 1
+      },
+      {
+        key: 1,
+        value: 'b',
+        chain: 2
+      },
+      {
+        key: 2,
+        value: 'c',
+        chain: -1
+      }
+    ],
+    nextSlot: 3, // +++ new index
+    size: 3
+  }
+  ```
 
-1. `Deterministic 해시 테이블`에 새 항목이 들어오면, dataTable 배열에 들어오는데, nextSlot 다음의 수를 인덱스로 하는 곳에 삽입된다.
+- 삭제 상황은 이렇다,
+  ```typescript
+  table.delete(0); 
+  ```
 
-```typescript
-table.set(0, 'a');
-table.set(1, 'b');
-table.set(2, 'c'); // +++ 1번 상황
-```
-
-```typescript
-const tableInternals = {
-  hashTable: [0, 1],
-  dataTable: [
-    {
-      key: 0,
-      value: 'a',
-      chain: 1
-    },
-    {
+- `Deterministic HashTable`에 항목을 삭제하면, 키와 값은 undefined가 되지만, 이는 dataTables에 공간은 점유한다. 
+  ```typescript
+  const tableInternals = {
+    hashTable: [0, 1],
+    dataTable: [
+      {
+        key: undefined,
+        value: undefined,
+        chain: 1
+      },
+      {
       key: 1,
       value: 'b',
       chain: 2
@@ -122,44 +161,17 @@ const tableInternals = {
       value: 'c',
       chain: -1
     }
-  ],
-  nextSlot: 3,
-  size: 3
-}
-```
-
-2. `Deterministic 해시 테이블`에 항목을 삭제하면, 키와 값은 undefined가 되지만, 이는 dataTables에 공간은 점유한다.
-   
-```typescript
-table.delete(0); // +++ 2번 상황
-```
-
-```typescript
-const tableInternals = {
-  hashTable: [0, 1],
-  dataTable: [
-    {
-      key: undefined,
-      value: undefined,
-      chain: 1
-    },
-    {
-    key: 1,
-    value: 'b',
-    chain: 2
-  },
-  {
-    key: 2,
-    value: 'c',
-    chain: -1
+    ],
+    nextSlot: 3,
+    size: 2 // +++ new size
   }
-  ],
-  nextSlot: 3,
-  size: 2 // +++ new size
-}
-```
+  ```
 
-### v8엔진의 해시 테이블 최적화
+🤔 왜 삽입 순서를 저장하는가?
+
+🤔 Deterministic HashTable는 인덱스의 충돌을 피할 수 있는것인가?
+
+### v8엔진의 HashTable 최적화
 
     ...
 
@@ -451,14 +463,14 @@ New Space는 크기가 같은 To Space과 From Space로 나뉜다.
 
 ## 참고문헌
 
-### GC 관련
+**GC 관련**
 [Visualizing memory management in V8 Engine](https://ui.toast.com/weekly-pick/ko_20200228) -- Deepu K Sasidharan
 
 [V8 Minor GC](https://speakerdeck.com/deepu105/v8-minor-gc) -- Deepu K Sasidharan
 
 [The Orinoco garbage collector](https://v8.dev/blog/trash-talk) -- Peter Marshall
 
-### 자바스크립트 빌트인 객체 관련
+**자바스크립트 빌트인 객체 관련**
 
 [자바스크립트 배열은 배열이 아니다](https://poiemaweb.com/js-array-is-not-arrray) -- Poiemaweb
 
@@ -471,7 +483,10 @@ New Space는 크기가 같은 To Space과 From Space로 나뉜다.
 [Understanding Map Internals](https://itnext.io/v8-deep-dives-understanding-map-internals-45eb94a183df) -- 
 Andrey Pechkurov
 
-### 자료구조 비교 관련
+[Deterministic HashTables](https://wiki.mozilla.org/User:Jorend/Deterministic_hash_tables) -- 
+Jason Orendorff
+
+**자료구조 비교 관련**
 
 [「개발자 인터뷰 팁 그리고 질문 모음과 답변」 레포지토리](https://github.com/yoonje/developer-interview-questions-and-answers/blob/master/Datastructure/README.md) -- yoonje
 
