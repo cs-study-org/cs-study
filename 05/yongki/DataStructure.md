@@ -102,6 +102,8 @@ interface CloseTable{
   size: number;
 }
 ```
+<details>
+<summary><code>Deterministic HashTable</code>의 내부 확인하기</summary>
 
 - 삽입 상황은 이렇다.
   ```typescript
@@ -166,10 +168,12 @@ interface CloseTable{
     size: 2 // +++ new size
   }
   ```
+</details>
+<br/>
 
 🤔 왜 삽입 순서를 저장하는가?
 
-🤔 Deterministic HashTable는 인덱스의 충돌을 피할 수 있는것인가?
+🤔 `Deterministic HashTable`는 인덱스의 충돌을 피할 수 있는것인가?
 
 ### v8엔진의 HashTable 최적화
 
@@ -362,10 +366,10 @@ New Space는 크기가 같은 To Space과 From Space로 나뉜다.
       <img width="100%" src="https://v8.dev/_img/trash-talk/05.svg">
     </td>
     <td>      
-      장점
+      <b>장점</b>
       <blockquote>GC의 작업을 양분할 수 있다.
       </blockquote>
-      단점
+      <b>단점</b>
       <blockquote>
       a. 일시중지 문제는 해결되지 않았다.<br/>
       b. 스레드 간 동기화 작업이 필요하다.      
@@ -385,7 +389,7 @@ New Space는 크기가 같은 To Space과 From Space로 나뉜다.
   </tr>  
   <tr>
     <td>
-      단점
+      <b>단점</b>
       <blockquote>    
       <p>a. Javascript 작업도 교차되는데, GC에 의해 변경이 잦은 힙에서 이전 Javascript 작업이 무효화 될 경우가 존재한다.</p>
       <p>b. 일시중지 문제는 해결되지 않으며, 오히려 시간을 더 증가시킨다.</p>
@@ -405,11 +409,11 @@ New Space는 크기가 같은 To Space과 From Space로 나뉜다.
   </tr>  
   <tr>
     <td>
-      장점
+      <b>장점</b>
       <blockquote>
       메인 스레드의 Javascript 작업이 자유롭다.
       </blockquote>
-      단점
+      <b>단점</b>
       <blockquote>          
       메인 스레드와 별도의 스레드가 같은 객체를 동시에 읽기/쓰기 경쟁이 이루어진다.
       <blockquote>
@@ -446,12 +450,12 @@ New Space는 크기가 같은 To Space과 From Space로 나뉜다.
   </tr>  
   <tr>
     <td>
-      장점
+      <b>장점</b>
       <blockquote>
       <p>a. Compacting 작업을 메인 스레드와 별도의 스레드가 병렬 작업한다.</p>
       <p>b. Sweeping 작업과 Javascript 작업을 동시 작업한다.</p>
       </blockquote>
-      단점
+      <b>단점</b>
       <blockquote>          
       일시중지 문제는 해결되지 않았다.
       <blockquote>
@@ -464,6 +468,7 @@ New Space는 크기가 같은 To Space과 From Space로 나뉜다.
 ## 참고문헌
 
 **GC 관련**
+
 [Visualizing memory management in V8 Engine](https://ui.toast.com/weekly-pick/ko_20200228) -- Deepu K Sasidharan
 
 [V8 Minor GC](https://speakerdeck.com/deepu105/v8-minor-gc) -- Deepu K Sasidharan
