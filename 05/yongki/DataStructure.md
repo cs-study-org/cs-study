@@ -3,11 +3,10 @@
 - [데이터 구조와 처리](#데이터-구조와-처리)
   - [Javascript Native Object](#javascript-native-object)
     - [HashTable](#hashtable)
-      - [Load Factor](#load-factor)
-    - [Map의 Deterministic HashTable](#map의-deterministic-hashtable)
+    - [Javascript Native Object: Map](#javascript-native-object-map)
+      - [Deterministic HashTable](#deterministic-hashtable)
       - [`Deterministic HashTable`의 구현체](#deterministic-hashtable의-구현체)
-    - [v8엔진의 HashTable 최적화](#v8엔진의-hashtable-최적화)
-    - [Array(Javascript 배열)](#arrayjavascript-배열)
+    - [Javascript Native Object: Array(Javascript 배열)](#javascript-native-object-arrayjavascript-배열)
   - [LinkedList(연결리스트) vs Array(일반 배열)](#linkedlist연결리스트-vs-array일반-배열)
     - [연결리스트](#연결리스트)
     - [일반 배열](#일반-배열)
@@ -37,7 +36,7 @@
     **Javascript Native Object는 모두 내부적으로 HashTable 자료구조이다.**
     <br/>
 
-    다만, 이 HashTable을 변형한 자료형들이 있다. 변형이 되지 않는 HashTable부터 짚고 넘어가보자.
+    다만, 이 HashTable 자료구조를 내부적으로 사용하되 변형한 자료형들이 있다. 변형이 되지 않는 HashTable이라는 자료구조부터 짚고 넘어가보자.
 
 ### HashTable
 
@@ -47,7 +46,7 @@
 
 **특징**
 
-    자료구조가 반복할 시 삽입 순서를 유지하지 않는다.
+    자료구조를 반복할 시 삽입 순서를 유지하지 않는다.
 
 **Time Complexity: 평균**
 
@@ -61,32 +60,41 @@
 | :----: | :----: | :-------: | :------: |
 |  N/A   |  O(n)  |   O(n)    |   O(n)   |
 
-🤔 찾아본 예시 사진에서 Access가 N/A라고 나올까? 위키피디아는 O(n)인데
 
-#### Load Factor
-
-    ...
-
-### Map의 Deterministic HashTable
-
-**Map 정의**
-
-    Map 객체는 key-value 쌍을 보유하고 key의 원래 삽입 순서를 기억한다.
+### Javascript Native Object: Map
 
 **특징**
     
 [HashTable](#hashtable)과 비교해보자
 
-    Map을 반복할 시 삽입 순서를 유지해야한다.
+    Map을 반복할 시 삽입 순서가 유지 되어있다.
 
-Map의 내부에서 `Deterministic HashTable`이 어떻게 작동하는지 알아보자.
+#### Deterministic HashTable
+
+Map 내부에서 `Deterministic HashTable`이 어떻게 작동하는지 알아보자.
 
 #### `Deterministic HashTable`의 구현체
 
-  - 실제 구현체는 C++이지만, 의사코드용으로 타입스크립트 언어를 사용하였다.
+  - 실제 구현체는 C++[^c++]이지만, 의사코드용으로 타입스크립트 언어를 사용하였다.
   - Entry 인터페이스는 단일 연결리스트 자료구조이다.
   - Entry 인터페이스의 chain 필드는 다음 순서의 Entry를 나타내는 포인터이다.
   - CloseTable 인터페이스의 dataTable 필드는 Entry 타입 배열이며, 삽입 순서대로 들어온다.
+
+[^c++]: 
+    실제 구현체이다. 
+    코드를 보면 포인터를 사용하는 부분이 의사코드용으로는 이해하기 힘들다. 
+    ```
+    struct Entry {
+      Key key;
+      Value value;
+      Entry *chain;
+    }
+
+    class CloseTable {
+        Entry*[] hashTable;
+        Entry[] dataTable;
+    }
+    ```
 
 ```typescript
 interface Entry{
@@ -105,14 +113,21 @@ interface CloseTable{
 <details>
 <summary><code>Deterministic HashTable</code>의 내부 확인하기</summary>
 
-- 삽입 상황은 이렇다.
-  ```typescript
-  table.set(0, 'a');
-  table.set(1, 'b');
-  table.set(2, 'c'); // +++ last one
+**삽입 상황은 이렇다.**
+- `L3`에서 해시 충돌이 발생하였다. `Seperate chaining`[^seperateChaining]방법으로 해결한다.
+  
+  ```typescript  
+  // function hashCode(n) { return n % hashTable.length; }
+
+  table.set(0, 'a'); // +++ hashTable index 0 (0 % 2)
+  table.set(1, 'b'); // +++ hashTable index 1 (1 % 2)  
+  table.set(2, 'c'); // +++ hashTable index 0 (2 % 2)    
   ```
+[^seperateChaining]: 같은 주소로 해싱되는 원소를 모두 하나의 연결 리스트에 매달아서 관리한다. 
+  원소를 검색할 때 해당 연결 리스트의 원소들을 차례로 지나가면서 탐색한다.
+
     
-- `Deterministic HashTable`에 새 항목이 들어오면, dataTable 배열에 들어오는데, nextSlot 다음의 수를 인덱스로 하는 곳에 삽입된다.
+- `Deterministic HashTable`에 새 Entry 타입으로 래핑되어 들어온다고 하였을 때, dataTable 배열에 들어오는데, nextSlot수를 인덱스로 판단하고 삽입한다.
   ```typescript
   const tableInternals = {
     hashTable: [0, 1],
@@ -120,30 +135,36 @@ interface CloseTable{
       {
         key: 0,
         value: 'a',
-        chain: 1
+        chain: 2
       },
       {
         key: 1,
         value: 'b',
-        chain: 2
+        chain: -1 // +++ hashTable index 0's tail
       },
       {
         key: 2,
         value: 'c',
-        chain: -1
+        chain: -1 // +++ hashTable index 1's tail
       }
     ],
-    nextSlot: 3, // +++ new index
+    nextSlot: 3, // +++ next dataTable index
     size: 3
   }
   ```
 
-- 삭제 상황은 이렇다,
+- 예시 사진으로 확인해보자.
+
+  ![Deterministic HashTable Insertion](assets/deterministic-hashtable-insertion.drawio.svg)
+
+**삭제 상황은 이렇다.**
+
+- 
   ```typescript
   table.delete(0); 
   ```
 
-- `Deterministic HashTable`에 항목을 삭제하면, 키와 값은 undefined가 되지만, 이는 dataTables에 공간은 점유한다. 
+- `Deterministic HashTable`에 Entry를 삭제하면, 키와 값은 undefined가 되지만, 이는 dataTables에 공간은 점유한다. 
   ```typescript
   const tableInternals = {
     hashTable: [0, 1],
@@ -151,39 +172,112 @@ interface CloseTable{
       {
         key: undefined,
         value: undefined,
-        chain: 1
+        chain: 2
       },
       {
-      key: 1,
-      value: 'b',
-      chain: 2
-    },
-    {
-      key: 2,
-      value: 'c',
-      chain: -1
-    }
+        key: 1,
+        value: 'b',
+        chain: -1
+      },
+      {
+        key: 2,
+        value: 'c',
+        chain: -1
+      }
     ],
     nextSlot: 3,
     size: 2 // +++ new size
   }
   ```
+- 예시 사진으로 확인해보자.
+  
+  ![Deterministic HashTable Insertion](assets/deterministic-hashtable-deletion.drawio.svg)
+
+이를 통해, 공간이 낭비될 수 있다 의문점이 발생하였다.
+
+때문에 애초에 낮은 해시 충돌을 내는 해시 함수를 사용한다.
+
+```c++
+inline uint32_t ComputeUnseededHash(uint32_t key) {
+  uint32_t hash = key;
+  hash = ~hash + (hash << 15);
+  hash = hash ^ (hash >> 12);
+  hash = hash + (hash << 2);
+  hash = hash ^ (hash >> 4);
+  hash = hash * 2057;
+  hash = hash ^ (hash >> 16);
+  return hash & 0x3fffffff;
+}
+```
+
 </details>
 <br/>
 
-🤔 왜 삽입 순서를 저장하는가?
+<details>
+<summary><code>HashTable</code> vs <code>Deterministic HashTable</code>성능 비교</summary>
 
-🤔 `Deterministic HashTable`는 인덱스의 충돌을 피할 수 있는것인가?
+예시 사진에서 사용하는 단어의 뜻은 다음과 같다.
 
-### v8엔진의 HashTable 최적화
+`close table`[^closeTable]은 `Deterministic HashTable`을 의미하고,
+`dense_hash_map`과 `open addressing`은 현재로써 일반 `HashTable`을 의미한다고 생각하자.
 
-    ...
+[^closeTable]: `Deterministic HashTable` 알고리즘을 만든 사람 이름이 Tyler Close여서 이렇게 부르는게 아닌가 싶다.
 
-### Array(Javascript 배열)
+<table border="0">
+ <tr>
+    <th>MemoryUsage sizing</th>
+ </tr>
+ <tr>
+    <td>
+      모든 <code>HashTable</code> 기반 자료구조는 현재 할당된 용량이 초과될 시 테이블 크기를 2배로 늘리고, 또 줄어들 시 2배로 줄이는 sizing 작업이 있다. 이때, 늘어난 용량 만큼 고유한 key도 재해싱해야하는 작업도 따른다. 아래 그림에서 계단식으로 늘어난 지표가 이 작업이 이뤄진 부분이다.
+      <br/>
+      공식문서에서 나타낸 바로는 <code>Deterministic HashTable</code>은 일반적인 <code>HashTable</code>보다 가상메모리를 더 많이 사용하지만, 물리메모리를 더 적게 사용한다고 한다. 때문에 아래와 같이 계단식의 급진적인 MemoryUsage를 보이지 않았다고 해석할 수 있겠다.      
+    </td>
+ </tr>
+ <tr>
+    <td>
+      <img src="https://wiki.mozilla.org/images/f/fd/Jorendorff-dht-figure-2.png">
+    </td>    
+ </tr>
+
+ <tr>
+    <th>Insertion</th>
+ </tr>
+ <tr>
+    <td>
+      <img src="https://wiki.mozilla.org/images/0/08/Jorendorff-dht-InsertSmallTest-speed.png">
+    </td>    
+ </tr>
+
+ <tr>
+    <th>Search</th>
+ </tr>
+ <tr>
+    <td>
+      <img src="https://wiki.mozilla.org/images/3/33/Jorendorff-dht-LookupHitTest-speed.png">
+    </td>    
+ </tr>
+
+ <tr>
+    <th>Search(after Deletion)</th>
+ </tr>
+  <td>삭제 시에는 모두 큰 차이가 없어, 삭제 후 탐색시 성능 비교를 확인하자.</td>
+ <tr>
+ </tr>
+ <tr>
+    <td>
+      <img src="https://wiki.mozilla.org/images/a/ad/Jorendorff-dht-LookupAfterDeleteTest-speed.png">
+    </td>    
+ </tr>
+</table>
+
+</details>
+
+### Javascript Native Object: Array(Javascript 배열)
 
 **정의**
 
-[일반 배열](#배열)의 정의와 비교해보자.
+[일반 배열](#일반-배열)의 정의와 비교해보자.
 
     Javascript 배열은 메모리 공간에서 연속적으로 이어져 있지 않을 수 있으며, 타입이 달라도 되는 데이터를 배치한 해시 테이블로 구현된 객체이다.
 
@@ -485,11 +579,9 @@ New Space는 크기가 같은 To Space과 From Space로 나뉜다.
 
 [ES6 Map and Set Complexity](https://stackoverflow.com/questions/33611509/es6-map-and-set-complexity-v8-implementation) -- Stackoverflow
 
-[Understanding Map Internals](https://itnext.io/v8-deep-dives-understanding-map-internals-45eb94a183df) -- 
-Andrey Pechkurov
+[Understanding Map Internals](https://itnext.io/v8-deep-dives-understanding-map-internals-45eb94a183df) -- Andrey Pechkurov
 
-[Deterministic HashTables](https://wiki.mozilla.org/User:Jorend/Deterministic_hash_tables) -- 
-Jason Orendorff
+[Deterministic HashTables](https://wiki.mozilla.org/User:Jorend/Deterministic_hash_tables) -- Jason Orendorff
 
 **자료구조 비교 관련**
 
