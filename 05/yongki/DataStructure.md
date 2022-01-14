@@ -5,7 +5,7 @@
     - [HashTable](#hashtable)
     - [Javascript Native Object: Map](#javascript-native-object-map)
       - [Deterministic HashTable](#deterministic-hashtable)
-      - [`Deterministic HashTable`의 구현체](#deterministic-hashtable의-구현체)
+      - [Deterministic HashTable의 구현체](#deterministic-hashtable의-구현체)
     - [Javascript Native Object: Array(Javascript 배열)](#javascript-native-object-arrayjavascript-배열)
   - [LinkedList(연결리스트) vs Array(일반 배열)](#linkedlist연결리스트-vs-array일반-배열)
     - [연결리스트](#연결리스트)
@@ -73,7 +73,7 @@
 
 Map 내부에서 `Deterministic HashTable`이 어떻게 작동하는지 알아보자.
 
-#### `Deterministic HashTable`의 구현체
+#### Deterministic HashTable의 구현체
 
   - 실제 구현체는 C++[^c++]이지만, 의사코드용으로 타입스크립트 언어를 사용하였다.
   - Entry 인터페이스는 단일 연결리스트 자료구조이다.
@@ -225,49 +225,49 @@ inline uint32_t ComputeUnseededHash(uint32_t key) {
 
 <table border="0">
  <tr>
-    <th>MemoryUsage sizing</th>
+    <th colspan="2">MemoryUsage sizing</th>
  </tr>
  <tr>
-    <td>
-      모든 <code>HashTable</code> 기반 자료구조는 현재 할당된 용량이 초과될 시 테이블 크기를 2배로 늘리고, 또 줄어들 시 2배로 줄이는 sizing 작업이 있다. 이때, 늘어난 용량 만큼 고유한 key도 재해싱해야하는 작업도 따른다. 아래 그림에서 계단식으로 늘어난 지표가 이 작업이 이뤄진 부분이다.
-      <br/>
-      공식문서에서 나타낸 바로는 <code>Deterministic HashTable</code>은 일반적인 <code>HashTable</code>보다 가상메모리를 더 많이 사용하지만, 물리메모리를 더 적게 사용한다고 한다. 때문에 아래와 같이 계단식의 급진적인 MemoryUsage를 보이지 않았다고 해석할 수 있겠다.      
-    </td>
- </tr>
- <tr>
-    <td>
+    <td width="50%">
       <img src="https://wiki.mozilla.org/images/f/fd/Jorendorff-dht-figure-2.png">
-    </td>    
+    </td>
+    <td>
+      <blockquote>
+      <p>
+        모든 <code>HashTable</code> 기반 자료구조는 현재 할당된 용량이 초과될 시 테이블 크기를 2배로 늘리고, 또 줄어들 시 2배로 줄이는 sizing 작업이 있다. 이때, 늘어난 용량 만큼 고유한 key도 재해싱해야하는 작업도 따른다. 아래 그림에서 계단식으로 늘어난 지표가 이 작업이 이뤄진 부분이다.
+      </p>
+      <p>
+        공식문서에서 나타낸 바로는 <code>Deterministic HashTable</code>은 일반적인 <code>HashTable</code>보다 가상메모리를 더 많이 사용하지만, 물리메모리를 더 적게 사용한다고 한다. 때문에 아래와 같이 계단식의 급진적인 MemoryUsage를 보이지 않았다고 해석할 수 있겠다.      
+      </p>
+      </blockquote>
+    </td>
  </tr>
 
  <tr>
     <th>Insertion</th>
+    <th>Search</th>
  </tr>
  <tr>
     <td>
       <img src="https://wiki.mozilla.org/images/0/08/Jorendorff-dht-InsertSmallTest-speed.png">
     </td>    
- </tr>
-
- <tr>
-    <th>Search</th>
- </tr>
- <tr>
     <td>
       <img src="https://wiki.mozilla.org/images/3/33/Jorendorff-dht-LookupHitTest-speed.png">
     </td>    
  </tr>
 
  <tr>
-    <th>Search(after Deletion)</th>
- </tr>
-  <td>삭제 시에는 모두 큰 차이가 없어, 삭제 후 탐색시 성능 비교를 확인하자.</td>
- <tr>
- </tr>
+    <th colspan="2">Search(after Deletion)</th>
+ </tr> 
  <tr>
     <td>
       <img src="https://wiki.mozilla.org/images/a/ad/Jorendorff-dht-LookupAfterDeleteTest-speed.png">
     </td>    
+    <td>
+      <blockquote>
+      삭제 시에는 모두 큰 차이가 없어, 삭제 후 탐색시 성능 비교를 확인하자.
+      </blockquote>
+    </td>
  </tr>
 </table>
 
@@ -360,7 +360,7 @@ console.log(Object.getOwnPropertyDescriptors([1, 2, 3]));
 
 ## v8엔진의 가비지 컬렉터, Orinoco
 
-![GC](assets/gc.jpg)
+<img width="70%" src="assets/gc.jpg">
 
 ### 마이너 GC
 
@@ -456,8 +456,8 @@ New Space는 크기가 같은 To Space과 From Space로 나뉜다.
     </th>
   </tr>  
   <tr>
-    <td>
-      <img width="100%" src="https://v8.dev/_img/trash-talk/05.svg">
+    <td width="50%">
+      <img src="https://v8.dev/_img/trash-talk/05.svg">
     </td>
     <td>      
       <b>장점</b>
@@ -477,11 +477,9 @@ New Space는 크기가 같은 To Space과 From Space로 나뉜다.
     <th colspan="2">2. 메인스레드가 GC 작업을 교차하며 처리</th>
   </tr>  
   <tr>
-    <td>
-      <img width="100%" src="https://v8.dev/_img/trash-talk/06.svg">
-    </td>
-  </tr>  
-  <tr>
+    <td width="50%">
+      <img src="https://v8.dev/_img/trash-talk/06.svg">
+    </td>  
     <td>
       <b>단점</b>
       <blockquote>    
@@ -497,11 +495,9 @@ New Space는 크기가 같은 To Space과 From Space로 나뉜다.
     <th colspan="2">3. GC의 작업을 온전히 별도의 스레드에서 처리</th>
   </tr>  
   <tr>
-    <td>
-      <img width="100%" src="https://v8.dev/_img/trash-talk/07.svg">
-    </td>
-  </tr>  
-  <tr>
+    <td width="50%">
+      <img src="https://v8.dev/_img/trash-talk/07.svg">
+    </td>  
     <td>
       <b>장점</b>
       <blockquote>
@@ -532,13 +528,13 @@ New Space는 크기가 같은 To Space과 From Space로 나뉜다.
     <td colspan="2">
       <b>사진 설명</b>
       <p>
-         1. Javascript 작업 때 별도의 스레드가 Marking 작업을 같이 합니다.
+         1. Javascript 작업 때 별도의 스레드가 Marking 작업을 같이 한다.
       </p>
       <p>
-         2. 별도의 스레드가 Marking 작업을 완료된 시점에 Javascript 작업을 일시 중단하는데, 이때 메인 스레드가 Marking 작업을 최종적으로 빠르게 점검합니다.
+         2. 별도의 스레드가 Marking 작업을 완료된 시점에 Javascript 작업을 일시 중단하는데, 이때 메인 스레드가 Marking 작업을 최종적으로 빠르게 점검한다.
       </p>
       <p>
-        3. 메인 스레드는 별도의 스레드는 일시 중지 기간동안 함께 Sweeping,  Compacting작업과 할당 포인터(새 객체를 할당할 때 체킹하는 역할)를 업데이트합니다.
+        3. 메인 스레드는 별도의 스레드는 일시 중지 기간동안 함께 Sweeping, Compacting작업과 할당 포인터(새 객체를 할당할 때 체킹하는 역할)를 업데이트한다.
       </p>      
     </td>
   </tr>  
