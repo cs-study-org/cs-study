@@ -101,8 +101,10 @@ i. HTTP
     - 멀티 프로세싱은 **다수의 프로세서**가 협력적으로 일을 처리하는 것을 의미
         - 다수의 프로세서가 다수의 작업을 함께 처리하는 것을 의미한다.
         > 멀티 프로세싱은 멀티코어시스템(multi-core system)을 포함한다
-        
-        [ 멀티 프로세싱 이미지]
+
+
+        <img width="691" alt="스크린샷 2022-01-14 오후 10 34 18" src="https://user-images.githubusercontent.com/81874493/149525635-fdc31c29-d841-401d-9f92-1c564e7b64b8.png">
+
     <br>
 
 - 멀티 프로그래밍( Multi-programming)
