@@ -5,12 +5,10 @@
     - [HashTable](#hashtable)
     - [Javascript Native Object: Map](#javascript-native-object-map)
       - [Deterministic HashTable](#deterministic-hashtable)
-      - [Deterministic HashTable의 구현체](#deterministic-hashtable의-구현체)
     - [Javascript Native Object: Array(Javascript 배열)](#javascript-native-object-arrayjavascript-배열)
   - [LinkedList(연결리스트) vs Array(일반 배열)](#linkedlist연결리스트-vs-array일반-배열)
     - [연결리스트](#연결리스트)
     - [일반 배열](#일반-배열)
-  - [[번외] HashTable vs HashMap](#번외-hashtable-vs-hashmap)
   - [v8엔진의 가비지 컬렉터, Orinoco](#v8엔진의-가비지-컬렉터-orinoco)
     - [마이너 GC](#마이너-gc)
     - [메이저 GC](#메이저-gc)
@@ -73,8 +71,6 @@
 
 Map 내부에서 `Deterministic HashTable`이 어떻게 작동하는지 알아보자.
 
-#### Deterministic HashTable의 구현체
-
   - 실제 구현체는 C++[^c++]이지만, 의사코드용으로 타입스크립트 언어를 사용하였다.
   - Entry 인터페이스는 단일 연결리스트 자료구조이다.
   - Entry 인터페이스의 chain 필드는 다음 순서의 Entry를 나타내는 포인터이다.
@@ -112,6 +108,7 @@ interface CloseTable{
 ```
 <details>
 <summary><code>Deterministic HashTable</code>의 내부 확인하기</summary>
+<br/>
 
 **삽입 상황은 이렇다.**
 - `L3`에서 해시 충돌이 발생하였다. `Seperate chaining`[^seperateChaining]방법으로 해결한다.
@@ -127,7 +124,7 @@ interface CloseTable{
   원소를 검색할 때 해당 연결 리스트의 원소들을 차례로 지나가면서 탐색한다.
 
     
-- `Deterministic HashTable`에 새 Entry 타입으로 래핑되어 들어온다고 하였을 때, dataTable 배열에 들어오는데, nextSlot수를 인덱스로 판단하고 삽입한다.
+- `Deterministic HashTable`에 새 Entry가 들어온다고 하였을 때, dataTable 배열에 들어오는데, nextSlot을 인덱스로 판단하고 삽입한다.
   ```typescript
   const tableInternals = {
     hashTable: [0, 1],
@@ -215,10 +212,11 @@ inline uint32_t ComputeUnseededHash(uint32_t key) {
 
 <details>
 <summary><code>HashTable</code> vs <code>Deterministic HashTable</code>성능 비교</summary>
-
+<br/>
 예시 사진에서 사용하는 단어의 뜻은 다음과 같다.
 
 `close table`[^closeTable]은 `Deterministic HashTable`을 의미하고,
+
 `dense_hash_map`과 `open addressing`은 현재로써 일반 `HashTable`을 의미한다고 생각하자.
 
 [^closeTable]: `Deterministic HashTable` 알고리즘을 만든 사람 이름이 Tyler Close여서 이렇게 부르는게 아닌가 싶다.
@@ -234,15 +232,20 @@ inline uint32_t ComputeUnseededHash(uint32_t key) {
     <td>
       <blockquote>
       <p>
-        모든 <code>HashTable</code> 기반 자료구조는 현재 할당된 용량이 초과될 시 테이블 크기를 2배로 늘리고, 또 줄어들 시 2배로 줄이는 sizing 작업이 있다. 이때, 늘어난 용량 만큼 고유한 key도 재해싱해야하는 작업도 따른다. 아래 그림에서 계단식으로 늘어난 지표가 이 작업이 이뤄진 부분이다.
+        모든 <code>HashTable</code> 기반 자료구조는 현재 할당된 용량이 초과될 시 테이블 크기를 언어마다 다른 임계값을 기준으로 2배로 늘리고, 또 줄어들 시 2배로 줄이는 sizing 작업이 있다.
       </p>
       <p>
-        공식문서에서 나타낸 바로는 <code>Deterministic HashTable</code>은 일반적인 <code>HashTable</code>보다 가상메모리를 더 많이 사용하지만, 물리메모리를 더 적게 사용한다고 한다. 때문에 아래와 같이 계단식의 급진적인 MemoryUsage를 보이지 않았다고 해석할 수 있겠다.      
+        이때, 바뀐 용량 만큼 고유한 key도 재해싱해야하는 작업도 따른다. 그림에서 계단식으로 늘어난 지표는 용량이 늘어날 시 재해싱 작업이 이뤄진 부분이다.
+      </p>
+      <p>
+        공식문서에서 나타낸 바로는 <code>Deterministic HashTable</code>은 일반적인 <code>HashTable</code>보다 가상메모리를 더 많이 사용하지만, 물리메모리를 더 적게 사용한다고 한다. 
+      </p>
+      <p>
+        이를 정확히 증명하는 자료는 찾지 못했고, 현재로써는 그림과 같이 계단식의 급진적인 MemoryUsage를 보이지 않았다는 현상만 인지하면 될것 같다.
       </p>
       </blockquote>
     </td>
  </tr>
-
  <tr>
     <th>Insertion</th>
     <th>Search</th>
@@ -255,7 +258,6 @@ inline uint32_t ComputeUnseededHash(uint32_t key) {
       <img src="https://wiki.mozilla.org/images/3/33/Jorendorff-dht-LookupHitTest-speed.png">
     </td>    
  </tr>
-
  <tr>
     <th colspan="2">Search(after Deletion)</th>
  </tr> 
@@ -352,10 +354,6 @@ console.log(Object.getOwnPropertyDescriptors([1, 2, 3]));
     
        단, ArrayList(동적 배열)는 배열의 갯수가 많아지면 크기를 2배로 늘리고, 적으면 2배로 줄여 이 한계를 극복한다.
 
-## [번외] HashTable vs HashMap
-
-    ...
-
 <hr/>
 
 ## v8엔진의 가비지 컬렉터, Orinoco
@@ -366,14 +364,14 @@ console.log(Object.getOwnPropertyDescriptors([1, 2, 3]));
 
 마이너 GC는 New Space를 깨끗하게 유지시킨다.
 
-New Space는 크기가 같은 To Space과 From Space로 나뉜다.
+- New Space는 크기가 같은 To Space과 From Space로 나뉜다.
 
-객체들은 New Space에 할당되는데, 대부분의 할당은 To Space에서 만들어진다.
+  객체들은 New Space에 할당되는데, 대부분의 할당은 To Space에서 만들어진다.
 
-또한, 객체에 대한 공간을 예약하려고 할 때마다 증가하는 할당 포인터가 있다.
-> 예시사진과 슬라이드에서는 제외됨
+- 또한, 객체에 대한 공간을 예약하려고 할 때마다 증가하는 할당 포인터가 있다.
+  > 예시사진과 슬라이드에서는 제외됨
 
-할당 포인터가 To Space의 마지막에 도달하면, 마이너 GC가 발생한다.
+- 할당 포인터가 To Space의 마지막에 도달하면, 마이너 GC가 발생한다.
 
 <details>
 <summary>
