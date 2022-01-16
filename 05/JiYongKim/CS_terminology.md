@@ -331,6 +331,9 @@ method2
 
 - 각 메소드를 Thread 객체에 담아 Thread 실행 메소드 start를 통해 각 메소드를 실행
 - 처리 순서가 보장되지 않는다.
+
+<br>
+
 - 참고) Java에서 Thread는 자바의 스레드 스케쥴러에 의해 제어된다.
 
 - 비동기식 처리의 장점
@@ -346,7 +349,7 @@ method2
 
 <br>
 
-### 블로킹(Blocking) vs 논브로킹(non-Blocking)
+### 블로킹(Blocking) vs 논블로킹(non-Blocking)
 
 <br>
 
