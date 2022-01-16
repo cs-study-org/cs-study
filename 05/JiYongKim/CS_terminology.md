@@ -49,8 +49,8 @@ DP, 다이나믹 프로그래밍( = 동적 계획법)은 기본적인 아이디�
 
 - 예시
     
-    [피보나치 이미지]
-    
+    <img width="488" alt="피보나치" src="https://user-images.githubusercontent.com/81874493/149670293-3fca44ed-b2b3-4f48-9706-9b312358d40b.png">
+
     - 피보나치 수열을 재귀를 통해 구성할때
         - `fibo(4)`의 연산이 두 번
         - `fibo(3)`의 연산이 세 번
@@ -187,7 +187,7 @@ DP, 다이나믹 프로그래밍( = 동적 계획법)은 기본적인 아이디�
 
 ### 동기 (Synchronous)
 
-[동기1 이미지]
+<img width="523" alt="동기1" src="https://user-images.githubusercontent.com/81874493/149670304-b22771bb-d853-44a8-b178-c80cc7106597.png">
 
 <br>
 
@@ -207,8 +207,8 @@ DP, 다이나믹 프로그래밍( = 동적 계획법)은 기본적인 아이디�
     - 서로 동시에 작업이 종료
     - 작업이 끝나는 동시에 작업이 시작할때
     
-    [동기 2 이미지]
-    
+    <img width="500" alt="동기2" src="https://user-images.githubusercontent.com/81874493/149670308-7f0df7a1-e79b-4319-a752-ece52d355b22.png">
+
     >⇒ 즉 서로 다른 주체가 하는 작업의 시작, 종료 작업에 관계가 있을때 
     
     <br>
@@ -264,7 +264,7 @@ method3
 
 ### 비동기식 처리 (Asynchronous)
 
-[비동기 이미지1]
+<img width="524" alt="비동기1" src="https://user-images.githubusercontent.com/81874493/149670313-7aa12856-d014-47fa-9712-cb1946b6c72d.png">
 
 비동기 ( Asynchronous)는 병렬적으로 태스크(Task)를 수행
 
@@ -279,8 +279,8 @@ method3
     - 서로의 작업의 시작, 종료 시간과 관계가 없음
     - 별도의 작업 수행 시작/종료 시간을 가지고 있음
     
-    [비동기 이미지2]
-    
+    <img width="485" alt="비동기2" src="https://user-images.githubusercontent.com/81874493/149670322-d1965f23-45d9-4748-9a3e-d1b6c4f3d45d.png">
+
     >⇒ 즉 서로 다른 주체가 하는 작업의 시작,종료 시간과 관계가 없을 때
     
     <br>
@@ -365,7 +365,7 @@ method2
 
 ### 블로킹(Blocking)
 
-[블로킹 이미지]
+<img width="522" alt="블로킹" src="https://user-images.githubusercontent.com/81874493/149670334-2e937caa-8ec6-4c4a-80d2-601c125765a1.png">
 
 블로킹은 A함수에서 B함수를 호출 하였을 경우
 
@@ -407,7 +407,7 @@ method2
 
 
 
-[동기 블로킹 조합 이미지]
+<img width="503" alt="동기 블로킹 조합" src="https://user-images.githubusercontent.com/81874493/149670342-6802de61-49a4-45ae-af3c-ea0b34565826.png">
 
 동기/비동기 & 블로킹/논블로킹 조합은 참고 자료를 통해 확인 해보자
 
@@ -427,7 +427,7 @@ method2
 
 ### 동시성 ( Concurrency )
 
-[동시성 이미지]
+<img width="503" alt="동시성" src="https://user-images.githubusercontent.com/81874493/149670347-9311df76-b00b-4629-991f-87bcaefc4141.png">
 
 정의 : '독립적으로 실행할 수 있는 것들의 조합’이다.
 
@@ -445,7 +445,7 @@ method2
 
 ### 병렬성 ( Parallelism)
 
-[병렬성 이미지]
+<img width="525" alt="병렬성" src="https://user-images.githubusercontent.com/81874493/149670352-e0303f99-cd2c-4b34-8977-490eece35467.png">
 
 정의 : 멀티 코어에서 멀티 스레드를 동작시키기 위한 방식으로, 한 개 이상의 스레드를 포함하는 각 코어들이 동시에 실행되는 성질을 말한다.
 
@@ -488,7 +488,8 @@ method2
 
 <4Core 8Thread 이미지>
 
-[cpu 코어 스레드 이미지]
+<img width="531" alt="cpu 코어" src="https://user-images.githubusercontent.com/81874493/149670360-a2bfe281-b1dd-431c-91e8-a95b6683d9ef.png">
+
 
 CPU : 컴퓨터의 중앙처리장치로 컴퓨터 시스템을 통제하고 프로그램의 연산을 실행 처리하는 컴퓨터의 가장 핵심적인 제어 장치를 말한다.
 
@@ -606,7 +607,8 @@ Process 생성에는 크게 두가지 방식으로 구분
 
 스레드 생성시
 
-[프로세스 스레드 이미지]
+<img width="518" alt="프로세스 스레드 이미지" src="https://user-images.githubusercontent.com/81874493/149670376-f4f5d09a-a9e7-4ecc-a5fd-45d799dc0da4.png">
+
 
 <br>
 
@@ -648,7 +650,7 @@ Process 생성에는 크게 두가지 방식으로 구분
 
 >⇒ 접근 속도에 따른 비용 문제
 
-[메모리 계층 구조 이미지]
+<img width="507" alt="메모리 계층 구조" src="https://user-images.githubusercontent.com/81874493/149670384-19be1113-2ab2-409a-a0ff-3df56192ff49.png">
 
 >⇒ 위의 그림과 CPU가 메모리에 더 빠르게 접근할 수 있는 장치일수록 가격이 비싸진다.
 
@@ -734,8 +736,8 @@ Process 생성에는 크게 두가지 방식으로 구분
         
         - Http/1.1 은 connection 헤더를 통해 커넥션을 유지한다.
             
-            [http 이미지 1]
-            
+            <img width="450" alt="http1" src="https://user-images.githubusercontent.com/81874493/149670390-510c2839-178c-4cdd-baac-ff4953e5c61f.png">
+
             - 1.0 버전 : 요청/응답이 완료되면 커넥션을 종료하여 다시 요청시 TCP 세션을 맺어야 한다.
             - 1.1 버전 : 요청/응답이 완료되어도 커넥션을 유지하여 다시 TCP 세션을 맺을 필요가 없다.
                 
@@ -755,8 +757,8 @@ Process 생성에는 크게 두가지 방식으로 구분
             
             HTTP/1.1은 persistent 기능과 함께 파이프라이닝 또한 지원한다.
             
-            [http 이미지2]
-            
+            <img width="442" alt="http2" src="https://user-images.githubusercontent.com/81874493/149670395-e9ca2aef-3879-48d7-8c89-3ac6de59eb3b.png">
+
             - 파이프라이닝은 최초의 요청이 완료되기 전 다음 요청을 보내는 기술
             - 다음 요청까지의 대기 시간을 없애, 네트워크 가동율을 높이고 성능을 향상시킨다.
             - Keep-Alive를 전제로 한다.
@@ -772,8 +774,8 @@ Process 생성에는 크게 두가지 방식으로 구분
 
     - **HOLB (Head of Line blocking) : 특정 응답의 지연**
         
-        [http 이미지 3]
-        
+        <img width="397" alt="http3" src="https://user-images.githubusercontent.com/81874493/149670400-52e8604f-909e-4889-84c7-652e241d7bfa.png">
+
         - connection 당 하나의 요청 처리를 개선하는 방법 중 파이프라이닝이 존재,
             - connection을 통해 다수개의 파일을 요청/응답 받는 기법
         
@@ -813,7 +815,7 @@ SPDY는 HTTP를 대체하는 프로토콜이 아님
 
 >⇒  HTTP를 통한 전송을 재 정의하는 형태로 구현.
 
-[http 이미지 4]
+<img width="523" alt="http4" src="https://user-images.githubusercontent.com/81874493/149670413-3dff5e32-edfb-4ef3-ad13-f0ebb9c3b328.png">
 
 SPDY는 실제로 HTTP/1.1에 비해 상당한 성능 향상과 효율성을 보여줬고, 이는 HTTP/2 초안의 참고 규격이 되었다. 
 
@@ -832,8 +834,8 @@ HTTP/2 는 완전히 새로운 프로토콜이 아닌
 - HTTP/2 특징
     - **Binary Framework**
         
-        [http 이미지 5]
-        
+        <img width="463" alt="http5" src="https://user-images.githubusercontent.com/81874493/149670417-a1f77276-522e-49e4-ad88-43281a9c9c7f.png">
+
         - 기존에 Plain Text(평문)를 사용하고, 개행으로 구별되면 HTTP/1.x 프로토콜과 달리,
             
             >⇒  2.0에서는 바이너리 포멧으로 인코딩 된 Message, Frame으로 구성된다.
@@ -844,8 +846,8 @@ HTTP/2 는 완전히 새로운 프로토콜이 아닌
 
     - **Multiplexed Stream**
         
-        [http 이미지 6]
-        
+        <img width="441" alt="http6" src="https://user-images.githubusercontent.com/81874493/149670423-876557aa-a3ba-4468-9fb1-c2dbab702ed7.png">
+
         - 한 커넥션으로 동시에 여러 개의 메세지를 주고 받을 있으며, 응답은 순서에 상관없이 stream으로 주고 받음
             
             >⇒ HTTP/1.1의 Connection Keep-Alive, Pipelining의 개선
@@ -861,8 +863,8 @@ HTTP/2 는 완전히 새로운 프로토콜이 아닌
             
     - **Server Push**
         
-        [http 이미지 7]
-        
+        <img width="487" alt="http7" src="https://user-images.githubusercontent.com/81874493/149670433-fef89dd7-ac57-4067-bd1b-7cb6fd5a7e55.png">
+
         - 클라이언트(브라우저)가 HTML문서를 요청
 
             <br>
@@ -913,7 +915,7 @@ HTTP/2 는 완전히 새로운 프로토콜이 아닌
 
 ### QUIC
 
-[http 이미지 8]
+<img width="522" alt="http8" src="https://user-images.githubusercontent.com/81874493/149670444-cad33a6f-10a0-4af8-bc6e-a68b68198e2e.png">
 
 정의 : QUIC은 Quick UDP Internet Connections 의 약자이며, UDP를 기반으로 **TCP + TLS + HTTP 의 기능을 모두 구현하는 프로토콜**이다.
 
@@ -955,14 +957,14 @@ HTTP/3는 HTTP(Hypertext Transfer Protocol)의 세 번째 메이저 버전으로
 
         - TCP는 연결을 생성하기 위해 기본적으로 1 RTT가 필요하고, 여기에 TLS를 사용한 암호화까지 하려고 한다면 TLS의 자체 핸드쉐이크까지 더해져 총 3 RTT가 필요하다.
             
-            [http 이미지 9]
-            
+            <img width="241" alt="http9" src="https://user-images.githubusercontent.com/81874493/149670451-c6342ead-6db8-4457-9e9a-0cca1eaf0dc6.png">
+
             <br>
         
         - 반면 QUIC은 첫 연결 설정에 1 RTT만 소요된다.
             
-            [http 이미지 10]
-            
+            <img width="240" alt="http10" src="https://user-images.githubusercontent.com/81874493/149670475-8eb8c516-0ec6-4d10-bcaf-8b06994ebdf3.png">
+
             >⇒ 그 이유는 **연결 설정에 필요한 정보와 함께 데이터도 보내버리기 때문**이다.
             
             >⇒  클라이언트가 서버에 어떤 신호를 한번 주고, 서버도 거기에 응답하기만 하면 바로 본 통신을 시작할 수 있다는 것이다.
