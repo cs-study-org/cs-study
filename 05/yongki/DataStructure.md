@@ -6,8 +6,10 @@
     - [Javascript Native Object: Map](#javascript-native-object-map)
       - [Deterministic HashTable](#deterministic-hashtable)
     - [Javascript Native Object: Array(Javascript 배열)](#javascript-native-object-arrayjavascript-배열)
-  - [LinkedList(연결리스트) vs Array(일반 배열)](#linkedlist연결리스트-vs-array일반-배열)
-    - [연결리스트](#연결리스트)
+      - [Javascript 배열 내부 자료구조의 변형](#javascript-배열-내부-자료구조의-변형)
+      - [배열 요소 종류 별 다른 최적화](#배열-요소-종류-별-다른-최적화)
+  - [Doubly-Linked List(이중 연결리스트) vs Array(일반 배열)](#doubly-linked-list이중-연결리스트-vs-array일반-배열)
+    - [이중 연결리스트](#이중-연결리스트)
     - [일반 배열](#일반-배열)
   - [v8엔진의 가비지 컬렉터, Orinoco](#v8엔진의-가비지-컬렉터-orinoco)
     - [마이너 GC](#마이너-gc)
@@ -210,7 +212,7 @@ inline uint32_t ComputeUnseededHash(uint32_t key) {
 </details>
 <br/>
 
-<details>
+<!-- <details> -->
 <summary><code>HashTable</code> vs <code>Deterministic HashTable</code>성능 비교</summary>
 <br/>
 예시 사진에서 사용하는 단어의 뜻은 다음과 같다.
@@ -232,7 +234,7 @@ inline uint32_t ComputeUnseededHash(uint32_t key) {
     <td>
       <blockquote>
       <p>
-        모든 <code>HashTable</code> 기반 자료구조는 현재 할당된 용량이 초과될 시 테이블 크기를 언어마다 다른 임계값을 기준으로 2배로 늘리고, 또 줄어들 시 2배로 줄이는 sizing 작업이 있다.
+        모든 <code>HashTable</code> 기반 자료구조는 현재 할당된 용량이 초과될 시 테이블 크기를 75% 기준에 도달했을 시 2배로 늘리고, 또 줄어들 시 2배로 줄이는 작업이 있다.        
       </p>
       <p>
         이때, 바뀐 용량 만큼 고유한 key도 재해싱해야하는 작업도 따른다. 그림에서 계단식으로 늘어난 지표는 용량이 늘어날 시 재해싱 작업이 이뤄진 부분이다.
@@ -283,27 +285,190 @@ inline uint32_t ComputeUnseededHash(uint32_t key) {
 
     Javascript 배열은 메모리 공간에서 연속적으로 이어져 있지 않을 수 있으며, 타입이 달라도 되는 데이터를 배치한 해시 테이블로 구현된 객체이다.
 
+🤔 단, Javascript 배열도 원래는 일반 배열이지만 용량이 커질 수록 내부적으로 임계값을 돌파하다가 해시 테이블로 바뀐다. 이를 확인해보자.
+
+#### Javascript 배열 내부 자료구조의 변형
+
+- Javascript 배열은 내부적으로 고정배열이다.
+  ```node
+  > const arr = [];
+  undefined
+  > %DebugPrint(arr);
+  ...
+  - elements: 0x017ae7741309 <FixedArray[0]> [PACKED_SMI_ELEMENTS]
+  - length: 0
+  ```
+
+- `n` 크기의 배열에 `n + 1`이 이루어지면 V8은 배열에 일부 추가 공간을 할당하여 확장하고, 배열 길이가 줄어들면 축소한다.
+  
+  ```node
+  > arr.push(42);
+  > %DebugPrint(arr);
+  ...
+  - elements: 0x01c00b5880d9 <FixedArray[17]> [PACKED_SMI_ELEMENTS]
+  - length: 1
+  ```
+  배열을 확장할 시 사용되는 공식이다.
+
+      new_capacity = (old_capacity + 50%) + 16
+
+  배열의 축소는 절반 이상의 요소가 작업의 결과로 사용되지 않을 때 발생한다.
+  <br/>
+
+- Javascript 배열 내부 요소가 수정될 때 배열 내부의 요소 종류가 바뀐다.
+  ```node
+  > arr.push('1');
+  > %DebugPrint(arr);
+  - elements: 0x03a6dd5d7ed1 <FixedArray[17]> [PACKED_ELEMENTS]
+  - length: 2
+  ```
+
+- 고정배열이 임계값을 초과하면 해시테이블 기반으로 바뀐다.
+  ```node
+  > arr[32 << 20] = 0;
+  > %DebugPrint(arr);
+  ...
+  - elements: 0x025dc90207d1 <NumberDictionary[16]> [DICTIONARY_ELEMENTS]
+  - length: 33554433
+  ```
+#### 배열 요소 종류 별 다른 최적화
+
+<table>  
+  <tr>
+    <td width="50%">
+      <img src="https://v8.dev/_img/elements-kinds/lattice.svg">
+    </td>
+    <td>
+      <p>           
+      배열 내부 요소가 수정되면 요소 종류가 바뀐다고 하였다.
+      요소 종류는 계층이 있는데, 아래 단계로 내려가면 위로 올라갈 수 없다.
+      </p>
+      <p>
+        PACKED를 구멍이 없는 배열
+      </p>
+      <p>
+        HOLEY를 구멍이 있는 배열이라고 하는데, PACKED보다 덜 효율적으로 최적화 된다.
+      </p>
+      <p>
+        HOLEY는 프로토타입 체인을 타고 조회를 하는 종류이기 때문이다.
+      </p>
+    </td>
+  </tr>  
+</table>
+
+때문에, 내부 시스템에서 최대한 이점을 얻기 위해 다음과 같이 사용하자.
+
 <details>
-<summary>Javascript 배열 내부 확인하기</summary>
+<summary>1. 구멍 생성을 방지하자.</summary>
+<div markdown="1">
+<br/>
 
-```javascript
-console.log(Object.getOwnPropertyDescriptors([1, 2, 3]));
-/*
-{
-  '0': { value: 1, writable: true, enumerable: true, configurable: true },
-  '1': { value: 2, writable: true, enumerable: true, configurable: true },
-  '2': { value: 3, writable: true, enumerable: true, configurable: true },
-  length: { value: 3, writable: true, enumerable: false, configurable: false }
-}
-*/
-```
-`인덱스`를 `프로퍼티 키`로 갖으며, `배열의 요소`는 `프로퍼티 값`이다.
+  배열 종류가 아래 단계로 내려가면 위로 올라갈 수 없다고 언급하였다.
 
+  때문에, 배열 요소를 알고 있다면, 리터럴로 할당하고
+
+  알지 못한다면, 빈 배열을 만들고 나중에 메서드를 활용해 값을 넣어두자.
+
+</div>
 </details>
 
-## LinkedList(연결리스트) vs Array(일반 배열)
+<details>
+<summary>2. 배열의 길이를 초과하여 읽지 말자.</summary>
+<div markdown="1">
+<br/>
+  
+  아래 코드에서 배열의 마지막 반복은 배열의 길이를 초과하여 읽고, `undefined`나 `null` 요소를 찾으면 끝난다.
 
-### 연결리스트
+  ```javascript
+  for (let i = 0; i < items.length; i++){
+    doSomething(item);
+  }
+  ```
+  배열의 길이만큼 읽을 때, 6배의 성능 향상이 나타났다고 한다.
+
+  때문에, 이를 파악하지 않고도 지킬 수 있게 `for-of`나 `forEach` 같은 배열 빌트인 메서드를 사용하자.
+  > 둘 다 성능은 비슷하다.
+
+</div>
+</details>
+
+<details>
+<summary>3. 유사 배열 객체보다 배열을 사용하자.</summary>
+<div markdown="1">
+<br/>
+  
+유사 배열 객체는 배열 빌트인 메서드(*cf. forEach*)를 호출할 수 없지만, 제네릭[^generic]으로 호출해서 사용할 수 있다. (*cf. call, apply*)
+
+[^generic]: 데이터 형식에 의존하지 않고, 하나의 값이 여러 다른 데이터 타입들을 가질 수 있는 기술로 재사용성을 높일 수 있다.
+
+```javascript
+cosnt arrayLike = {
+  '0' : 'a',
+  '1' : 'b',
+  'length' : 2
+};
+
+Array.prototype.forEach.call(arrayLike, (value, index) => {
+  ...
+})
+```
+
+하지만, 유사 배열 객체를 호출하는 것이 느리다고 한다. 
+
+때문에, 실제 배열로 바꾸는 것을 고려해야하며, ES6의 `spread syntax`(*cf. ...args*)가 이 역할을 쉽게 도와준다.
+
+</div>
+</details>
+
+<details>
+<summary>4. 다형성(call site polymorphism)을 피하자.</summary>
+<div markdown="1">
+<br/>
+
+  배열 빌트인 메서드는 요소가 같은 배열 요소를 처리할 때 인라인 캐싱을 사용해서 더 빠르다.
+
+  인라인 캐싱이란, 우리가 임의의 객체에 조회를 한 번 수행한 다음 객체의 호출 모양을 키로 사용하여 캐시에 이 속성의 경로를 넣는 것입니다. 
+  
+  때문에 같은 모양의 객체를 발견하면 조회를 다시 계산하는 것이 아닌 캐시에서 경로를 가져올 수 있습니다.
+
+  아래 코드를 통해 호출 모양을 토대로 캐시 된다는 주석을 확인해보자.
+
+  polymorphism 뒤에 숫자는 몇 개의 캐시가 되었는지 단순 번호를 뜻한다.
+
+  ```javascript
+  function f(o) {
+    return o.x
+  }
+
+  f({ x: 1 })       // +++ polymorphism 1, cache
+  f({ x: 2 })       // +++ polymorphism 1, use cached
+  f({ x: 3, y: 1 }) // +++ polymorphism 2, cache
+  f({ x: 4, y: 1 }) // +++ polymorphism 2, use cached degree 2
+  f({ x: 5, z: 1 }) // +++ polymorphism 2, use cached degree 3
+  f({ x: 6, a: 1 }) // +++ polymorphism 2, use cached degree 4
+  f({ x: 7, b: 1 }) // +++ polymorphism 2, megamorphic → global hash table cache
+  ```
+
+  따라서, 아래 코드에서 each를 호출할 때, 같은 배열 요소여야 호출 모양을 인라인 캐싱한다.
+
+  ```javascript
+  const each = (array, callback) => {
+    for (let index = 0; index < array.length; ++index) {
+      const item = array[index];
+      callback(item);
+    }
+  };
+  const doSomething = (item) => console.log(item);
+
+  each(['a', 'b', 'c'], doSomething);
+  ```
+
+</div>
+</details>
+
+## Doubly-Linked List(이중 연결리스트) vs Array(일반 배열)
+
+### 이중 연결리스트
 
 **정의**
 
@@ -452,7 +617,7 @@ console.log(Object.getOwnPropertyDescriptors([1, 2, 3]));
         사용대상: 마이너 GC
       </p>
     </th>
-  </tr>  
+  </tr> 
   <tr>
     <td width="50%">
       <img src="https://v8.dev/_img/trash-talk/05.svg">
@@ -567,7 +732,7 @@ console.log(Object.getOwnPropertyDescriptors([1, 2, 3]));
 
 [자바스크립트 배열은 배열이 아니다](https://poiemaweb.com/js-array-is-not-arrray) -- Poiemaweb
 
-[자바스크립트의 자료구조](https://velog.io/@blackb0x/자바스크립트의-자료구조) -- Sungmin Park
+[자바스크립트 빌트인 객체 다이어그램 예시 사진 참고문헌](https://velog.io/@blackb0x/자바스크립트의-자료구조) -- Sungmin Park
 
 [해시 테이블 최적화](https://v8.dev/blog/hash-code) -- Sathya Gunasekaran
 
@@ -576,6 +741,10 @@ console.log(Object.getOwnPropertyDescriptors([1, 2, 3]));
 [Understanding Map Internals](https://itnext.io/v8-deep-dives-understanding-map-internals-45eb94a183df) -- Andrey Pechkurov
 
 [Deterministic HashTables](https://wiki.mozilla.org/User:Jorend/Deterministic_hash_tables) -- Jason Orendorff
+
+[Load Factor and Rehashing](https://www.scaler.com/topics/load-factor-and-rehashing/#what-is-load-factor-in-hashing-) -- Anmol Sehgal
+
+[V8 internals for JavaScript](https://v8.dev/blog/elements-kinds) -- Mathias Bynens
 
 **자료구조 비교 관련**
 
