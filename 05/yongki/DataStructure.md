@@ -212,7 +212,7 @@ inline uint32_t ComputeUnseededHash(uint32_t key) {
 </details>
 <br/>
 
-<!-- <details> -->
+<details>
 <summary><code>HashTable</code> vs <code>Deterministic HashTable</code>성능 비교</summary>
 <br/>
 예시 사진에서 사용하는 단어의 뜻은 다음과 같다.
@@ -288,6 +288,11 @@ inline uint32_t ComputeUnseededHash(uint32_t key) {
 🤔 단, Javascript 배열도 원래는 일반 배열이지만 용량이 커질 수록 내부적으로 임계값을 돌파하다가 해시 테이블로 바뀐다. 이를 확인해보자.
 
 #### Javascript 배열 내부 자료구조의 변형
+
+> 디버깅 환경은 node v16에서 가능하였고, 다음과 같은 명령어로 디버깅 모드로 들어갈 수 있다.
+> ```bash 
+> node --allow-natives-syntax
+> ```
 
 - Javascript 배열은 내부적으로 고정배열이다.
   ```node
@@ -425,29 +430,33 @@ Array.prototype.forEach.call(arrayLike, (value, index) => {
 <div markdown="1">
 <br/>
 
-  배열 빌트인 메서드는 요소가 같은 배열 요소를 처리할 때 인라인 캐싱을 사용해서 더 빠르다.
+  배열 빌트인 메서드는 요소가 같은 배열 요소를 처리할 때 인라인 캐싱될 때 더 빠르다.
 
-  인라인 캐싱이란, 우리가 임의의 객체에 조회를 한 번 수행한 다음 객체의 호출 모양을 키로 사용하여 캐시에 이 속성의 경로를 넣는 것입니다. 
+  인라인 캐싱(IC)이란, 우리가 임의의 객체에 조회를 한 번 수행한 다음 객체의 호출 모양을 키로 사용하여 캐시에 이 속성의 경로를 넣는 것입니다. 
   
   때문에 같은 모양의 객체를 발견하면 조회를 다시 계산하는 것이 아닌 캐시에서 경로를 가져올 수 있습니다.
 
-  아래 코드를 통해 호출 모양을 토대로 캐시 된다는 주석을 확인해보자.
+      - 같은 배열 요소(단형성)는 항상 캐시에 도달하여 IC가 가장 빠르다.
 
-  polymorphism 뒤에 숫자는 몇 개의 캐시가 되었는지 단순 번호를 뜻한다.
+      - 다른 배열 요소(다형성)는 캐시된 항목에서 선형 검색을 수행한다.
+
+      - 캐시 임계점 초과(megamorphic) 상태는 IC 중에 제일 느리지만 IC 미스보다 낫다.
+
+  아래 코드를 통해 호출 모양을 토대로 캐시 된다는 주석을 확인해보자.
 
   ```javascript
   function f(o) {
     return o.x
   }
 
-  f({ x: 1 })       // +++ polymorphism 1, cache
-  f({ x: 2 })       // +++ polymorphism 1, use cached
-  f({ x: 3, y: 1 }) // +++ polymorphism 2, cache
-  f({ x: 4, y: 1 }) // +++ polymorphism 2, use cached degree 2
-  f({ x: 5, z: 1 }) // +++ polymorphism 2, use cached degree 3
-  f({ x: 6, a: 1 }) // +++ polymorphism 2, use cached degree 4
-  f({ x: 7, b: 1 }) // +++ polymorphism 2, megamorphic → global hash table cache
-  ```
+  f({ x: 1 })       // +++ {x: *},       cache
+  f({ x: 2 })       // +++ {x: *},       use cached
+  f({ x: 3, y: 1 }) // +++ {x: *, y: *}, cache
+  f({ x: 4, y: 1 }) // +++ {x: *, y: *}, use cached degree 2
+  f({ x: 5, z: 1 }) // +++ {x: *, y: *}, use cached degree 3
+  f({ x: 6, a: 1 }) // +++ {x: *, y: *}, use cached degree 4
+  f({ x: 7, b: 1 }) // +++               megamorphic → global hash table cache
+  ```  
 
   따라서, 아래 코드에서 each를 호출할 때, 같은 배열 요소여야 호출 모양을 인라인 캐싱한다.
 
@@ -549,24 +558,26 @@ Array.prototype.forEach.call(arrayLike, (value, index) => {
 <br/>
 
 1. To Space에 가용 공간이 없는 상태에서, 새 객체를 생성하려할 때, v8은 마이너 GC를 발생시킨다.
+<br/>
 
 2. 마이너 GC는 객체들을 To Space에서 From Space으로 이동시킨다. 이제 모든 객체는 From Space에 있고 To Space은 비워진다.
+<br/>
 
 3. 마이너 GC는 GC 루트부터 From Space까지 객체 그래프를 재귀적으로 순회하면서 메모리 사용을 유지하는 객체들을 찾는다.
-   
    <br/>
-   
+
     3-1. 이 객체들은 To Space의 페이지로 이동되고, 할당 포인터는 갱신된다. From Space의 모든 객체들을 찾을 때까지 이 과정이 반복된다.
 
     3-2. 마지막 객체까지 찾으면 To Space는 자동으로 압축되어 조각화를 줄인다.
 
     3-3. 이제 From Space에 남아있는 객체는 가비지이므로 마이너 GC는 From Space을 비운다.
-
-   <br/>
+    <br/>
 
 4. 새 객체는 To Space 메모리에 할당된다.
+<br/>
 
 5. 다시, To Space에 가용 공간이 없는 상태에서, 새 객체를 생성하려할 때, v8은 두번째 마이너 GC를 발생시킨다.
+<br/>
 
 6. 2-3번의 과정이 다시 반복되는데, 특이사항은 두번째 마이너 GC에도 살아남은 객체는 To Space가 아닌 Old Space로 이동한다.
 
@@ -588,12 +599,14 @@ Array.prototype.forEach.call(arrayLike, (value, index) => {
 <br/>
 
 1. 마이너 GC 주기를 거치고 Old Space가 거의 다 찾으면 v8이 메이저 GC를 발생한다.
+<br/>
    
 2. 메이저 GC는 GC 루트부터 시작해 객체 그래프를 재귀적으로 순회하면서, 메모리 사용을 유지하는 객체들을 찾아 활성 상태로 표시(Marking)한다.
    
    > Marking은 힙 메모리를 방향 그래프로 간주해 깊이 우선 탐색을 수행한다.
 
 3. 메이저 GC가 힙 메모리를 순회하면서 활성 상태로 표시되지 않은 객체들의 메모리 주소를 기록(Sweeping)한다. 이 공간은 이제 사용 가능하다고 표시되며 다른 객체들을 저장하는데 사용될 수 있다.
+<br/>
 
 4. 메이저 GC는 모든 활성 상태의 객체들을 압축(Compacting)하여 조각화를 줄이고 새 객체들에 대한 메모리 할당 성능을 증가시킨다.
 
@@ -734,17 +747,19 @@ Array.prototype.forEach.call(arrayLike, (value, index) => {
 
 [자바스크립트 빌트인 객체 다이어그램 예시 사진 참고문헌](https://velog.io/@blackb0x/자바스크립트의-자료구조) -- Sungmin Park
 
-[해시 테이블 최적화](https://v8.dev/blog/hash-code) -- Sathya Gunasekaran
-
 [ES6 Map and Set Complexity](https://stackoverflow.com/questions/33611509/es6-map-and-set-complexity-v8-implementation) -- Stackoverflow
 
 [Understanding Map Internals](https://itnext.io/v8-deep-dives-understanding-map-internals-45eb94a183df) -- Andrey Pechkurov
+
+[Understanding Array Internals](https://itnext.io/v8-deep-dives-understanding-array-internals-5b17d7a28ecc) -- Andrey Pechkurov
 
 [Deterministic HashTables](https://wiki.mozilla.org/User:Jorend/Deterministic_hash_tables) -- Jason Orendorff
 
 [Load Factor and Rehashing](https://www.scaler.com/topics/load-factor-and-rehashing/#what-is-load-factor-in-hashing-) -- Anmol Sehgal
 
 [V8 internals for JavaScript](https://v8.dev/blog/elements-kinds) -- Mathias Bynens
+
+[What's up with monomorphism?](https://mrale.ph/blog/2015/01/11/whats-up-with-monomorphism.html) -- Vyacheslav Egorov
 
 **자료구조 비교 관련**
 
