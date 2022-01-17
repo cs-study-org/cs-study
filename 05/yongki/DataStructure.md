@@ -21,15 +21,10 @@
 
 들어가기 앞서 기저 지식을 밟고 진행하자.
 
-1. 시간 복잡도에서 계산 기준은 다음과 같다.
-
-    > a. 평균과 최악이 다른 경우 2개의 Time Complexity 표를 기술하겠다.
-    > b. 상수는 제거한다.
-
-2. 공간 복잡도에 영향을 미치는 `변수`, `자료구조`, `함수 호출`, `할당`요소이며, 입력 값은 중요한 부분이 아니다. 
+1. 시간 복잡도에서 평균과 최악이 다른 경우, 2개의 Time Complexity 표를 기술하겠다.
    <br/>
 
-3. Javascript Native Object는 다음과 같다. 초록색에 해당하는 부분을 살펴보겠다.
+2. Javascript Native Object는 다음과 같다. 초록색에 해당하는 부분을 살펴보겠다.
 
     ![Classify DataStructure](assets/classify-data-structure.drawio.svg)
 
