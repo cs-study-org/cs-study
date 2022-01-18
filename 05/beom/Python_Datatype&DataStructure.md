@@ -188,11 +188,255 @@ dictionary 자료형은 **key의 중복이 불가능**하고 **value의 중복�
 | dict  | X    | X    | O |
 
 
+# 자료구조
+## 자료구조란?
+- 자료(data)를 담기 위한 저장공간과 연산을 통칭
+- 자료구조  = 저장공간(memory) + 연산(읽기, 쓰기, 삽입, 삭제, 탐색)
+- ex) 변수, 배열, 리스트
+
+## 알고리즘이란?
+- 자료를 입력받아 유한한 횟수의 연산들을 이용해 원하는 결과를 출혁하는 것
+- ex) 100개의 정수를 리스트 A에 담는다, 오름차순 정렬
+
+> 자료구조와 알고리즘은 항상 같이 가는 바늘과 실 같은 존재
+
+## 순차적 자료구조
+### 1. array, list
+- index로 임의로 원소에 접근 가능
+- 연산자 []로 접근할 수 있다. 빅오 : O(1)
+- 삽입(append, insert)
+- 삭제(pop, remove)
+
+> append와 pop은 O(1)이지만 insert와 remove는 O(n)
+
+### 2. stack, queue, dequeue
+- 제한된 접근(삽입 삭제)만 허용
+- 다 내장되어 있어서 불러서 사용하면 됨
+
+#### stack
+- LIFO(Last in First OUT)
+- 자루처럼 먼저 넣은 것이 밑에 있고, 꺼낼 때 나중에 넣은, 가장 위의 것이 나온다.
+- push : 삽입. 아래에서부터 차곡차곡 삽입됨
+- pop : 삭제.  맨 위 값(가장 나중에 들어온 값)에서부터 삭제
+
+```python3
+class Stack:
+    def __init__(self):
+        self.items = [] #데이터 저장을 위한 리스트 준비
+
+    def push(self, val):
+        self.items.append(val)
+
+    def pop(self): #가장 위에 있는 값을 반환. pop와 달리 삭제를 수행하지 않는다.
+        try: #pop시전
+            return self.items.pop()
+        except IndexError: #indexError발생
+            print("Stack is empty")
+
+    def top(self):
+        try:
+            return self.items[-1]
+        except IndexError:
+            print("Stack is empty")
+
+    def __len__(self): #len() 호출하면 stack의 item 수 반환
+        return len(self.items)
+```
+
+사용 예시
+```python3
+S = Stack()
+S.push(10)
+S.push(2)
+print(S.pop())#2
+print(S.top())#10
+print(len(S)) #1 -> 이렇게 호출하면 파이썬은 S.__len__()을 호출함
+```
+
+> 연산의 수행시간
+- push : O(1)
+- pop : O(1)
+- top : O(1)
+- len : O(1) -> 리스트에서 개수를 항상 알고 있기 때문에 값만 리턴
 
 
 
+#### queue
+- FIFO(First In First Out)
+- 선착순(가장 먼저 온 사람이 가장 먼저 서비스를 받는다.)
+- 삽입은 아래서부터 쌓임
+- 삭제 역시 아래의 값(가장 먼저 들어온 값)부터 수행
 
 
+```python3
+class Queue:
+    def __init__(self):
+        self.items = []
+        self.front_index = 0
+    def enqueue(self,val): #삽입
+        self.items.append(val)
+    def dequeue(self): #삭제
+        if self.front_index ==len(self.items): # 현재 dequeue할 수 있는 값이 없다.
+            print("Queue is empty")
+            return None
+        else:
+            x = self.items[self.front_index]
+            self.front_index +=1
+            return x
+```
+
+사용 예시
+```python3
+Q = Queue()
+Q.enqueue(5)
+Q.enqueue(-2)
+Q.dequeue() #5
+Q.enqueue(10)
+Q.dequeue() #-2
+```
+
+> 연산의 수행시간
+- enqueue : O(1)
+- dequeue : O(1)
+
+#### dequeue
+- stack + queue
+- 삽입은 양옆으로 수행 가능(append,appendleft)
+- 삭제 역시 양옆으로 수행 가능(pop, popleft)
+
+> 연산의 수행시간
+- Append : O(1)
+- Appendleft : O(1)
+- Pop : O(1)
+- Popleft : O(1)
+
+
+
+### 3. linked list(연결 리스트)
+- 파이썬의 list는 배열과 유사. linked list와는 다르다.
+- 값이 연속된 공간이 아닌 메모리 공간에 독립적으로 저장됨
+- 다음 값이 저장된 주소를 갖고 있다.(link)
+- 각각의 값은 자기자신의 값과 함께 다음 값의 주소를 갖고 있다.
+- 마지막 요소는 다음 값의 주소 대신 `NUll`(Python에서는 None)을 갖고 있다.
+- index로 접근 x
+- n번째 값을 가져오고 싶다면 첫번째부터 순차적으로 조회해야함
+
+#### 한 방향 연결 리스트 vs 양방향 연결 리스트
+- 한 방향 : 링크가 한쪽 방향으로만 연결되어 있으므로, 한 방향으로만 갈 수 있고 반대 방향으로는 갈 수 없다.
+- 양 방햔 : 양쪽 방향으로 링크가 있어서 노드의 양쪽 방향으로 모두 이동 가능
+
+> 노드 연결 구현해보기
+
+```python3
+class Node:
+    def __init__(self, key= None):
+        self.key = key
+        self.next = None
+    def __str__(self):
+        return str(self.key) #print(v.key) 대신 print(v)로 쓸 수 있
+```
+
+사용 예시
+```python3
+a = Node(3)
+b = Node(9)
+c = Node(-1)
+
+a.next = b
+b.next = c
+```
+
+> 한방향 연결 리스트
+
+```python3
+class Node:
+    def __init__(self, key= None):
+        self.key = key
+        self.next = None
+    def __str__(self):
+        return str(self.key) #print(v.key) 대신 print(v)로 쓸 수 있
+
+
+class SingleLinkedList:
+    def __init__(self):
+        self.head = None
+        self.size = 0
+    def __len__(self):
+        return self.size
+    def pushFront(self,key):
+        new_node = Node(key)
+        new_node.next = self.head
+        self.head = new_node
+        self.size += 1
+
+    def pushBack(self,key):
+        v = Node(key)
+        if len(self) == 0:
+            self.head = v
+        else:
+            tail = self.head
+            while tail.next != None:
+                tail = tail.next
+            tail.next = v
+        self.size += 1
+
+    def popFront(self):
+        if len(self) == 0:
+            return None
+        else:
+            x = self.head
+            key = x.key
+            self.head = x.next
+        self.size -= 1
+        del x
+        return key
+
+    def popBack(self):
+        if len(self) == 0:
+            return None
+        else:  # running techinque
+            prev, tail = None, self.head
+            while tail.next != None:
+                prev = tail
+                tail = tail.next
+            if len(self) == 1:
+                self.head = None
+            else:
+                prev.next = tail.next  # None
+                key = tail.key
+                del tail
+                self.size -= 1
+                return key
+    def search(self, key):
+        # key 값의 노드를 리턴, 없으면 None 리턴
+        v = self.head
+        while v.next != None:
+            if v.key == key:
+                return v
+            v = v.next
+        return None  # or return v (== None)
+
+```
+
+사용 예시
+
+```python3
+L = SingleLinkedList()
+L.pushFront(-1) # [-1]->0
+L.pushFront(9)  # [9]->[-1]->0
+L.pushFront(3)  # [3]->[9]->[-1]->0
+L.pushFront(5)  # [5]->[3]->[9]->[-1]->0
+L.pushBack(4)  # [5]->[3]->[9]->[-1]->[4]->0
+L.popFront()   # [3]->[9]->[-1]->[4]->0
+L.popBack()    # [3]->[9]->[-1]->0 
+```
+
+> 연산의 수행시간
+- pushFront : O(1)
+- popFront : O(1)
+- pushBack : O(n)
+- PopBack : O(n)
+- search : O(n)
 
 
 
@@ -200,3 +444,5 @@ dictionary 자료형은 **key의 중복이 불가능**하고 **value의 중복�
 ## 참고 문헌
 
 [파이썬 자료형 참고문헌](https://artist-developer.tistory.com/22)
+
+[파이썬 자료구조 참고문헌](https://github.com/paikwiki/data-structure-with-python)
