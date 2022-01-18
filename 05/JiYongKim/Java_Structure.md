@@ -134,8 +134,8 @@ JVM은 자바 프로그램을(컴파일된 코드) 실행시키는 가상의 컴
                 - 피연산자와 연산 후 결과를 스택에 저장
                 - 예를 들어, 아래와 같이 덧셈을 할 경우, 스택구조라서 PUSH & POP이 필요하며 4단계의 명령이 필요하다.
                     
-                    ![스크린샷 2022-01-10 오후 5.18.29.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/c53fbd4c-e9cb-408b-90a3-7eaa7d1e9da4/스크린샷_2022-01-10_오후_5.18.29.png)
-                    
+                    <img width="568" alt="스크린샷 2022-01-19 오전 2 32 40" src="https://user-images.githubusercontent.com/81874493/149988558-e7fda12b-dcbd-49c5-a795-0fe2fc9fc3d4.png">
+
                 - 장점: **다음 피연산자의 메모리 위치를 기억할 필요가 없다.**
                     
                     >⇒ SP(stack pointer)가 다음 피연산자의 위치를 나타낸다. 즉 스택에서 POP만 하면 다음 피연산자가 나오기 때문에 피연산자의 메모리를 기억할 필요가 없다.
@@ -152,8 +152,8 @@ JVM은 자바 프로그램을(컴파일된 코드) 실행시키는 가상의 컴
 
                 장점 1) 아래와 같이 POP & PUSH 과정이 없기 떄문에 같은 덧셈이라도 하나의 명령으로 충분하다. 때문에 더 빠르다.
                 
-                ![스크린샷 2022-01-10 오후 5.20.59.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/b802703c-4325-4291-97d3-615b8c89b2d9/스크린샷_2022-01-10_오후_5.20.59.png)
-                
+                <img width="605" alt="스크린샷 2022-01-19 오전 2 33 10" src="https://user-images.githubusercontent.com/81874493/149988620-3d829bba-9b5c-4fc5-bcd7-10879844effe.png">
+
                 <br>
 
                 장점 2) 스택 기반에서는 할 수 없는 명령어 최적화를 적용할 수 있다. 예를 들어, 어떤 연산이 나중에 또 필요할 때, 레지스터에 저장하여 다시 계산하지 않고도 연산 결과를 활용할 수 있다.
@@ -202,8 +202,9 @@ JVM은 자바 프로그램을(컴파일된 코드) 실행시키는 가상의 컴
 
 - 자바 프로그램 실행 과정
     
-    ![스크린샷 2022-01-10 오후 5.11.39.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/b859d0d7-7c9f-4a94-9ccc-d36ac59745de/스크린샷_2022-01-10_오후_5.11.39.png)
-    
+
+    <img width="671" alt="스크린샷 2022-01-19 오전 1 45 56" src="https://user-images.githubusercontent.com/81874493/149988657-a071ed9d-3bae-4394-8bcc-b5d445be15fd.png">
+
     1. 작성한 자바 소스(java source), 즉 확장자가 .java인 파일을 자바 컴파일러(Java Compiler)를 통해 자바 바이트 코드(Java Byte Code)로 컴파일 한다.
     2. 컴파일된 바이트 코드를 JVM 클래스 로더(Class Loader)에게 전달한다.
     3. 클래스 로더는 동적 로딩(Dynamic Loading)을 통해 필요한 클래스들을 로딩 및 링크하여 런타임 데이터 영역(Runtime Data area), 즉 JVM 메모리에 올린다.
@@ -213,8 +214,11 @@ JVM은 자바 프로그램을(컴파일된 코드) 실행시키는 가상의 컴
     <br>
     
 - JVM 의 서브 시스템 구분
-    
-    ![스크린샷 2022-01-10 오후 5.53.10.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/71e6ad9d-d3cc-4552-a2d1-4bdbfdec3135/스크린샷_2022-01-10_오후_5.53.10.png)
+
+    <img width="653" alt="스크린샷 2022-01-19 오전 1 46 03" src="https://user-images.githubusercontent.com/81874493/149988692-28d96ea4-ff7f-448f-a78f-8b6b5bcb7880.png">
+
+
+
     
     - 클래스 로더
     - 런타임 데이터 영역
@@ -242,9 +246,11 @@ JVM은 자바 프로그램을(컴파일된 코드) 실행시키는 가상의 컴
 
 - 클래스 로더 특징
     - 클래스 로더 특징 1) **계층구조 ( Hierarchical )**
-        
-        ![스크린샷 2022-01-10 오후 5.55.44.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/d998f004-e0dc-4a72-9c71-265fa4d9a610/스크린샷_2022-01-10_오후_5.55.44.png)
-        
+       
+       <img width="647" alt="스크린샷 2022-01-19 오전 1 46 11" src="https://user-images.githubusercontent.com/81874493/149988742-ba5695de-c063-4c3d-b8ef-0740d1716272.png">
+
+       
+
         >⇒ 클래스 로더는 단순히 하나로 이루어져 있지 않다. 
         
         >⇒ 위의 그림 처럼 여러 클래스 로더 끼리 부모-자식 관계를 이루어 계층적 구조로 되어있다.
@@ -282,8 +288,8 @@ JVM은 자바 프로그램을(컴파일된 코드) 실행시키는 가상의 컴
 
     - 클래스 로더 특징 2) **Delegation 원칙**
         
-        ![스크린샷 2022-01-10 오후 6.51.50.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/9ddf4740-3545-4c57-8be3-68cd3265940d/스크린샷_2022-01-10_오후_6.51.50.png)
-        
+        <img width="639" alt="스크린샷 2022-01-19 오전 1 46 18" src="https://user-images.githubusercontent.com/81874493/149988787-e08a6105-b961-4937-942f-ae0ce158792b.png">
+
         어떠한 클래스 파일을 로딩할 때, 해당 로딩 요청이 부모 클래스 로더들로 거슬러 올라가 BootstrapClassLoader(최상위 ClassLoader)에 다다른 후 그 밑으로 로딩 요청을 수행
         
         >⇒ 로드를 요청받은 클래스 로더는 다음 순서대로 요청 받은 클래스가 있는지 확인한다.
@@ -334,8 +340,8 @@ JVM은 자바 프로그램을(컴파일된 코드) 실행시키는 가상의 컴
 
 - **클래스 로드 과정**
     
-    ![스크린샷 2022-01-10 오후 6.19.14.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/63479ff7-ac43-47e4-aa28-d3c3e90b2677/스크린샷_2022-01-10_오후_6.19.14.png)
-    
+    <img width="455" alt="스크린샷 2022-01-19 오전 1 46 28" src="https://user-images.githubusercontent.com/81874493/149988823-64f9b267-ced6-4f14-8e28-e6080b8397a6.png">
+
     로딩 단계로부터 생성된 바이너리 데이터를 JVM의 런타임 데이터로 합치는 과정
     
     이 단계는 3가지 단계로 나뉜다
@@ -458,8 +464,8 @@ JVM은 자바 프로그램을(컴파일된 코드) 실행시키는 가상의 컴
     
     >⇒ RuntimeDataArea는 JVM이 프로그램을 수행하기 위해 OS로부터 별도로 할당받은 메모리 영역이다.
     
-    ![스크린샷 2022-01-10 오후 6.55.45.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/89521b82-a845-43c4-8987-ff5c2b8c7402/스크린샷_2022-01-10_오후_6.55.45.png)
-    
+    <img width="679" alt="스크린샷 2022-01-19 오전 1 46 36" src="https://user-images.githubusercontent.com/81874493/149988853-e4e751ba-9c39-403e-982c-f6fd6701856c.png">
+
     Runtime Data Area는 PC Registers, JVM Stacks, Method Area, Heap, Native Method Stacks으로 구성된다.
     
     >⇒ 이 중 PC Register, JVM Stack, Native Method Stack은 각 스레드 별로 존재한다.
@@ -506,8 +512,10 @@ JVM은 자바 프로그램을(컴파일된 코드) 실행시키는 가상의 컴
     모든 Thread들이 공유하는 메모리 영역
     
     프로그램 실행 중 클래스가 사용되면 JVM은 해당 클래스 파일을 읽어서 분석하여 클래스의 인스턴스 변수, 메서드 코드 등을 Method Area에 저장한다
-    
-    ![스크린샷 2022-01-10 오후 7.00.14.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/5dab5a46-3b6a-4cbc-aeb8-231a904ae7de/스크린샷_2022-01-10_오후_7.00.14.png)
+ 
+    <img width="691" alt="스크린샷 2022-01-19 오전 1 46 42" src="https://user-images.githubusercontent.com/81874493/149988873-aa01d69c-3dfc-4372-aadc-c228e05b66c8.png">
+
+   
     
     - Type information
         - Type은 클래스와 인터페이스를 통칭하는 것으로 이해하면 된다
@@ -562,8 +570,8 @@ JVM은 자바 프로그램을(컴파일된 코드) 실행시키는 가상의 컴
     
     <br>
 
-    ![스크린샷 2022-01-10 오후 7.02.29.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/75652811-b876-4536-9025-1daeaa8433ef/스크린샷_2022-01-10_오후_7.02.29.png)
-    
+    <img width="699" alt="스크린샷 2022-01-19 오전 1 46 48" src="https://user-images.githubusercontent.com/81874493/149988919-62e6a0cb-fb02-495e-bb9f-d2faadf4446f.png">
+
     GC가 발생하는 영역이며, 참조(레퍼런스)가 없는 객체들은 GC과정을 통해 메모리에서 제거된다.
     
     >=> Heap 영역 또한 내부적으로 여러 영역으로 나뉘어 있으며, 이는 객체의 lifecycle 및 GC와 연관
@@ -621,8 +629,8 @@ JVM은 자바 프로그램을(컴파일된 코드) 실행시키는 가상의 컴
 
     - Metaspace 영역은 Heap이 아닌 Native 메모리 영역으로 취급(Heap 영역은 JVM에 의해 관리된 영역이며, Native 메모리는 OS 레벨에서 관리하는 영역으로 구분)
         
-        ![스크린샷 2022-01-10 오후 7.28.33.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/0186afc1-967d-4860-a4bd-8d44b921b3cc/스크린샷_2022-01-10_오후_7.28.33.png)
-        
+        <img width="638" alt="스크린샷 2022-01-19 오전 1 46 54" src="https://user-images.githubusercontent.com/81874493/149988954-886e4178-32ad-422c-8f39-461a9e05532f.png">
+
     <br>
     
 - **실행 엔진(Execution Engine)**
@@ -644,7 +652,7 @@ JVM은 자바 프로그램을(컴파일된 코드) 실행시키는 가상의 컴
 
 JVM 정리)
 
-![스크린샷 2022-01-10 오후 9.03.47.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/fd12897b-120a-4046-9149-a71b2644c6d6/스크린샷_2022-01-10_오후_9.03.47.png)
+<img width="708" alt="스크린샷 2022-01-19 오전 1 47 00" src="https://user-images.githubusercontent.com/81874493/149988975-eb6a60fe-143f-4abb-818f-2bbbf2130ce6.png">
 
 1. **작성한 자바 소스(.java)를 자바 컴파일러를 통해 자바 바이트 코드(.class)로 컴파일합니다.**
     - 자바 바이트 코드 : JVM이 이해할 수 있는 코드로 아직 컴퓨터는 읽을 수 없는 반기계어입니다. 자바 바이트 코드의 각 명령어는 1바이트 크기의 Opcode와 추가 피연산자로 이루어져 있습니다.
@@ -723,15 +731,16 @@ C/C++ 언어와 달리 자바는 개발자가 명시적으로 객체를 해제�
 
 1. Marking
     
-    ![스크린샷 2022-01-10 오후 9.08.19.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/eb84aa6b-7b7f-42bb-8d51-1e62ec0c3dc5/스크린샷_2022-01-10_오후_9.08.19.png)
-    
+    <img width="681" alt="스크린샷 2022-01-19 오전 1 47 10" src="https://user-images.githubusercontent.com/81874493/149989001-a4fe7665-4400-458f-a453-8cce36657127.png">
+
     프로세스는 마킹을 호출합니다. 이것은 GC가 메모리가 사용되는지 아닌지를 찾아냅니다. 참조되는 객체는 파란색으로, 참조되지 않는 객체는 주황색으로 보여집니다. 모든 오브젝트는 마킹 단계에서 결정을 위해 스캔되어집니다. 모든 오브젝트를 스캔하기 때문에 매우 많은 시간을 소모하게 됩니다.
     
     <br>
 
 2. Normal Delection
-    
-    ![스크린샷 2022-01-10 오후 9.08.54.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/96e08e1d-50cb-452d-92a3-ed14b90dcda3/스크린샷_2022-01-10_오후_9.08.54.png)
+
+    <img width="688" alt="스크린샷 2022-01-19 오전 1 47 18" src="https://user-images.githubusercontent.com/81874493/149989019-0c661575-100d-481f-b6e0-b119bcc2df39.png">
+
     
     참조되지 않는 객체를 제거하고, 메모리를 반환합니다. 메모리 Allocator는 반환되어 비어진 블럭의 참조 위치를 저장해 두고 새로운 오브젝트가 선언되면 할당되도록 합니다.
     
@@ -739,7 +748,7 @@ C/C++ 언어와 달리 자바는 개발자가 명시적으로 객체를 해제�
 
 3. Compacting
     
-    ![스크린샷 2022-01-10 오후 9.09.38.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/272e3f73-2334-4108-8d5c-8c5cac6ad348/스크린샷_2022-01-10_오후_9.09.38.png)
+    <img width="703" alt="스크린샷 2022-01-19 오전 1 47 25" src="https://user-images.githubusercontent.com/81874493/149989072-584eabdd-ae9e-4fb6-88db-578299925dde.png">
     
     1. 퍼포먼스를 향상시키기 위해, 참조되지 않는 객체를 제거하고 또한 남은 참조되어지는 객체들을 묶습니다. 이들을 묶음으로서 공간이 생기므로 새로운 메모리 할당 시에 더 쉽고 빠르게 진행 할 수 있습니다.
     
@@ -757,7 +766,7 @@ C/C++ 언어와 달리 자바는 개발자가 명시적으로 객체를 해제�
 
 ### Generational Garbage Collection
 
-![스크린샷 2022-01-10 오후 9.11.05.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/1d4e951b-bfe7-49b1-b533-408f6f197ff6/스크린샷_2022-01-10_오후_9.11.05.png)
+<img width="723" alt="스크린샷 2022-01-19 오전 1 47 29" src="https://user-images.githubusercontent.com/81874493/149989105-17c74989-f9b1-4b85-8a99-b40ea2e2625f.png">
 
 - Young 영역(Yong Generation 영역)
     
@@ -781,21 +790,21 @@ C/C++ 언어와 달리 자바는 개발자가 명시적으로 객체를 해제�
 
 1. 어떠한 새로운 객체가 들어오면 Eden Space에 할당됩니다.
     
-    ![스크린샷 2022-01-10 오후 9.13.10.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/5e7b86f8-2f79-4846-a3b9-8b4a692a528d/스크린샷_2022-01-10_오후_9.13.10.png)
+    <img width="677" alt="스크린샷 2022-01-19 오전 1 47 35" src="https://user-images.githubusercontent.com/81874493/149989125-08eb1a3e-2747-4a64-b92d-b15d221ce0bb.png">
     
-    <br>
+   <br>
 
 1. Eden Space가 가득차게 되면, minor garbage Collection이 시작됩니다.
     
-    ![스크린샷 2022-01-10 오후 9.13.58.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/80b18a83-a3a3-41d6-86bb-c66f90f6cc40/스크린샷_2022-01-10_오후_9.13.58.png)
-    
-    <br>
+    <img width="688" alt="스크린샷 2022-01-19 오전 1 47 40" src="https://user-images.githubusercontent.com/81874493/149989160-b61b41ab-0c18-41e1-8713-a9084f900c30.png">
+
+   <br>
 
 1. 참조되는 객체들은 첫 번째 survivor(S0)로 이동되어지고, 비 참조 객체는 Eden space가 clear 될 때 반환됩니다.
     
-    ![스크린샷 2022-01-10 오후 9.14.23.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/a82c1f27-7b4f-4fbd-a6d9-ed06dab8a3b2/스크린샷_2022-01-10_오후_9.14.23.png)
+    <img width="697" alt="스크린샷 2022-01-19 오전 1 47 45" src="https://user-images.githubusercontent.com/81874493/149989186-e76346ed-82f5-4e04-a77b-09863f25a79d.png">
     
-    <br>
+   <br>
 
 1. 다음 minor GC 때, Eden space에서는 같은 일이 일어납니다. 비 참조 객체는 삭제되고 참조 객체는 survivor space로 이동하는 것 입니다.
     
@@ -803,34 +812,36 @@ C/C++ 언어와 달리 자바는 개발자가 명시적으로 객체를 해제�
     
     >⇒ 주의해야할 점은 이제 우리는 다른 aged 객체들을 서바이버 공간에 가지게 되었다는 것입니다.
     
-    ![스크린샷 2022-01-10 오후 9.15.25.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/533f1c17-34a2-44a6-9031-e337e53f7c2e/스크린샷_2022-01-10_오후_9.15.25.png)
-    
-    <br>
+    <img width="678" alt="스크린샷 2022-01-19 오전 1 47 51" src="https://user-images.githubusercontent.com/81874493/149989213-bbad5877-b14f-4297-89ea-c879c873012b.png">
+
+   <br>
 
 2. 다음 minor GC 때, 같은 과정이 반복 됩니다. 그러나 이 번엔 survivor space들은 switch 됩니다. 참조되는 객체들은 S0로 이동합니다. 살아남은 객체들은 aged되죠. 그리고 Eden과 S1 공간은 Clear 됩니다.
     
-    ![스크린샷 2022-01-10 오후 9.16.59.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/8a2c6164-5636-479b-afa3-de91418684cc/스크린샷_2022-01-10_오후_9.16.59.png)
-    
-    <br>
+    <img width="691" alt="스크린샷 2022-01-19 오전 1 47 56" src="https://user-images.githubusercontent.com/81874493/149989254-f9ddaf00-cf33-4a62-89a7-7551de82000f.png">
+
+   <br>
 
 3. 아래 그램은 promotion을 보여줍니다. minor GC 후 aged 오브젝트들이 일정한 age threshold(문지방)을 넘게 되면 그것들은 young generation에서 old로 promotion 되어집니다. 여기서는 8을 예로 들었습니다.
     
-    ![스크린샷 2022-01-10 오후 9.17.58.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/a317dab3-d0ae-45c1-a853-8047788bff62/스크린샷_2022-01-10_오후_9.17.58.png)
+   
+    <img width="690" alt="스크린샷 2022-01-19 오전 1 48 01" src="https://user-images.githubusercontent.com/81874493/149989277-25517668-93a4-4be7-9ed8-87b0f83490ea.png">
     
-    <br>
+   <br>
 
 1. minor GC가 계속되고 계속해서 객체들이 Old Generation으로 이동됩니다.
     
-    ![스크린샷 2022-01-10 오후 9.19.15.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/545d931f-ed7c-4fca-a9b9-daf5a8d70414/스크린샷_2022-01-10_오후_9.19.15.png)
-    
-    <br>
+   <img width="397" alt="스크린샷 2022-01-19 오전 1 48 09" src="https://user-images.githubusercontent.com/81874493/149989289-aa2aa65b-7870-4ea4-a3e7-99e5dc9b26ab.png">
+
+   <br>
 
 1. 아래 그림은 전 과정을 보여주고 있습니다. 결국 major GC가 old Generation에 시행되고, old Generation은 Clear 되고, 공간이 Compact 되어집니다.
     
-    ![스크린샷 2022-01-10 오후 9.19.52.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/8c5b072c-5bf7-4526-8d92-8d6fd100f97c/스크린샷_2022-01-10_오후_9.19.52.png)
     
+    <img width="545" alt="스크린샷 2022-01-19 오전 1 48 18" src="https://user-images.githubusercontent.com/81874493/149989926-7b859450-c9ff-44c0-93ad-026fcdf2fb45.png">
 
-    <br>
+
+   <br>
 
 [ Major GC 동작방식 ]
 
