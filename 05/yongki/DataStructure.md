@@ -356,6 +356,34 @@ inline uint32_t ComputeUnseededHash(uint32_t key) {
   </tr>  
 </table>
 
+<details>
+<summary>배열 요소 종류 별 성능 비교</summary>
+<br/>
+
+다음 도표는 1초당 얼마나 많은 작업을 하는지를 나타낸다.
+
+<table>
+  <tr>
+    <th>
+      배열 순회
+    </th>
+    <th>
+      배열 삽입/삭제
+    </th>
+  </tr>
+  <tr>
+    <td width="50%">
+      <img src="https://miro.medium.com/max/1050/0*XZzd8QAAZnuOYb4G">
+    </td>
+    <td width="50%">
+      <img src="https://miro.medium.com/max/1050/0*kqmdvh2nC4UfHc-i">
+    </td>
+  </tr>  
+</table>
+
+</details>
+<br/>
+
 때문에, 내부 시스템에서 최대한 이점을 얻기 위해 다음과 같이 사용하자.
 
 <details>
@@ -373,27 +401,7 @@ inline uint32_t ComputeUnseededHash(uint32_t key) {
 </details>
 
 <details>
-<summary>2. 배열의 길이를 초과하여 읽지 말자.</summary>
-<div markdown="1">
-<br/>
-  
-  아래 코드에서 배열의 마지막 반복은 배열의 길이를 초과하여 읽고, `undefined`나 `null` 요소를 찾으면 끝난다.
-
-  ```javascript
-  for (let i = 0; i < items.length; i++){
-    doSomething(item);
-  }
-  ```
-  배열의 길이만큼 읽을 때, 6배의 성능 향상이 나타났다고 한다.
-
-  때문에, 이를 파악하지 않고도 지킬 수 있게 `for-of`나 `forEach` 같은 배열 빌트인 메서드를 사용하자.
-  > 둘 다 성능은 비슷하다.
-
-</div>
-</details>
-
-<details>
-<summary>3. 유사 배열 객체보다 배열을 사용하자.</summary>
+<summary>2. 유사 배열 객체보다 배열을 사용하자.</summary>
 <div markdown="1">
 <br/>
   
@@ -421,7 +429,7 @@ Array.prototype.forEach.call(arrayLike, (value, index) => {
 </details>
 
 <details>
-<summary>4. 다형성(call site polymorphism)을 피하자.</summary>
+<summary>3. 다형성(call site polymorphism)을 피하자.</summary>
 <div markdown="1">
 <br/>
 
