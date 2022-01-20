@@ -105,32 +105,16 @@ Directory마다 단순 선형 linked list를 운용하게 될 경우 깊은 계�
 
 각 process는 고유한 `File descriptor table`을 운용한다. 
 
-그 중 0번은 stdin, 1번은 stdout, 2번은 stderr file로 미리 예약되어 있다. 
-
 File descriptor란 해당 process가 어떤 file을 open했을 때 return되는 값인데, 한 process가 한 file을 여러 번 open할 수도 있다. 
 
-이 때마다 File descriptor는 새로 할당되게 된다. 즉, 같은 file에 대해 다른 File descriptor를 동시에 가질 수도 있는 것이다. 
+이 때마다 File descriptor는 새로 할당되게 된다. 
+즉, 같은 file에 대해 다른 File descriptor를 동시에 가질 수도 있는 것이다. 
 
 각 File descriptor는 `open file table`을 가리킨다. 
-`open file table`의 각 항목은 status(read/write 등), offset, inode sturct pointer 등을 저장한다. 
 
-    정리하자면, 
-    File descriptor table은 process마다 별개로 부여되는 local 구조이고,
-    open file table, inode table은 전체 file system에서 하나를 운용하는 global 구조이다.
+각 항목이 가리키는 방향을 정리하자면 다음과 같다.
 
-각 항목이 가리키는 방향은 
-
-<table border="0">
- <tr>
-    <td><code>file descriptor table</code></td>
-    <td rowspan="2" >→ </td>
-    <td><code>open file table</code></td>
-    <td rowspan="2" >→ </td>
-    <td><code>inode table</code></td>
-    <td rowspan="2" >→ </td>
-    <td><code>data block</code></td>
- </tr> 
-</table>
+![file-descriptor](assets/file-descriptor.drawio.svg)
 
 ## Reading a file from Disk
 
@@ -355,3 +339,5 @@ File descriptor란 해당 process가 어떤 file을 open했을 때 return되는 
 [파일시스템](https://hini7.tistory.com/88) -- 희은w
 
 [파일시스템](https://cpm0722.github.io/operating-system/file-system) -- Hansu Kim
+
+[File descriptor](https://www.computerhope.com/jargon/f/file-descriptor.htm) -- Computer Hope
