@@ -402,7 +402,7 @@ inline uint32_t ComputeUnseededHash(uint32_t key) {
 [^generic]: 데이터 형식에 의존하지 않고, 하나의 값이 여러 다른 데이터 타입들을 가질 수 있는 기술로 재사용성을 높일 수 있다.
 
 ```javascript
-cosnt arrayLike = {
+const arrayLike = {
   '0' : 'a',
   '1' : 'b',
   'length' : 2
@@ -425,11 +425,11 @@ Array.prototype.forEach.call(arrayLike, (value, index) => {
 <div markdown="1">
 <br/>
 
-  배열 빌트인 메서드는 요소가 같은 배열 요소를 처리할 때 인라인 캐싱될 때 더 빠르다.
+  배열 빌트인 메서드는 요소가 같은 배열 요소를 처리할 때 인라인 캐싱이 더 빠르다.
 
-  인라인 캐싱(IC)이란, 우리가 임의의 객체에 조회를 한 번 수행한 다음 객체의 호출 모양을 키로 사용하여 캐시에 이 속성의 경로를 넣는 것입니다. 
+  인라인 캐싱(IC)이란, 우리가 임의의 객체에 조회를 한 번 수행한 다음 객체의 호출 모양을 키로 사용하여 캐시에 이 속성의 경로를 넣는 것이다.
   
-  때문에 같은 모양의 객체를 발견하면 조회를 다시 계산하는 것이 아닌 캐시에서 경로를 가져올 수 있습니다.
+  때문에 같은 모양의 객체를 발견하면 조회를 다시 계산하는 것이 아닌 캐시에서 경로를 가져올 수 있다.
 
       - 같은 배열 요소(단형성)는 항상 캐시에 도달하여 IC가 가장 빠르다.
 
@@ -630,7 +630,7 @@ Array.prototype.forEach.call(arrayLike, (value, index) => {
     <td width="50%">
       <img src="https://v8.dev/_img/trash-talk/05.svg">
     </td>
-    <td>      
+    <td> 
       <b>장점</b>
       <blockquote>GC의 작업을 양분할 수 있다.
       </blockquote>
@@ -654,7 +654,9 @@ Array.prototype.forEach.call(arrayLike, (value, index) => {
     <td>
       <b>단점</b>
       <blockquote>    
-      <p>a. Javascript 작업도 교차되는데, GC에 의해 변경이 잦은 힙에서 이전 Javascript 작업이 무효화 될 경우가 존재한다.</p>
+      <p>a. Javascript 작업도 교차되는데, 
+      <br/>
+      GC에 의해 변경이 잦은 힙에서 이전 Javascript 작업이 무효화 될 경우가 존재한다.</p>
       <p>b. 일시중지 문제는 해결되지 않으며, 오히려 시간을 더 증가시킨다.</p>
       <blockquote>
     </td>
@@ -702,10 +704,10 @@ Array.prototype.forEach.call(arrayLike, (value, index) => {
          1. Javascript 작업 때 별도의 스레드가 Marking 작업을 같이 한다.
       </p>
       <p>
-         2. 별도의 스레드가 Marking 작업을 완료된 시점에 Javascript 작업을 일시 중단하는데, 이때 메인 스레드가 Marking 작업을 최종적으로 빠르게 점검한다.
+         1. 별도의 스레드가 Marking 작업을 완료된 시점에 Javascript 작업을 일시 중단하는데, 이때 메인 스레드가 Marking 작업을 최종적으로 빠르게 점검한다.
       </p>
       <p>
-        3. 메인 스레드는 별도의 스레드는 일시 중지 기간동안 함께 Sweeping, Compacting작업과 할당 포인터(새 객체를 할당할 때 체킹하는 역할)를 업데이트한다.
+        1. 메인 스레드는 별도의 스레드는 일시 중지 기간동안 함께 Sweeping, Compacting작업과 할당 포인터(새 객체를 할당할 때 체킹하는 역할)를 업데이트한다.
       </p>      
     </td>
   </tr>  
