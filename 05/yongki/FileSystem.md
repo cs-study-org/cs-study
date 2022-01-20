@@ -59,22 +59,9 @@
   실제 data들이 저장된다.
   <br/>
 
-<table>
-<tr>
-  <td width="50%">
-    <img src="https://cpm0722.github.io/assets/images/2020-12-01-File-System/02.png">
-  </td>
-  <td>
-    <p>
-      2개의 <code>Allocation structure block</code>이 각각 
-      <code>inode bitmap</code>, <code>data bitmap</code>으로 운용되고,       
-    </p>
-    <p>
-      최대 80개의 inode struct가 5개의 <code>Key meta data block</code>에 저장되는 경우의 전체 disk 구조이다.      
-    </p>
-  </td>
-</tr>
-</table>
+즉, 다음과 같다.
+
+![block-type](assets/block-type.jpg)
 
 ## Inode struct
 
@@ -94,7 +81,7 @@ Directory는 file의 한 종류이다.
 
 그렇다면 Directory의 Inode struct는 어떻게 구성되어 있을까? Inode struct의 일반적인 구성과 동일하다. 
 
-Directory의 `data block`에서의 data가 다른데, Directory 하위 항목들에 대한 linked list를 저장된다. 
+Directory의 `user data block`에서의 data가 다른데, Directory 하위 항목들에 대한 linked list를 저장된다. 
 
 linked list의 각 node는 Inode number와 name을 구성 요소로 갖는다. 
 이때 Inode struct pointer를 직접 저장하지 않고 단순 index 번호만 저장함으로써 공간을 절약한다.
@@ -231,7 +218,7 @@ File descriptor란 해당 process가 어떤 file을 open했을 때 return되는 
 
 <tr>
   <th colspan="2">
-
+    /foo/bar 파일을 생성하고 사용하자.
   </th>
 </tr>
 <tr>
