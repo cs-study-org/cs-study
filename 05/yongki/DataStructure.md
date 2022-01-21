@@ -19,19 +19,14 @@
 
 ## Javascript Native Object
 
-들어가기 앞서 기저 지식을 밟고 진행하자.
 
-1. 시간 복잡도에서 평균과 최악이 다른 경우, 2개의 Time Complexity 표를 기술하겠다.
-   <br/>
+Javascript Native Object는 다음과 같다. 초록색에 해당하는 부분을 살펴보겠다.
 
-2. Javascript Native Object는 다음과 같다. 초록색에 해당하는 부분을 살펴보겠다.
+![Classify DataStructure](assets/classify-data-structure.drawio.svg)
 
-    ![Classify DataStructure](assets/classify-data-structure.drawio.svg)
+**Javascript Native Object는 모두 내부적으로 HashTable 자료구조이다.**
 
-    **Javascript Native Object는 모두 내부적으로 HashTable 자료구조이다.**
-    <br/>
-
-    다만, 이 HashTable 자료구조를 내부적으로 사용하되 변형한 자료형들이 있다. 변형이 되지 않는 HashTable이라는 자료구조부터 짚고 넘어가보자.
+다만, 이 HashTable 자료구조를 내부적으로 사용하되 변형한 자료형들이 있다. 변형이 되지 않는 HashTable이라는 자료구조부터 짚고 넘어가보자.
 
 ### HashTable
 
@@ -41,7 +36,7 @@
 
 **특징**
 
-    자료구조를 반복할 시 삽입 순서를 유지하지 않는다.
+    자료구조를 반복할 시 삽입 순서가 유지되어 있지 않다.
 
 **Time Complexity: 평균**
 
@@ -54,6 +49,12 @@
 | Access | Search | Insertion | Deletion |
 | :----: | :----: | :-------: | :------: |
 |  N/A   |  O(n)  |   O(n)    |   O(n)   |
+
+Access가 N/A인 이유
+
+    Access 기준은 배열과 같이 인덱스 - 요소 형태에 사용되는데, HashTable은 그렇지 않다.
+
+    HashTable의 key - value 형태의 key는 Search에 해당한다.
 
 
 ### Javascript Native Object: Map
