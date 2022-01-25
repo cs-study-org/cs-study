@@ -1,16 +1,22 @@
 # 프로그래밍 언어 처리
 
 - [프로그래밍 언어 처리](#프로그래밍-언어-처리)
+  - [들어가며](#들어가며)
   - [프로토타입 기반 OOP 언어: Javascript](#프로토타입-기반-oop-언어-javascript)
     - [OOP와 연결성](#oop와-연결성)
     - [클래스 기반과 차이점](#클래스-기반과-차이점)
     - [의미 사용 이론과 Javascript](#의미-사용-이론과-javascript)
     - [Javascript 프로토타입](#javascript-프로토타입)
-  - [Javascript 구현체](#javascript-구현체)
-    - [들어가며](#들어가며)
-    - [본문](#본문)
-  - [Javascript 특징](#javascript-특징)
+  - [인터프리터 언어: Javascript](#인터프리터-언어-javascript)
+    - [Javascript 엔진](#javascript-엔진)
+    - [추상 구문 트리(AST)](#추상-구문-트리ast)
   - [참고 문헌](#참고-문헌)
+
+## 들어가며
+
+교재를 통해 스터디 해볼 내용은 다음과 같다 판단하였다.
+- `정규표현식`이 있고, 알고리즘 스터디 1주차에서 경험해볼 수 있다.
+- `내가 사용하는 주 언어는 어떠한 언어인지`에 대해 조사를 해볼 수 있다.
 
 ## 프로토타입 기반 OOP 언어: Javascript
 
@@ -83,33 +89,32 @@ OOP의 특징은 상속을 활용한 확장이다.
     );
   ```  
 
-도식화해보면 다음과 같다.
-
-<table>
-  <tr>
-    <td width="50%">
-      <img src="https://miro.medium.com/max/1050/1*EPvcWtTdkrM_vZHDwNNMJg.png">
-    </td>
-    <td>
-      <p>
-        <code>비행</code>이라는 <code>참새</code>와 <code>타조</code>의 같은 속성을 
-        <br/>        
-        <code>타조</code>에서 변경해도,
-        <br/>
-        <code>참새</code>는 영향을 받지 않았다.
-      </p>
-      <p>
-        OOP의 상속을 잘 활용한다고 볼 수 있다.
-      </p>
-    </td>
-  </tr>
-</table>
+- 도식화해보면 다음과 같다.
+  <table>
+    <tr>
+      <td width="50%">
+        <img src="https://miro.medium.com/max/1050/1*EPvcWtTdkrM_vZHDwNNMJg.png">
+      </td>
+      <td>
+        <p>
+          <code>비행</code>이라는 <code>참새</code>와 <code>타조</code>의 같은 속성을 
+          <br/>        
+          <code>타조</code>에서 변경해도,
+          <br/>
+          <code>참새</code>는 영향을 받지 않았다.
+        </p>
+        <p>
+          OOP의 상속을 잘 활용한다고 볼 수 있다.
+        </p>
+      </td>
+    </tr>
+  </table>
 
 
 ### 클래스 기반과 차이점
 
 클래스 기반에는 속성에 따라 분류한다.
-> 이때, 분류라는 단어의 뜻 자체가 속성을 도출하는뜻이다. 
+> 이때, 분류(Classification)라는 단어의 뜻 자체가 속성을 도출하는뜻이다. 
 > 
 > 다만, 글의 맥락을 이해하기 위해선 분류라는 매커니즘이 클래스와 프로토타입은 다르게 한다로 서술하였다.
 
@@ -336,36 +341,81 @@ console.log(bar.protoValue); // +++ 100
 프로토타입 객체의 프로퍼티를 인스턴스에서 **연산**을 하려고 하는 경우,
 인스턴스에 메모리가 주어지고, 연산된 결과값을 메모리에 저장한다.
 
-## Javascript 구현체
+## 인터프리터 언어: Javascript
 
-### 들어가며
+다음은 Javascript의 구동원리를 도식화한 것이다.
 
-지난 5주차 스터디에서 v8 엔진과 Javasciprt 런타임의 구분이 잘 안됬다는 피드백을 받았었다.
+![js drive](https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2Fc2ltUa%2FbtqZYk5tAno%2Fbseayu0THGcaQK84k4eMd1%2Fimg.png)
 
-금주 스터디 주제와 적절하게 등장할 수 있어서 간단히 정리해보았다.
+1. 개발자가 Javascript 코드를 작성한다.
+2. Javascript 엔진 내부의 인터프리터[^인터프리터]는 가상머신이 이해할 수 있는 바이트 코드로 변환한다.
+    
+        cf.
+          Javascript 엔진 v8
+          Javascript 엔진 v8으로 빌드된 Javascript 런타임 노드
+            사견으로, Javascript 런타임이 인터프리터라고 생각한다.
 
-### 본문
+[^인터프리터]: 코드를 한 줄 한 줄 읽어내려가며 한 줄씩 중간 단계의 바이트 코드로 변환한다.
 
-Javascript를 구현한 구현체들은 다양하다. 이 구현체들을 Javascript 엔진이라고 한다.
+3. 가상머신은 바이트 코드를 CPU가 이해할 수 있는 기계어로 변환한다.
 
-익숙한 구글의 v8이 Javascript 엔진이고, C++로 구현하였다.
+4. CPU는 가상머신이 만들어낸 기계어를 수행한다.
 
-다양한 엔진이 존재하는데, ECMAScript 표준을 중시해서 구현하기 때문에 획일성을 유지할 수 있었다고 판단한다.
+### Javascript 엔진
 
-Javascript 엔진은 런타임[^런타임] 환경에서 돌아간다.
+Javascript 엔진 부분을 좀 더 살펴보자.
 
-[^런타임]: 특정 언어로 만든 프로그램들을 실행할 수 있는 환경
+![js engine drive](assets/js-engine-drive.drawio.svg)
 
-Javascript 런타임의 종류에는 노드가 있다.
+1. 엔진이 실행할 Javascript 파일을 받는다.
+2. Javascript 코드를 분석하여 토큰(의미를 갖는 최소 단위)으로 분해한다.
+3. Parser가 분해한 토큰들을 분석하여, 문법적으로 의미를 갖는 트리 자료구조(AST)로 만든다.    
+4. 인터프리터가 AST를 읽고 바이트 코드로 변환한다.
+5. AST를 읽는 과정에서 Profiler가 최적화 할 수 있는 코드를 JIT[^JIT] 컴파일러에게 전달한다.
+    > 주로 반복해서 실행되는 코드 블록을 컴파일 한다.
+   
+[^JIT]: 코드를 우선 인터프리터 방식으로 실행하고 필요할 때 컴파일 하는 방법
 
-## Javascript 특징
+즉, Javascript 엔진은 인터프리터 방식과 컴파일 방식을 함께 사용하여 최적화된 성능을 구현하고, 엔진마다 세부 사항이 다르다.
 
-언어에 대해 정리한 김에,
-이전 학부 수업 때 몇자 남겨본 글귀를 증명 까지는 하지 않고 남겨보려 합니다.
+### 추상 구문 트리(AST)
 
-**런타임 산술 연산**
+**정의**
 
-- 정수형과 실수형을 구분하지 않고 8byte를 확보한다.
+    소스 코드를 AST라는 자료 구조에 일반 텍스트로 구문 분석하는 것이다.
+
+**이점**
+
+    - 소스 코드를 구조적으로 제시하고,
+
+    - 컴파일러가 프로그램과 언어의 적절한 사용을 검증하기 위한 역할을 한다.
+
+다음은 구문 분석 과정이다.
+
+1. Javascript 코드가 다음과 같다면
+    ```js
+    function foo() {
+      function bar(x) {
+          return x + 10;
+      }
+
+      function baz(x, y) {
+          return x + y;
+      }
+
+      console.log(baz(100, 200));
+    }
+    ```
+2. Parser는 다음과 같은 AST를 만드는데,
+    ![parser tree](assets/parser-tree.drawio.svg)
+
+   - 기본적으로 Lazy Parser가 아직 인터프리터가 읽을 필요 없는 부분은 제외한다.
+      ![lazy parser tree](assets/lazy-parser-tree.drawio.svg)
+
+   - `즉시 실행 함수` 같은 부분이 Eager Parser가 구문 분석한다.
+  <br/>
+3. Lazy Parser는 앞선 목차의 4번 과정을 
+   Eager Parser는 앞선 목차의 3번 과정으로 이어진다고 판단한다.
 
 <hr/>
 
@@ -376,3 +426,9 @@ Javascript 런타임의 종류에는 노드가 있다.
 [프로토타입](https://jsdev.kr/t/javascript-prototype/2853) -- 자바스크립트 개발자 포럼
 
 [자바스크립트는 왜 프로토타입을 선택했을까](자바스크립트는-왜-프로토타입을-선택했을까-997f985adb42) -- Sungmook Lim
+
+[자바스크립트, 인터프리터 언어일까?](https://oowgnoj.dev/review/advanced-js-1) -- oowgnoj
+
+[AST](https://blog.sessionstack.com/how-javascript-works-parsing-abstract-syntax-trees-asts-5-tips-on-how-to-minimize-parse-time-abfcf7e8a0c8) -- Lachezar Nickolov
+
+[자바스크립트 작동 방식](https://curryyou.tistory.com/237) -- 카레유
