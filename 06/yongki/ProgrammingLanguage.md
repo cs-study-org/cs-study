@@ -40,7 +40,7 @@ Javascirpt 언어가 OOP임은 가족 유사성 이론을 근거하기 때문이
         i.e.  참새, 타조의 속성을 생각해볼때
         </p>
         <p>
-                참새: 2점(2개의 날개, 비행여부)
+                참새: 2점(2개의 날개, 날수 있는지 여부)
                 <br/>
                 타조: 1점(2개의 날개)
         </p>
@@ -67,7 +67,7 @@ OOP의 특징은 상속을 활용한 확장이다.
   ```js
   function 참새(){
       this.날개갯수 = 2;
-      this.비행 = true;
+      this.날수있나 = true;
   }
   const 참새1 = new 참새();
 
@@ -79,13 +79,12 @@ OOP의 특징은 상속을 활용한 확장이다.
 
   console.log(
     "타조1 날개 : ", 타조1.날개갯수, // 2
-    "비행: ", 타조1.비행             // true 
+    "날수있나: ", 타조1.날수있나             // true 
     ); 
 
-  // +++ OOP's extension
-  타조1.비행 = false;
+  타조1.날수있나 = false;
   console.log(
-    "비행 :", 타조1.비행            // false
+    "날수있나 :", 타조1.날수있나            // false
     );
   ```  
 
@@ -97,14 +96,12 @@ OOP의 특징은 상속을 활용한 확장이다.
       </td>
       <td>
         <p>
-          <code>비행</code>이라는 <code>참새</code>와 <code>타조</code>의 같은 속성을 
-          <br/>        
-          <code>타조</code>에서 변경해도,
-          <br/>
-          <code>참새</code>는 영향을 받지 않았다.
+          <code>타조</code>는 <code>참새</code>의 <code>날수있나</code> 속성을 상속받으면서
+          <br/>          
+          동시에 <code>타조</code>만의 속성을 가지게 되었다.
         </p>
         <p>
-          OOP의 상속을 잘 활용한다고 볼 수 있다.
+          OOP의 상속을 활용한 확장을 볼 수 있다.
         </p>
       </td>
     </tr>
@@ -219,7 +216,7 @@ OOP의 특징은 상속을 활용한 확장이다.
 </details>
 <br/>
 
-<!-- <details> -->
+<details>
 <summary>의미 사용 이론을 Javascript에 적용한 예시 B</summary>
 <br/>
 
@@ -252,9 +249,7 @@ this는
 
 Javascript로 서술하면,
 
-    this라는 단어가 정의되어있는 객체의 메서드를 
-
-    어떤 Execution Context가 받아들이고 사용(invoke)했는지에 따라 맥락이 달라진다.
+    객체의 메서드를 어떤 Execution Context가 받아들이고 사용(invoke)했는지에 따라 맥락이 달라진다.
 
 다음은 이해를 돕는 코드 예시이다.
 
@@ -434,7 +429,7 @@ Javascript 엔진 부분을 좀 더 살펴보자.
     }
     ```
 2. Parser는 다음과 같은 AST를 만드는데,
-    ![parser tree](assets/parser-tree.drawio.svg)
+  ![parser tree](assets/parser-tree.drawio.svg)
 
    - 기본적으로 Lazy Parser가 아직 인터프리터가 읽을 필요 없는 부분은 제외한다.
       ![lazy parser tree](assets/lazy-parser-tree.drawio.svg)
@@ -459,3 +454,5 @@ Javascript 엔진 부분을 좀 더 살펴보자.
 [AST](https://blog.sessionstack.com/how-javascript-works-parsing-abstract-syntax-trees-asts-5-tips-on-how-to-minimize-parse-time-abfcf7e8a0c8) -- Lachezar Nickolov
 
 [자바스크립트 작동 방식](https://curryyou.tistory.com/237) -- 카레유
+
+[메서드와 this](https://ko.javascript.info/object-methods#ref-63) -- 코어 자바스크립트
