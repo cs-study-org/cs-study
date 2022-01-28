@@ -7,10 +7,12 @@
     - [클래스 기반과 차이점](#클래스-기반과-차이점)
     - [의미 사용 이론과 Javascript](#의미-사용-이론과-javascript)
     - [Javascript 프로토타입](#javascript-프로토타입)
-  - [인터프리터 언어: Javascript](#인터프리터-언어-javascript)
+  - [JIT 컴파일 언어: Javascript](#jit-컴파일-언어-javascript)
     - [Javascript 엔진](#javascript-엔진)
+    - [Javascript 런타임](#javascript-런타임)
     - [추상 구문 트리(AST)](#추상-구문-트리ast)
   - [참고 문헌](#참고-문헌)
+    - [사용 툴](#사용-툴)
 
 ## 들어가며
 
@@ -363,21 +365,19 @@ console.log(bar.protoValue); // +++ 100
 프로토타입 객체의 프로퍼티를 인스턴스에서 **연산**을 하려고 하는 경우,
 인스턴스에 메모리가 주어지고, 연산된 결과값을 메모리에 저장한다.
 
-## 인터프리터 언어: Javascript
+## JIT 컴파일 언어: Javascript
 
 다음은 Javascript의 구동원리를 도식화한 것이다.
 
 ![js drive](https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2Fc2ltUa%2FbtqZYk5tAno%2Fbseayu0THGcaQK84k4eMd1%2Fimg.png)
 
 1. 개발자가 Javascript 코드를 작성한다.
-2. Javascript 엔진 내부의 인터프리터[^인터프리터]는 가상머신이 이해할 수 있는 바이트 코드로 변환한다.
-    
-        cf.
-          Javascript 엔진 v8
-          Javascript 엔진 v8으로 빌드된 Javascript 런타임 노드
-            사견으로, Javascript 런타임이 인터프리터라고 생각한다.
+2. Javascript 엔진 내부의 인터프리터[^인터프리터]는 가상머신[^가상머신]이 이해할 수 있는 바이트 코드로 변환한다.        
 
 [^인터프리터]: 코드를 한 줄 한 줄 읽어내려가며 한 줄씩 중간 단계의 바이트 코드로 변환한다.
+
+[^가상머신]:
+    CPU마다 기계어를 다르게 해석하기 때문에, 가상머신이 바이트 코드를 CPU별로 최적화된 기계어를 만들어 낸다.
 
 3. 가상머신은 바이트 코드를 CPU가 이해할 수 있는 기계어로 변환한다.
 
@@ -390,15 +390,34 @@ Javascript 엔진 부분을 좀 더 살펴보자.
 ![js engine drive](assets/js-engine-drive.drawio.svg)
 
 1. 엔진이 실행할 Javascript 파일을 받는다.
-2. Javascript 코드를 분석하여 토큰(의미를 갖는 최소 단위)으로 분해한다.
+2. Javascript 코드를 분석하여 토큰[^토큰]으로 분해한다.
 3. Parser가 분해한 토큰들을 분석하여, 문법적으로 의미를 갖는 트리 자료구조(AST)로 만든다.    
 4. 인터프리터가 AST를 읽고 바이트 코드로 변환한다.
 5. AST를 읽는 과정에서 Profiler가 최적화 할 수 있는 코드를 JIT[^JIT] 컴파일러에게 전달한다.
-    > 주로 반복해서 실행되는 코드 블록을 컴파일 한다.
-   
-[^JIT]: 코드를 우선 인터프리터 방식으로 실행하고 필요할 때 컴파일 하는 방법
+
+[^토큰]: 의미를 갖는 최소 단위
+[^JIT]: 코드를 우선 인터프리터 방식으로 실행하고 필요할 때 컴파일 하는 방법이다.
 
 즉, Javascript 엔진은 인터프리터 방식과 컴파일 방식을 함께 사용하여 최적화된 성능을 구현하고, 엔진마다 세부 사항이 다르다.
+
+### Javascript 런타임
+
+위에 본 도식화를 토대로 
+Javascript 런타임은 인터프리터 부터 가상머신을 통해 CPU로 수행되는 과정이라 생각한다.
+
+    Javascript 엔진으로 빌드된 Javascript 런타임
+      = v8으로 빌드된 노드
+
+런타임은 동적으로 발생되어 컴파일할 수 없는 것들을 처리하는 환경이기 때문이다.
+
+즉, 코드를 로드할 때, 정적인 요소들과 그 안에서 최적화 될 수 있는 요소[^compilation]들은 
+
+[^compilation]: 
+      주로 반복해서 실행되는 코드 블록이나 호출되지 않는 함수 코드 블록을 말한다.
+
+컴파일 되어 최적화된 기계어가 되고,
+
+이후, 동적으로 발생되는 요소들은 인터프리터-가상머신을 통해 기계어가 된다고 정리하였다.
 
 ### 추상 구문 트리(AST)
 
@@ -456,3 +475,11 @@ Javascript 엔진 부분을 좀 더 살펴보자.
 [자바스크립트 작동 방식](https://curryyou.tistory.com/237) -- 카레유
 
 [메서드와 this](https://ko.javascript.info/object-methods#ref-63) -- 코어 자바스크립트
+
+[자바스크립트 엔진과 자바스크립트 런타임 차이](https://stackoverflow.com/questions/29027845/what-is-the-difference-between-javascript-engine-and-javascript-runtime-environm) -- Stack overflow
+
+[V8 Architecture](https://www.youtube.com/watch?v=2WJL19wDH68&ab_channel=AkshaySaini) -- Akshay Saini
+
+### 사용 툴
+
+[AST](https://astexplorer.net/) -- AST Explorer
