@@ -110,7 +110,7 @@
 
 응용 프로그램으로 하드웨어를 제어하기 위해서 먼저 하드웨어 드라이버에게 허락을 받아야한다.
 
-<img width="462" alt="스크린샷 2022-02-01 오후 4 17 44" src="https://user-images.githubusercontent.com/81874493/151927375-f0844ced-64ad-486b-9ba3-c65938b870d2.png">
+<img width="462" alt="스크린샷 2022-02-01 오후 4 17 44" src="https://user-images.githubusercontent.com/81874493/151927562-1f2e3220-4842-44e9-8d86-ed64f72dda83.png">
 
 >⇒ 운영체제를 통해 드라이버 기능을 사용하여 하드웨어장치를 제어할 수 있다.
 
@@ -231,7 +231,7 @@
 
 **표준 스트림에는 아래의 3가지 스트림이 존재**
 
-<img width="475" alt="스크린샷 2022-02-01 오후 4 17 53" src="https://user-images.githubusercontent.com/81874493/151927417-7ba486da-d05b-4d9c-be5a-5ca04f3991ad.png">
+<img width="475" alt="스크린샷 2022-02-01 오후 4 17 53" src="https://user-images.githubusercontent.com/81874493/151927590-a2b013d9-4a8d-4fcf-b4f4-4e8385dfed2d.png">
 
 - 표준입력 스트림(standard input stream)
 - 표준출력 스트림(standard output stream)
