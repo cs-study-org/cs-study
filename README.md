@@ -2,9 +2,23 @@
 
 면접을 위한 cs 스터디 저장소입니다.
 
+## 교재
+
 <div align="center">
 <a href="http://www.yes24.com/Product/Goods/98997716">
-      <img width="240" src="http://image.yes24.com/goods/98997716/XL">
+      <img width="120" src="http://image.yes24.com/goods/98997716/XL">
+</a>
+
+<a href="http://www.yes24.com/Product/Goods/31950404">
+      <img width="120" src="http://image.yes24.com/goods/31950404/XL">
+</a>
+
+<a href="http://www.yes24.com/Product/Goods/90640081">
+      <img width="120" src="http://image.yes24.com/goods/90640081/XL">
+</a>
+
+<a href="http://www.yes24.com/Product/Goods/45543957">
+      <img width="120" src="http://image.yes24.com/goods/45543957/XL">
 </a>
 </div>
 
