@@ -2,6 +2,12 @@
 
 면접을 위한 cs 스터디 저장소입니다.
 
+<div align="center">
+<a href="http://www.yes24.com/Product/Goods/98997716">
+      <img width="240" src="http://image.yes24.com/goods/98997716/XL">
+</a>
+</div>
+
 ## 규칙
 1. 스터디원들은 PR이 올라오면 바로바로 피드백 답글을 남긴다.
 2. 매주 스터디원들이 돌아가면서 한명이 발표자료 1개와 발표를 맡는다.
