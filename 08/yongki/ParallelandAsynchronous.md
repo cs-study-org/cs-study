@@ -1,0 +1,148 @@
+# 병렬성과 비동기성
+
+- [병렬성과 비동기성](#병렬성과-비동기성)
+  - [Javascript 동작 원리](#javascript-동작-원리)
+    - [Javascript가 싱글스레드 기반인 이유](#javascript가-싱글스레드-기반인-이유)
+    - [Javascript 런타임과 비동기](#javascript-런타임과-비동기)
+    - [Javascript 런타임에서 비동기 코드 실행 과정](#javascript-런타임에서-비동기-코드-실행-과정)
+  - [Node.js 동작 원리](#nodejs-동작-원리)
+    - [Node.js가 싱글스레드 기반인가?](#nodejs가-싱글스레드-기반인가)
+    - [Node.js 런타임과 비동기](#nodejs-런타임과-비동기)
+    - [Node.js 이벤트 루프](#nodejs-이벤트-루프)
+    - [Node.js 논블로킹 I/O 모델](#nodejs-논블로킹-io-모델)
+  - [참고 문헌](#참고-문헌)
+
+## Javascript 동작 원리
+
+Javascript는 싱글스레드로 동작하는 언어이다.
+
+싱글스레드는 한 번에 하나의 작업만 수행할 수 있음을 의미한다.
+
+그런데 Javascript의 특징들을 알아보면, 
+- `동시성`, 
+- `동시성`을 보장하는 `비동기`,
+- `동시성`을 보장하는 `논블로킹 I/O`등 상반되는 개념들이 등장한다.
+
+즉, 이 개념들의 포괄적인 개념 `동시성`을 Javascript가 어떻게 가질 수 있었는지 알아보자.
+
+### Javascript가 싱글스레드 기반인 이유
+
+Javascript 엔진은 `메모리 힙`과 `콜스택`으로 구성되어있다.
+
+`콜스택`은 
+
+    하나의 메인스레드에서 호출되는 함수들이 스택으로 쌓이는 곳이다.
+
+즉, Javascript가 싱글스레드 기반의 언어라는 말은 
+
+    Javascript가 하나의 메인스레드와 하나의 콜스택을 가지고 있기 때문이다.
+
+### Javascript 런타임과 비동기
+
+![js-runtime](https://miro.medium.com/max/1050/1*FA9NGxNB6-v1oI2qGEtlRQ.png)
+
+🤔 콜백 큐 → 태스크 큐로 변경 필요
+
+Javascript 엔진 자체에서는 비동기와 관련이 없다.
+
+Javascript 런타임에서 비동기와 관련이 있다.
+
+여기서 **Javascript 런타임은 브라우저로 
+`Javascript 엔진`, `이벤트 루프`, `태스크 큐`, `브라우저의 Web api`를 아우른다.**
+
+이벤트 루프는
+
+    이벤트 발생 시 호출되는 콜백함수들을 관리하여 태스크 큐에 전달하고,
+    태스크 큐에 담겨있는 콜백함수들을 콜스택에 넘겨준다.
+
+🤔 이벤트는 무엇을 뜻하는가
+
+태스크 큐는
+
+    Web api에서 비동기 작업들이 실행된 후
+    호출되는 콜백함수들이 기다리는 FIFO 공간이다.
+
+Web api는
+
+    브라우저에서 비동기 작업들을 수행할 수 있도록 api를 지원한다.
+
+### Javascript 런타임에서 비동기 코드 실행 과정
+
+```js
+console.log('동기');
+
+setTimeout( _ => console.log('비동기'), 1000);
+
+console.log('동기');
+```
+1. `L1`이 콜스택에 쌓이고, 바로 실행(`동기`출력문)되고 제거된다.
+2. 비동기 코드(`setTimeout`)이가 콜스택에 쌓인 후 실행되면,
+   Javascript 엔진은 비동기 작업(`1초`)을 Web api에 위임한다.
+   > 위임과 동시에 Web api에 `timer`객체를 생성한다.
+3. `L3`이 콜스택에 쌓이고, 바로 실행되고 제거된다.
+4. Webapi는 해당 비동기 작업을 수행하고
+   콜백 함수(`비동기`출력문)를 이벤트 루프를 통해 태스크 큐에 넘겨주게 된다.
+5. 이벤트 루프는 콜스택에 쌓여있는 함수가 없을때,
+   태스크 큐에서 대기하고 있던 콜백함수를 콜스택으로 넘겨준다.
+6. 콜스택에 쌓인 콜백함수가 실행되고,
+   콜스택에서 제거된다.
+
+## Node.js 동작 원리
+
+Node.js는
+
+    Javascript 런타임(브라우저) 밖에서도 Javascript를 실행할 수 있기 위해 생겼다.
+
+### Node.js가 싱글스레드 기반인가?
+
+Javascript를 실행하는 스레드는 메인스레드 하나이므로 Node.js 또한 맞는 말이지만,
+완전히 싱글스레드 기반으로 동작하지 않는다.
+
+일부 블로킹 작업들을 libuv의 스레드 풀에서 수행하기 때문이다.
+
+스레드 풀은 멀티 스레드로 이루어져 스레드를 늘려 작업을 수행하게 한다.
+
+### Node.js 런타임과 비동기
+
+Node.js 런타임은 Javascript 런타임(브라우저)과 다르다.
+
+![nj-runtime](https://miro.medium.com/max/1050/1*yEW6321eqBd_-C0D7LsBQw.png)
+
+🤔 더 전체적인 사진 자료 제작 필요
+
+Node.js 런타임은 `Javascript 엔진`, `이벤트 루프`, `논블로킹 I/O 모델` ... 을 아우른다.
+
+Node.js의 이벤트 루프는 libuv 라이브러리 내에서 구현된다.
+
+이벤트 루프가 libuv 내에서 실행된다고 해서, Javscript 메인 스레드와 이벤트 루프의 스레드가 별도로 존재하진 않는다.
+
+### Node.js 이벤트 루프
+
+Node.js 이벤트 루프는 여러 개의 페이즈(Phase: 단계)들을 갖고 있으며,
+해당 페이즈들은 각자만의 큐(Queue)를 갖는다.
+
+Node.js 이벤트 루프는 라운드 로빈 방식으로 싱글스레드를 갖는 프로세스가 종료될 때까지 일정 규칙에 따라 여러개의 페이즈들을 계속 순회한다.
+
+🤔 라운드 로빈 방식 OS 자료
+
+### Node.js 논블로킹 I/O 모델
+
+Node.js 논블로킹 I/O 모델은
+
+    http, Database CRUD, third party api, filesystem 과 같이
+    블로킹 작업들을 백그라운드에서 수행하고,
+    이를 비동기 콜백함수로 이벤트 루프에 전달하는 것을 말한다.
+
+백그라운드는
+
+    OS kernel 또는 libuv의 스레드 풀을 의미한다.
+
+블로킹 작업들은 백그라운드에서 담당한다.
+
+<hr/>
+
+## 참고 문헌
+
+[Javascript 동작원리](https://medium.com/@vdongbin/javascript-작동원리-single-thread-event-loop-asynchronous-e47e07b24d1c?p=e47e07b24d1c) -- vincent
+
+[Node.js 동작원리](https://medium.com/@vdongbin/node-js-동작원리-single-thread-event-driven-non-blocking-i-o-event-loop-ce97e58a8e21) -- vincent
