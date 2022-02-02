@@ -111,6 +111,8 @@ Node.js 런타임은 Javascript 런타임(브라우저)과 다르다.
 
 ![node-runtime](assets/node-runtime.drawio.svg)
 
+🤔 각 Phase마다 큐 추가
+
 Node.js 런타임은 `Javascript 엔진`, `이벤트 루프`, `논블로킹 I/O 모델` ... 을 아우른다.
 
 Node.js의 이벤트 루프는 libuv 라이브러리 내에서 구현된다.
@@ -119,12 +121,44 @@ Node.js의 이벤트 루프는 libuv 라이브러리 내에서 구현된다.
 
 ### Node.js 이벤트 루프
 
-Node.js 이벤트 루프는 여러 개의 페이즈(Phase: 단계)들을 갖고 있으며,
-해당 페이즈들은 각자만의 큐(Queue)를 갖는다.
+Node.js 이벤트 루프는 6개의 페이즈(Phase: 단계)들을 갖고 있으며,
+**해당 페이즈들은 각자만의 큐(Queue)를 갖는다.**
 
-Node.js 이벤트 루프는 라운드 로빈 방식으로 싱글스레드를 갖는 프로세스가 종료될 때까지 일정 규칙에 따라 여러개의 페이즈들을 계속 순회한다.
+Node.js 이벤트 루프는 6개의 페이즈를 라운드 로빈 방식으로 순회한다.
 
 🤔 라운드 로빈 방식 OS 자료
+
+순회 과정을 살펴보자.
+
+1. Node.js가 시작되면 스레드가 생기고, 이벤트 루프가 생성된다.
+2. `Timer Phase`는 timer 함수를 처리하는 곳이다.
+
+        별도의 힙에 timer를 오름차순으로 저장하고 매 `Timer Phase`마다
+        어떤 타이머가 실행할 때가 되었는지 검사한후, 
+        실행되어야하는 콜백함수만 큐에 넣는다.
+    🤔 오름 차순인 이유 보충 필요
+3. `Pending callbacks Phase`는 이전 루프에서 연기된 I/O 작업의 완료 결과를 받는 곳이다.
+
+        완료된 I/O 작업의 콜백함수들을 `Poll Phase`로 넘겨준다.
+
+4. `Idle, Prepare Phase`는 Node 관리를 위한 곳이다.
+5. `Poll Phase`는 I/O 관련 콜백함수를 실행한다.        
+6. `Check Phase`는 timer 함수 중 setImmediate()의 콜백함수를 실행한다.
+7. `Close callbacks Phase`는 이벤트에 따른 콜백함수를 실행한다.
+
+        cf. socket.on('close', ...)
+
+🤔 각 Phase마다 가지고 있는 큐 빌때까지 동기적으로 실행된다면, 블로킹 비동기인가?
+
+각 `Phase`마다 실행되는 2가지 주체가 있다.
+
+`Phase`와 `Phase` 사이의 간격을 `tick`이라고 한다.
+
+2가지 주체는 `Phase` 간격동안 자신이 가지고 있는 콜백함수를 실행하는 역할을 맡고 있다.
+
+- `nextTick Queue`는 process.nextTick()의 콜백함수를 실행한다.
+
+- `microTask Queue`는 resolve된 프로미스의 콜백함수를 실행한다.
 
 ### Node.js 논블로킹 I/O 모델
 
