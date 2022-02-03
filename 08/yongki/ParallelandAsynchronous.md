@@ -58,7 +58,9 @@ Javascript 런타임에서 비동기와 관련이 있다.
     이벤트 발생 시 호출되는 콜백함수들을 관리하여 태스크 큐에 전달하고,
     태스크 큐에 담겨있는 콜백함수들을 콜스택에 넘겨준다.
 
-🤔 이벤트는 무엇을 뜻하는가
+이벤트는 
+
+    🤔 I/O 요청에 대한 완료 또는 실패를 말한다.
 
 태스크 큐는
 
@@ -101,9 +103,16 @@ Node.js는
 Javascript를 실행하는 스레드는 메인스레드 하나이므로 Node.js 또한 맞는 말이지만,
 완전히 싱글스레드 기반으로 동작하지 않는다.
 
-일부 블로킹 작업들을 libuv의 스레드 풀에서 수행하기 때문이다.
+일부 블로킹 작업들을 libuv[^libuv]의 스레드 풀에서 수행하기 때문이다.
 
-스레드 풀은 멀티 스레드로 이루어져 스레드를 늘려 작업을 수행하게 한다.
+[^libuv]: 비동기 I/O를 지원하는 라이브러리
+
+스레드 풀은 
+
+    멀티 스레드로 이루어져 스레드를 늘려 작업을 수행하게 한다.
+
+즉, Node.js는 멀티 스레드로 병렬 실행된다.
+libuv가 별도의 코어의 스레드를 사용하기 때문에 병렬이란 말이 나오지 않았나 싶다.
 
 ### Node.js 런타임과 비동기
 
@@ -111,9 +120,12 @@ Node.js 런타임은 Javascript 런타임(브라우저)과 다르다.
 
 ![node-runtime](assets/node-runtime.drawio.svg)
 
-🤔 각 Phase마다 큐 추가
+Node.js 런타임은 `Javascript 엔진`, `Node API`, `이벤트 루프`, `논블로킹 I/O 모델` ... 을 아우른다.
 
-Node.js 런타임은 `Javascript 엔진`, `이벤트 루프`, `논블로킹 I/O 모델` ... 을 아우른다.
+Node API는 `timer 함수(setTimeout())`, `fs`, `http`...이 해당되고, 모든 API는 작업 완료시 트리거되는 콜백함수가 필요하다.
+
+**비동기 I/O는 모두 Node API로 부터 시작된다.**
+<br/>
 
 Node.js의 이벤트 루프는 libuv 라이브러리 내에서 구현된다.
 
@@ -131,24 +143,24 @@ Node.js 이벤트 루프는 6개의 페이즈를 라운드 로빈 방식으로 �
 순회 과정을 살펴보자.
 
 1. Node.js가 시작되면 스레드가 생기고, 이벤트 루프가 생성된다.
-2. `Timer Phase`는 timer 함수를 처리하는 곳이다.
+2. `Expired Timer callback Phase`는 timer 함수를 처리하는 곳이다.
 
-        별도의 힙에 timer를 오름차순으로 저장하고 매 `Timer Phase`마다
+        min heap 자료구조에 timer를 오름차순으로 저장하고 매 `Timer Phase`마다
         어떤 타이머가 실행할 때가 되었는지 검사한후, 
         실행되어야하는 콜백함수만 큐에 넣는다.
     🤔 오름 차순인 이유 보충 필요
-3. `Pending callbacks Phase`는 이전 루프에서 연기된 I/O 작업의 완료 결과를 받는 곳이다.
+3. `Pending I/O callback Phase`는 이전 루프에서 연기된 I/O 작업의 완료 결과를 받는 곳이다.
 
         완료된 I/O 작업의 콜백함수들을 `Poll Phase`로 넘겨준다.
 
 4. `Idle, Prepare Phase`는 Node 관리를 위한 곳이다.
 5. `Poll Phase`는 I/O 관련 콜백함수를 실행한다.        
 6. `Check Phase`는 timer 함수 중 setImmediate()의 콜백함수를 실행한다.
-7. `Close callbacks Phase`는 이벤트에 따른 콜백함수를 실행한다.
+7. `Close callback Phase`는 이벤트에 따른 콜백함수를 실행한다.
 
         cf. socket.on('close', ...)
 
-🤔 각 Phase마다 가지고 있는 큐 빌때까지 동기적으로 실행된다면, 블로킹 비동기인가?
+🤔 각 Phase마다 가지고 있는 큐가 빌때까지 동기적으로 실행된다면, 블로킹 비동기인가?
 
 각 `Phase`마다 실행되는 2가지 주체가 있다.
 
@@ -183,3 +195,7 @@ Node.js 논블로킹 I/O 모델은
 [Node.js 동작원리](https://medium.com/@vdongbin/node-js-동작원리-single-thread-event-driven-non-blocking-i-o-event-loop-ce97e58a8e21) -- vincent
 
 [로우 레벨로 살펴보는 Node.js 이벤트 루프](https://evan-moon.github.io/2019/08/01/nodejs-event-loop-workflow/) -- Evans Library
+
+[An Intro to Node.js That You May Have Missed](https://itnext.io/an-intro-to-node-js-that-you-may-have-missed-b175ef4277f7) -- Andrey Pechkurov
+
+[Event Loop and the Big Picture — NodeJS Event Loop Part 1](https://blog.insiderattack.net/event-loop-and-the-big-picture-nodejs-event-loop-part-1-1cb67a182810) -- Deepal Jayasekara
