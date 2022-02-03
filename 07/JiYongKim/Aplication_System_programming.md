@@ -276,8 +276,8 @@
     - 유닉스는 모든 장치들을 파일로 모델링하여 사용한다.
     - 파일을 읽기/쓰기 표준 스트림을 통해 진행하며
         
-        ![스크린샷 2022-02-03 오후 3.01.13.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/4bd47b4b-3117-42fa-a84f-a1e337d6c9f2/스크린샷_2022-02-03_오후_3.01.13.png)
-        
+        <img width="616" alt="스크린샷 2022-02-03 오후 3 04 41" src="https://user-images.githubusercontent.com/81874493/152289978-7b49bcd6-d78a-4ac4-9e75-e6695a22b72c.png">
+
         ⇒ 각 표준 입출력 스트림들은 특정한 FD 값을 가지고 있다.
 
 <br>
