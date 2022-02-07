@@ -266,7 +266,7 @@ Javascript를 실행하는 스레드는 메인스레드 하나이므로 Node.js 
 
 일부 블로킹 작업들(비동기 포함)을 libuv[^libuv]의 스레드 풀에서 논블로킹되게 수행하기 때문이다.
 
-[^libuv]: 비동기 I/O를 지원하는 라이브러리
+[^libuv]: 커널의 비동기 I/O를 지원하는 라이브러리
 
 <details>
     <summary><b>논블로킹-비동기 참고자료</b></summary>
@@ -280,7 +280,7 @@ Javascript를 실행하는 스레드는 메인스레드 하나이므로 Node.js 
 
 스레드 풀은 
 
-    멀티스레드로 이루어져 스레드를 늘려 작업을 수행하게 한다.
+    스레드를 늘려 작업을 수행하게 한다.
 
     앞서, Node.js의 이벤트인 파일 I/O는 모두 스레드 풀에서 이루어진다.
 
@@ -324,56 +324,87 @@ Node API는 `timer 함수`, `fs`, `http`같이 비동기 I/O 연산을 지원하
 
 ### Node.js 이벤트 루프
 
+Node.js 이벤트 루프는 비동기 I/O 연산을 관리한다.
+
 Node.js 이벤트 루프는 6개의 Phase(단계)들을 갖고 있으며, **해당 페이즈들은 각자만의 큐(Queue)를 갖는다.**
 
 Node.js 이벤트 루프는 6개의 페이즈를 라운드 로빈 방식[^round-robin]으로 순회한다.
 
-사견으로, 라운드 로빈 방식의 뜻을 통해 선점형임을 알 수 있지만, `Poll Phase`에서 협력적이어서 후자에 영향이 더 컸지 않았나 싶다.
-
 [^round-robin]: A가 할당받은 시간 동안 작업을 하다가 작업을 완료하지 못하면 준비 큐의 맨 뒤에서 자기 차례를 기다리는 방식이다.
+
+각 페이즈의 큐에는 페이즈와 무관하게 콜백함수가 쌓이는데,
+
+각 페이즈는 `시스템의 실행 한도`의 영향을 받아 큐의 콜백함수를 처리하다가 포기하고 다음 페이즈로 넘어갈 수 있기 때문이다.
 
 순회 과정을 살펴보자.
 
-Node.js가 시작되면 스레드가 생기고, 이벤트 루프가 생성된다.
+Node.js 프로세스가 시작되면 스레드가 생기고, 이벤트 루프가 생성된다.
+
+이때, 블로킹 되는 작업들은 백그라운드에 맡긴다.
+        
+    cf. http, Database CRUD, third party api, filesystem, socket
 
 1. `Expired Timer callback Phase`는 만료된 timer의 콜백함수를 처리하는 곳이다.
 
-        min heap 자료구조에 timer를 저장하고
+        min heap 자료구조에 timer들이 오름차순으로 저장하고,
 
-        만료된 timer의 콜백함수를 큐에 넣을지 검사해서 
+            now 18
+
+            Timer A
+                registeredTime = 10
+                delay = 5
+
+            Timer B
+                registeredTime = 10
+                delay = 20
+
+            Timer C
+                registeredTime = 20 
+                delay = 5
+
+        만료된 timer의 콜백함수를 큐에 넣는다.
+        오름차순으로 저장했기 떄문에 Timer C부터는 탐색하지 않아도 된다.
         
-        큐에 넣고, 큐가 비어질때까지 실행한다.
+            Timer A
+                registeredTime = 10
+                delay = 5
 
-        min heap 자료구조는 상위 노드가 하위 노드보다 작은 구조여서
+            Timer B
+                registeredTime = 10
+                delay = 20
 
-            cf. 현재 시간이 3인데, 1, 2의 만료된 작업이 있다면
-                그 작업들만 처리해주면 되기때문에 탐색에 효율이 높다.
-    
-2. `Pending I/O callback Phase`는 
-    - 이전 루프에서 완료된 I/O 작업의 콜백함수를 처리하고,
-    - 이번 루프에서 완료된 I/O 작업의 콜백함수를 등록하는 곳이다.        
+        현재 실행할 수 있으면 콜백함수를 실행한다.
 
-3. `Idle, Prepare Phase`는 
-   - Idle은 Node.js 관리를 위한 곳이다.
-     > 정확히 설명한 곳이 없어서 패스하도록하겠다.
-   - Prepare는 I/O 작업을 위해 준비하는 곳이다.
+            Timer A = now - registeredTime > delay
+                   = 18 - 10 > 5
+                   = execute
+
+            Timer B = now - registeredTime > delay
+                   = 18 - 10 > 20
+                   = next loop execute
+
+2. `Pending I/O callback Phase`는
+   - 이전 루프에서 완료됬지만 처리가 지연된 I/O 작업의 콜백함수를 실행한다.
+
+3. `Idle, Prepare Phase`는 Node.js 관리를 위한 곳이다.
+     > 정확히 설명한 곳이 없어서 패스하도록하겠다.   
     
 4. `Poll Phase`는 
-   - I/O 작업을 걸어두는 곳이다.
-   - Pending인 I/O 작업이 완료되도록 **선택적으로** 기다리는 곳이다.
+   - 이번 루프에서 완료된 I/O 작업의 콜백함수를 실행한다. 
+   
+            cf. db.query('SELECT...", )의 콜백함수
+                socket.on('open', )의 콜백함수
+                fs.readFile()의 콜백함수
+                http 응답의 콜백함수
 
-            cf. Pending인 socket.on('open', ...)의 콜백함수
-                Pending인 fs.readFile()의 콜백함수
-                Pending인 http 응답의 콜백함수
+    완료된 I/O 작업의 응답은 요청이 등록되는 순서와 다르다.
 
-        만약 이들이 큐에 들어있을때, <b>일정하지 않은 계산된 시간</b> 동안 동기적으로 꺼낸다. 
-        이때, 블로킹 되는 작업들은 스레드 풀에 맡긴다.
-        
-            cf. http, Database CRUD, third party api, filesystem
+    요청에 대한 File Descriptor를 큐와 별개로 관리하고 있는데,
 
-        <b>일정하지 않은 계산된 시간</b>이란 
-        얼마나 기다릴지를 다음 Phase를 고려해서 계산한 값이다.
-        따라서, 이 부분이 협력적이지 않았나싶다.
+    완료된 I/O 작업의 응답을 운영체제가 File Descriptor가 준비됬다고 알림으로써
+
+    준비된 FD와 대응된 응답의 콜백함수를 큐에서 실행함으로써 순서를 보장받는다.
+    
     <br/>
 5. `Check callback Phase`는 setImmediate()의 콜백함수를 실행한다.
 6. `Close callback Phase`는 이벤트에 따른 콜백함수를 실행한다.
@@ -411,28 +442,22 @@ while (r != 0 && loop->stop_flag == 0) {
 ```
 </details>
 
-<details>
-<summary>🤔 왜 <code>Poll Phase</code>는 선택적으로 기다리는가?</summary>
 <br/>
 
-`Poll Phase` 전에 timeout이라는 변수를 계산해서 인자로 넣은 것과 관련이 있는가?
+또한, 페이즈마다 실행되는 2가지 주체가 있다.
 
-```c
+페이즈와 페이즈 사이의 간격을 `tick`이라고 한다.
 
-```
-</details>
-<br/>
-
-또한, `Phase`마다 실행되는 2가지 주체가 있다.
-
-`Phase`와 `Phase` 사이의 간격을 `tick`이라고 한다.
-
-2가지 주체는 `Phase` 간격동안 자신이 가지고 있는 콜백함수를 실행하는 역할을 맡고 있다.
+2가지 주체는 `tick`마다 자신이 가지고 있는 콜백함수를 모두 실행하는 역할을 맡고 있다.
 
 - `microTask Queue`는 resolve된 프로미스의 콜백함수를 실행한다.
 - `nextTick Queue`는 `Phase` 결과를 상위 계층(`Application`, `Javascript Engine`)에 전달하는 콜백함수를 실행한다.
     
     또한, process.nextTick()의 콜백함수를 실행한다.
+
+이 2가지 주체는 `시스템의 실행 한도`의 영향을 받지 않는다.
+
+때문에, 6개의 페이즈는 선점형이지만, 2가지 주체가 협력적이면서 처리 우선순위가 높기 때문에 이벤트 루프를 협렵적 멀티태스킹이라고 할 수 있다.
 
 정리하여, 만약 다음과 같이 코드를 실행해도.
 
@@ -472,7 +497,13 @@ setImmediate(() => console.log('set immediate2'));
 
 [Node.js 동작원리](https://medium.com/@vdongbin/node-js-동작원리-single-thread-event-driven-non-blocking-i-o-event-loop-ce97e58a8e21) -- vincent
 
+[Node.js 동작원리 코드](https://sjh836.tistory.com/149) -- 빨간색소년
+
 [로우 레벨로 살펴보는 Node.js 이벤트 루프](https://evan-moon.github.io/2019/08/01/nodejs-event-loop-workflow/) -- Evans Library
+
+[Node.js 이벤트 루프 단계 역할](https://velog.io/@adam2/Node.js-해부학-2-이벤트-루프-phase) -- adam2
+
+[Node.js 이벤트 루프 분석](https://www.korecmblog.com/node-js-event-loop/) -- korecmblog
 
 [Node.js That You May Have Missed](https://itnext.io/an-intro-to-node-js-that-you-may-have-missed-b175ef4277f7) -- Andrey Pechkurov
 
