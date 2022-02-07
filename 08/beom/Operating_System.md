@@ -79,3 +79,6 @@ System Call : 운영체제의 커널이 제공하는 서비스에 대해, 응용
   - Permission 획득
   - Permission 설정
 
+
+## 참고문헌
+[운영체제 참고문헌](https://luckyyowu.tistory.com/128?category=751813)
