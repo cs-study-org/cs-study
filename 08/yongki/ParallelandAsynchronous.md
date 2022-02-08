@@ -11,7 +11,9 @@
     - [Node.js와 브라우저의 차이](#nodejs와-브라우저의-차이)
     - [Node.js와 멀티스레드](#nodejs와-멀티스레드)
     - [Node.js와 비동기](#nodejs와-비동기)
-    - [Node.js 이벤트 루프](#nodejs-이벤트-루프)
+  - [Node.js 이벤트 루프](#nodejs-이벤트-루프)
+    - [Node.js 이벤트 루프 단계](#nodejs-이벤트-루프-단계)
+    - [Node.js와 협력적 멀티태스킹](#nodejs와-협력적-멀티태스킹)
   - [참고 문헌](#참고-문헌)
 
 ## 멀티태스킹
@@ -322,31 +324,34 @@ Node API는 `timer 함수`, `fs`, `http`같이 비동기 I/O 연산을 지원하
 
 **즉, 비동기 I/O 연산은 모두 Node API로 부터 시작된다.**
 
-### Node.js 이벤트 루프
+## Node.js 이벤트 루프
 
 Node.js 이벤트 루프는 비동기 I/O 연산을 관리한다.
 
-Node.js 이벤트 루프는 6개의 Phase(단계)들을 갖고 있으며, **해당 페이즈들은 각자만의 큐(Queue)를 갖는다.**
+Node.js 이벤트 루프는 6개의 Phase(단계)들을 갖고 있으며, **해당 페이즈들은 각자의 큐(Queue)를 갖는다.**
 
-Node.js 이벤트 루프는 6개의 페이즈를 라운드 로빈 방식[^round-robin]으로 순회한다.
+    cf. Pending I/O callback Phase → pending queue
+        Poll Phase                 → watcher queue
+        ...
 
-[^round-robin]: A가 할당받은 시간 동안 작업을 하다가 작업을 완료하지 못하면 준비 큐의 맨 뒤에서 자기 차례를 기다리는 방식이다.
-
-각 페이즈의 큐에는 페이즈와 무관하게 콜백함수가 쌓이는데,
+각 페이즈의 큐에는 페이즈 시점과 무관하게 콜백함수가 쌓이는데,
 
 각 페이즈는 `시스템의 실행 한도`의 영향을 받아 큐의 콜백함수를 처리하다가 포기하고 다음 페이즈로 넘어갈 수 있기 때문이다.
 
 순회 과정을 살펴보자.
 
+### Node.js 이벤트 루프 단계
+
 Node.js 프로세스가 시작되면 스레드가 생기고, 이벤트 루프가 생성된다.
 
 이때, 블로킹 되는 작업들은 백그라운드에 맡긴다.
         
-    cf. http, Database CRUD, third party api, filesystem, socket
+    cf. http, Database CRUD, third party api, socket    → OS kernel
+        filesystem                                      → 스레드 풀
 
-1. `Expired Timer callback Phase`는 만료된 timer의 콜백함수를 처리하는 곳이다.
+1. `Expired Timer callback Phase`는 만료된 timer 함수의 콜백함수를 처리하는 곳이다.
 
-        min heap 자료구조에 timer들이 오름차순으로 저장하고,
+        min heap 자료구조에 timer 함수들이 들어온 시점을 기준으로 오름차순으로 저장하고,
 
             now 18
 
@@ -362,8 +367,8 @@ Node.js 프로세스가 시작되면 스레드가 생기고, 이벤트 루프가
                 registeredTime = 20 
                 delay = 5
 
-        만료된 timer의 콜백함수를 큐에 넣는다.
-        오름차순으로 저장했기 떄문에 Timer C부터는 탐색하지 않아도 된다.
+        만료된 timer 함수의 콜백함수를 큐에 넣는다.
+        오름차순으로 저장했기 떄문에 Timer C 이후는 탐색하지 않아도 된다.
         
             Timer A
                 registeredTime = 10
@@ -387,25 +392,60 @@ Node.js 프로세스가 시작되면 스레드가 생기고, 이벤트 루프가
    - 이전 루프에서 완료됬지만 처리가 지연된 I/O 작업의 콜백함수를 실행한다.
 
 3. `Idle, Prepare Phase`는 Node.js 관리를 위한 곳이다.
-     > 정확히 설명한 곳이 없어서 패스하도록하겠다.   
+     > 정확히 설명한 곳이 없어서 생략하도록 하겠다.   
     
-4. `Poll Phase`는 
-   - 이번 루프에서 완료된 I/O 작업의 콜백함수를 실행한다. 
+4. `Poll Phase`는   
+   - I/O 작업의 콜백함수를 실행한다. 
+    
+    콜백함수는 완료됬다는 응답이 왔을 때 실행된다.
    
             cf. db.query('SELECT...", )의 콜백함수
                 socket.on('open', )의 콜백함수
                 fs.readFile()의 콜백함수
                 http 응답의 콜백함수
 
-    완료된 I/O 작업의 응답은 요청이 등록되는 순서와 다르다.
+    완료된 I/O 작업의 응답은 콜백함수를 등록한 순서와 다르기 때문에,
 
-    요청에 대한 File Descriptor를 큐와 별개로 관리하고 있는데,
-
-    완료된 I/O 작업의 응답을 운영체제가 File Descriptor가 준비됬다고 알림으로써
-
-    준비된 FD와 대응된 응답의 콜백함수를 큐에서 실행함으로써 순서를 보장받는다.
+    - I/O 작업의 요청이 일어날 때 열린 소켓에 대한 `File Descriptor`와 
+      I/O 작업 여부 변수를 가지는 구조체 배열과
     
-    <br/>
+    - 완료된 I/O 작업의 응답에 대한 콜백함수를 등록한 큐 
+
+    2가지 자료구조로 관리한다.
+
+    구조체 배열을 OS kernel에 전달하면,
+
+    ```c    
+    struct epoll_data {
+        void    *ptr;
+        int      fd;
+    }
+
+    struct epoll_event{
+        uint32_t     events;
+        epoll_Data   data;
+    }
+
+    ```
+    작업 여부가 대기임을 나타내기 위해 `!epoll_event.events`이라 해두겠다.
+
+        cf. [
+                !epoll_event.events,
+                !epoll_event.events,
+                !epoll_event.events
+            ]
+
+    OS kernel이 완료된 I/O 작업의 응답을 구조체 배열로 알려줌으로써
+
+        cf. [
+                epoll_event.events,
+                !epoll_event.events
+                !epoll_event.events
+            ]
+
+    구조체 안에 `File Descriptor`와 대응된 콜백함수를 큐에서 실행함으로써 순서를 보장받는다.
+    > 이렇듯, 큐의 FIFO 성질을 위반할 수도 있는건지, 이를 위반할 수 있는 큐의 또 다른 종류(`cf. 우선순위 큐)`인 건지 확실히 알 수 없었다.
+        
 5. `Check callback Phase`는 setImmediate()의 콜백함수를 실행한다.
 6. `Close callback Phase`는 이벤트에 따른 콜백함수를 실행한다.
 
@@ -457,45 +497,46 @@ while (r != 0 && loop->stop_flag == 0) {
 
 이 2가지 주체는 `시스템의 실행 한도`의 영향을 받지 않는다.
 
-때문에, 6개의 페이즈는 선점형이지만, 2가지 주체가 협력적이면서 처리 우선순위가 높기 때문에 이벤트 루프를 협렵적 멀티태스킹이라고 할 수 있다.
+### Node.js와 협력적 멀티태스킹
 
-정리하여, 만약 다음과 같이 코드를 실행해도.
+이렇듯 Node.js 이벤트 루프는 6개의 페이즈를 `시스템의 실행 한도`의 영향을 받아 라운드 로빈 방식[^round-robin]으로 순회한다.
 
-```js
-Promise.resolve().then(() => console.log('promise1 resolved'));
-Promise.resolve().then(() => {
-    console.log('promise2 resolved');
-    process.nextTick(() => console.log('next tick inside promise resolve handler'));
-});
-Promise.resolve().then(() => console.log('promise3 resolved'));
-setImmediate(() => console.log('set immediate1'));
+[^round-robin]: A가 할당받은 시간 동안 작업을 하다가 작업을 완료하지 못하면 준비 큐의 맨 뒤에서 자기 차례를 기다리는 방식이다.
 
-process.nextTick(() => console.log('next tick1'));
+때문에, 6개의 페이즈는 선점형이지만, 협력적 성격이 더 강하다.
 
-setTimeout(() => console.log('set timeout'), 0);
-setImmediate(() => console.log('set immediate2'));
-```
+1. 앞선 목차의 2가지 주체가 `시스템의 실행 한도`의 영향을 받지 않아 협력적이면서 6개의 페이즈보다 처리 우선순위가 높기 때문이다.
+2. `Poll Phase`의 블로킹 때문이다.
 
-이벤트 루프 순회 과정을 통해 다음과 같은 순서로 처리된다.
+        cf. 이벤트 루프에 작업이 Expired Timer callback Phase의 timer만 있고
+            n초 후 timer가 실행되는 경우라면
+            n초 동안 이벤트 루프를 무한루프 돌지 않고 Poll Phase에서 블로킹된다.
 
-    next tick1    
-    promise1 resolved    
-    promise2 resolved
-    promise3 resolved
-    next tick inside promise resolve handler
-    set timeout
-    set immediate1
-    set immediate2    
+    이 블로킹 시간동안 I/O 작업의 완료된 응답을 기다리기도 한다.
+
+이러한 특징들로 이벤트 루프를 협렵적 멀티태스킹이라고 생각한다.
 
 <hr/>
 
 ## 참고 문헌
 
+**멀티태스킹**
+
 [「쉽게 배우는 운영체제」](http://www.yes24.com/Product/Goods/62054527) -- 조성호
+
+**Javascript의 동시성**
 
 [Javascript 동작원리](https://medium.com/@vdongbin/javascript-작동원리-single-thread-event-loop-asynchronous-e47e07b24d1c?p=e47e07b24d1c) -- vincent
 
+**Node.js의 동시성**
+
 [Node.js 동작원리](https://medium.com/@vdongbin/node-js-동작원리-single-thread-event-driven-non-blocking-i-o-event-loop-ce97e58a8e21) -- vincent
+
+[JavaScript Event Loop vs Node JS Event Loop](https://blog.insiderattack.net/javascript-event-loop-vs-node-js-event-loop-aea2b1b85f5c) -- Deepal Jayasekara
+
+[Node.js That You May Have Missed](https://itnext.io/an-intro-to-node-js-that-you-may-have-missed-b175ef4277f7) -- Andrey Pechkurov
+
+**Node.js 이벤트 루프**
 
 [Node.js 동작원리 코드](https://sjh836.tistory.com/149) -- 빨간색소년
 
@@ -505,12 +546,11 @@ setImmediate(() => console.log('set immediate2'));
 
 [Node.js 이벤트 루프 분석](https://www.korecmblog.com/node-js-event-loop/) -- korecmblog
 
-[Node.js That You May Have Missed](https://itnext.io/an-intro-to-node-js-that-you-may-have-missed-b175ef4277f7) -- Andrey Pechkurov
+[epoll 구조체](https://linux.die.net/man/2/epoll_pwait) -- die.net
+
 
 [NodeJS Event Loop Part 1](https://blog.insiderattack.net/event-loop-and-the-big-picture-nodejs-event-loop-part-1-1cb67a182810) -- Deepal Jayasekara
 
 [NodeJS Event Loop Part 3](https://blog.insiderattack.net/promises-next-ticks-and-immediates-nodejs-event-loop-part-3-9226cbe7a6aa) -- Deepal Jayasekara
 
 [NodeJS Event Loop Part 4](https://blog.insiderattack.net/handling-io-nodejs-event-loop-part-4-418062f917d1) -- Deepal Jayasekara
-
-[JavaScript Event Loop vs Node JS Event Loop](https://blog.insiderattack.net/javascript-event-loop-vs-node-js-event-loop-aea2b1b85f5c) -- Deepal Jayasekara
