@@ -90,10 +90,8 @@
 
 ![lock](assets/lock.drawio.svg)
 
-<!-- <details> -->
+<details>
 <summary><b>프로세스 vs 스레드 참고자료</b></summary>
-
-
 
 <table>
     <tr>
@@ -116,7 +114,7 @@
     <tr>
         <td>작업단위 주체</td>
         <td>프로세서</td>
-        <td>스레드</td>
+        <td>프로세스</td>
     </tr>
     <tr>
         <td>작업단위 간 비용
