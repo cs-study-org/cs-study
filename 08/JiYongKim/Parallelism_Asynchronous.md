@@ -71,7 +71,7 @@
 
 <br>    
 
-![스크린샷 2022-02-05 오후 6.09.57.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/81b7e25e-245f-4f3a-9ed1-8ff340bb0ec0/스크린샷_2022-02-05_오후_6.09.57.png)
+<img width="707" alt="스크린샷 2022-02-09 오후 3 45 52" src="https://user-images.githubusercontent.com/81874493/153136785-442a50f7-1294-4240-ae19-b966b2125c6a.png">
 
 좌측)
 
@@ -123,8 +123,8 @@
         
         <br>
 
-        ![스크린샷 2022-01-15 오후 9.09.40.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/178c841a-cb2c-4bea-b236-335007161ace/스크린샷_2022-01-15_오후_9.09.40.png)
-        
+        <img width="436" alt="스크린샷 2022-02-09 오후 3 46 00" src="https://user-images.githubusercontent.com/81874493/153136809-7438cd73-c177-46b1-87bf-94e3bbda667a.png">
+
         (참고로  Thread 는 스택뿐 아니라 PC(Program Counter) 또한 각자 할당받는다)
         
 
@@ -257,8 +257,8 @@
     
     **동시성 (Concurrency)**
     
-    ![스크린샷 2022-01-15 오후 7.44.03.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/e0f5a572-5e7a-4b9f-8575-194eacb696e0/스크린샷_2022-01-15_오후_7.44.03.png)
-    
+    <img width="679" alt="스크린샷 2022-02-09 오후 3 46 12" src="https://user-images.githubusercontent.com/81874493/153136841-c89d4e53-d269-466d-b929-d01ddc815efd.png">
+
     정의 : 하나의 자원에서 독립적인 두 작업이 함께 처리되는것.
     
     ⇒ 즉 동시성의 초점은 하나의 자원에서 둘 이상의 작업을 할 수 있느냐 없느냐 이다. 
@@ -272,8 +272,8 @@
     
     **병렬성 ( Parallelism )**
     
-    ![스크린샷 2022-01-15 오후 7.49.21.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/b17f68a9-f45f-439c-addd-859ded1afe31/스크린샷_2022-01-15_오후_7.49.21.png)
-    
+    <img width="661" alt="스크린샷 2022-02-09 오후 3 46 17" src="https://user-images.githubusercontent.com/81874493/153136852-0a0f2b23-b12a-4d1e-86b0-a64b1d9b3018.png">
+
     정의 :  물리적 동일 시간에 여러 작업이 함께 처리되는 것.
     
     ⇒ 하나의 자원에서 물리적 동일 시간내 여러 작업이 동시에 처리되는 것
@@ -326,8 +326,8 @@
     
     ## 동기 ( Synchronous)
     
-    ![스크린샷 2022-01-15 오전 1.48.22.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/67c14d4a-90cd-43af-9c5d-7e5bcbdd254e/스크린샷_2022-01-15_오전_1.48.22.png)
-    
+    <img width="692" alt="스크린샷 2022-02-09 오후 3 50 48" src="https://user-images.githubusercontent.com/81874493/153137153-6176fb53-b1c8-437c-8d0e-29ef2e91df02.png">
+
     동기( Synchronous)는 직렬적으로 태스크(Task)를 수행
     
     ⇒ 즉 테스크는 순차적으로 실행되며 어떠한 작업이 수행 중이라면 다음 작업은 대기하게 되는 데이터의 처리 방식
@@ -340,8 +340,8 @@
         - 서로 동시에 작업이 종료
         - 작업이 끝나는 동시에 작업이 시작할때
         
-        ![스크린샷 2022-01-15 오전 2.04.13.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/c3f5b5de-5b23-4bf5-a077-ae16c706bd21/스크린샷_2022-01-15_오전_2.04.13.png)
-        
+        <img width="687" alt="스크린샷 2022-02-09 오후 3 50 53" src="https://user-images.githubusercontent.com/81874493/153137208-925ffc09-87fd-4a82-85eb-082ea7c2d6c1.png">
+
         >⇒ 즉 서로 다른 주체가 하는 작업의 시작, 종료 작업에 관계가 있을때 
         
     
@@ -391,8 +391,9 @@
 
     ## 비동기식 처리 (Asynchronous)
     
-    ![스크린샷 2022-01-15 오전 1.55.57.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/2e228a14-4e90-4bc1-9c37-e4e77d5e1719/스크린샷_2022-01-15_오전_1.55.57.png)
     
+    <img width="702" alt="스크린샷 2022-02-09 오후 3 50 59" src="https://user-images.githubusercontent.com/81874493/153137285-d3a3d1bc-4b2a-4837-9695-aed42b80cb6a.png">
+
     비동기 ( Asynchronous)는 병렬적으로 태스크(Task)를 수행
     
     ⇒ 즉 작업 수행중인 테스크가 완료되지 않더라도 다음 테스크를 실행시키는  데이터 처리 방식이다.
@@ -404,8 +405,8 @@
         - 서로의 작업의 시작, 종료 시간과 관계가 없음
         - 별도의 작업 수행 시작/종료 시간을 가지고 있음
         
-        ![스크린샷 2022-01-15 오전 2.06.19.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/c64b92d8-b154-4d92-9a2e-442b45de90aa/스크린샷_2022-01-15_오전_2.06.19.png)
-        
+        <img width="680" alt="스크린샷 2022-02-09 오후 3 51 04" src="https://user-images.githubusercontent.com/81874493/153137253-d94574d2-db3f-4453-84c0-b6110fe77fcf.png">
+
         ⇒ 즉 서로 다른 주체가 하는 작업의 시작,종료 시간과 관계가 없을 때
         
     
