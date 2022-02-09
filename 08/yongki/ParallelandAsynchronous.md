@@ -93,14 +93,9 @@
 <details>
 <summary><b>프로세스 vs 스레드 참고자료</b></summary>
 
-<table>
-    <tr>
-    </tr>
-    <tr>
-        <td>
-            <img src="assets/process.drawio.svg">
-        </td>
-        <td>
+<p align="center">
+    <img src="assets/process.drawio.svg"></img>
+</p>
 <table>
     <tr>
         <th></th>
@@ -144,10 +139,7 @@
             </sup>            
         </td>
     </tr>
-</table>
-        </td>
-    </tr>
-</table>
+</table>            
 </details>
 
 ### 선점형 vs 협력적 멀티태스킹
@@ -184,10 +176,9 @@
 장점
 
     내가 명시적으로 쓸만큼 쓰고 직접 제어권을 돌려준다.
-
-단점
-
     언제 뺏길지 안다.
+단점
+> `프로세스 vs 스레드 참고자료`에 `공통된 단점` 참고
 </p>
         </td>
     </tr>
@@ -593,6 +584,8 @@ while (r != 0 && loop->stop_flag == 0) {
     <a href="#cost">↩</a>
 </p>
 <p id="problem-footnote">
-    b. <code>cf. File descriptor 출력이 동일하던가</code>
+    b. 데이터를 공유하기 때문에 하나의 스레드에 문제가 생기면, 프로세스 자체가 멈춰버린다.
+    <br/>
+    <code>cf. File descriptor 출력이 동일하던가</code>
     <a href="#problem">↩</a>
 </p>
