@@ -14,7 +14,9 @@
   - [Node.js 이벤트 루프](#nodejs-이벤트-루프)
     - [Node.js 이벤트 루프 단계](#nodejs-이벤트-루프-단계)
     - [Node.js와 협력적 멀티태스킹](#nodejs와-협력적-멀티태스킹)
-  - [참고 문헌](#참고-문헌)
+  - [기타](#기타)
+    - [참고 문헌](#참고-문헌)
+    - [FootNotes](#footnotes)
 
 ## 멀티태스킹
 
@@ -88,8 +90,11 @@
 
 ![lock](assets/lock.drawio.svg)
 
-<details>
+<!-- <details> -->
 <summary><b>프로세스 vs 스레드 참고자료</b></summary>
+
+
+
 <table>
     <tr>
     </tr>
@@ -98,30 +103,50 @@
             <img src="assets/process.drawio.svg">
         </td>
         <td>
-<p>
-프로세스의 장점은
-
-    프로세스 간 문제에 독립적이라는 것이다.
-
-단점은
-
-    프로세스 간 복제에 비용이 많다.
-
-스레드의 장점은
-
-    스레드 간 복제에 비용이 많지 않다.
-
-단점은
-
-    1. 데이터를 공유하기 때문에 
-            cf. 파일 디스크립터의 출력이 동일하다던가
-
-       하나의 스레드에 문제가 생기면, 
-       프로세스 자체가 멈춰버린다.
-
-    2. 어떤 스레드가 작업 완료까지 오랜 시간이 걸리면, 
-       다른 스레드가 실행되지 못할 수 있다.
-</p>
+<table>
+    <tr>
+        <th></th>
+        <th>프로세스</th>
+        <th>스레드</th>
+    </tr>
+    <tr align="center">
+        <td>공통된 단점</td>
+        <td colspan="2">어떤 작업 단위가 작업 완료까지 오랜 시간이 걸리면, 다른 작업 단위가 실행되지 못할 수 있다.</td>
+    </tr>
+    <tr>
+        <td>작업단위 주체</td>
+        <td>프로세서</td>
+        <td>스레드</td>
+    </tr>
+    <tr>
+        <td>작업단위 간 비용
+            <sup>
+                <a 
+                    id="cost"
+                    href="#cost-footnote"
+                >
+                    [a]
+                </a>
+            </sup>
+        </td>
+        <td>높다</td>
+        <td>낮다</td>
+    </tr>
+    <tr>
+        <td>작업단위 간 문제발생 시</td>
+        <td>독립적</td>
+        <td>강한 연결성
+            <sup>
+                <a 
+                    id="problem"
+                    href="#problem-footnote"
+                >
+                    [b]
+                </a>
+            </sup>            
+        </td>
+    </tr>
+</table>
         </td>
     </tr>
 </table>
@@ -525,7 +550,9 @@ while (r != 0 && loop->stop_flag == 0) {
 
 <hr/>
 
-## 참고 문헌
+## 기타
+
+### 참고 문헌
 
 **멀티태스킹**
 
@@ -561,3 +588,13 @@ while (r != 0 && loop->stop_flag == 0) {
 [NodeJS Event Loop Part 3](https://blog.insiderattack.net/promises-next-ticks-and-immediates-nodejs-event-loop-part-3-9226cbe7a6aa) -- Deepal Jayasekara
 
 [NodeJS Event Loop Part 4](https://blog.insiderattack.net/handling-io-nodejs-event-loop-part-4-418062f917d1) -- Deepal Jayasekara
+
+### FootNotes
+<p id="cost-footnote">
+    a. <code>cf. Context swithing, 복제</code>
+    <a href="#cost">↩</a>
+</p>
+<p id="problem-footnote">
+    b. <code>cf. File descriptor 출력이 동일하던가</code>
+    <a href="#problem">↩</a>
+</p>
