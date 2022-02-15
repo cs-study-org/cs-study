@@ -19,7 +19,7 @@
 ### 1) URL의 이해
 
 - URL 의 공통점
-    - URL은 `[http://www.google.com](http://www.gmail.com)` 의 `http:` 와 같이 맨 앞 문자열에 Access 방법을 표시한다.
+    - URL은 `http://www.google.com` 의 `http:` 와 같이 맨 앞 문자열에 Access 방법을 표시한다.
         
         >⇒ Access 대상에 따라 Access 방법을 명시하는 프로토콜을 나타내는 것
         
@@ -74,7 +74,7 @@
 - 브라우저는 클라이언트가 작성한 URL을 해독한다.
     - 예시) `http://www.google.com/dir1/file1.html`
         
-        `http:` + `//` + [`www.google.com`](http://www.google.com) + `/` + `dir1` + `/` + `file1.html`
+        `http:` + `//` + `www.google.com` + `/` + `dir1` + `/` + `file1.html`
         
         >⇒ 위와 같이 나누어 해독한다.
         
@@ -82,7 +82,7 @@
 
         참고)
         
-        - 만약 `[http://www.google.com/dir](http://www.google.com/dir)` 과 같이 파일명을 생략한 경우에는?
+        - 만약 `http://www.google.com/dir` 과 같이 파일명을 생략한 경우에는?
             - 위와 같이 파일명을 생략한 경우 어느 파일에 Access 해야할지 모른다.
                 
                 >⇒ 그렇기 때문에 파일명을 생략할 때 서버측에서 미리 설정을 해두어야 한다.
@@ -92,14 +92,14 @@
          
          <br>
 
-        - 만약 `[http://www.google.com](http://www.google.com)` 과 같이 `/dir` , `/` 을 생략한 경우에는 ?
+        - 만약 `http://www.google.com` 과 같이 `/dir` , `/` 을 생략한 경우에는 ?
             - 위와 같이 파일명 혹은 디렉토리까지 생략되는 경우
                 
                 >⇒ 서버측의  루트 디렉토리 아래에 미리 설정된 파일을 응답하게 된다.
         
         <br>       
 
-        - 만약 `[http://www.google.com/kim](http://www.google.com/kim)` 에서 `kim` 이라는 디렉토리와 파일이 존재한다면?
+        - 만약 `http://www.google.com/kim` 에서 `kim` 이라는 디렉토리와 파일이 존재한다면?
             - 위와 같은 경우 `kim` 이 파일일 경우 확장자 명이 붙어야 하기 때문에 디렉토리로 취급하게 된다.
 
 <br>
@@ -126,7 +126,7 @@ URL 해독 이후 브라우저는 HTTP 프로토콜을 이용하여 웹서버에
     - HTTP Request Message
         - 메시지내에는 `“무엇을”` `”어떻게”` 하겠다라는 내용이 작성되어 있다.
             - `“무엇을”`에 해당되는 것을 URI 라고 한다.
-                - URL [`http://www.google.com/dir/file.html`](http://www.google.com/dir/file.html) 에서
+                - URL `http://www.google.com/dir/file.html` 에서
                     
                     >⇒ `dir/file.html` 와 같은 식
                     
@@ -405,7 +405,7 @@ EX)
 `www.lab.glasscom.com`
 
 1. 현재 클라이언트와 가장 가까운 DNS 서버에게 IP문의 메시지를 요청한다.
-2. 가장 가까운 DNS 서버는 `[www.lab.glasscom.com](http://www.lab.glasscom.com)` 이라는 정보가 없으므로 
+2. 가장 가까운 DNS 서버는 `www.lab.glasscom.com` 이라는 정보가 없으므로 
     
     >⇒ 자신의 DNS 서버의 최상위 계층의 루트 도메인 DNS 서버를 찾는다.
     
