@@ -121,8 +121,8 @@ URL 해독 이후 브라우저는 HTTP 프로토콜을 이용하여 웹서버에
 
     <메시지 구조>
     
-    ![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/269d1599-420e-439f-a323-bb3bfbf2cfbc/Untitled.png)
-    
+    <img width="384" alt="스크린샷 2022-02-15 오후 7 20 37" src="https://user-images.githubusercontent.com/81874493/154042360-1ea06148-9335-4fb2-b312-0056cfc71d80.png">
+
     - HTTP Request Message
         - 메시지내에는 `“무엇을”` `”어떻게”` 하겠다라는 내용이 작성되어 있다.
             - `“무엇을”`에 해당되는 것을 URI 라고 한다.
@@ -157,8 +157,8 @@ URL 해독 이후 브라우저는 HTTP 프로토콜을 이용하여 웹서버에
                     
                     <br>
 
-                    ![스크린샷 2022-02-15 오후 1.53.57.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/3c908f37-7124-46b5-8f59-e5dc0b4153b8/스크린샷_2022-02-15_오후_1.53.57.png)
-                    
+                    <img width="537" alt="스크린샷 2022-02-15 오후 7 22 04" src="https://user-images.githubusercontent.com/81874493/154042428-ce19f19e-67dd-4029-9b41-3f45d22c723b.png">
+
                     ⇒ 두 주소는 모두 index.html 을 가리키고 있다.
                     
                     - 첫번째 주소는 웹서버의 실제 파일 위치를 나타내는 주소이므로 URI이면서 URL이다.
@@ -172,8 +172,8 @@ URL 해독 이후 브라우저는 HTTP 프로토콜을 이용하여 웹서버에
             - 메소드를 통해 웹 서버에 어떤 동작을 하고 싶은지 전달한다.
             - HTTP 메소드
                 
-                ![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/9c343466-6f56-4cfa-a7d4-542ebb65394b/Untitled.png)
-                
+                <img width="542" alt="스크린샷 2022-02-15 오후 7 20 44" src="https://user-images.githubusercontent.com/81874493/154042454-fbd6c788-9aba-4a0e-be96-12654f3e4e45.png">
+
                 - 속성
                     - 안전 : 호출시 리소스에 변경하지 않는다.
                     - 멱등 : 1번 호출 하든 100번 호출 하든 그 결과가 동일하다.
@@ -184,21 +184,21 @@ URL 해독 이후 브라우저는 HTTP 프로토콜을 이용하여 웹서버에
 
         - 요청 메시지 포멧
             
-            ![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/9f1605f5-6b29-45c7-b267-193b5e88763b/Untitled.png)
-            
+            <img width="262" alt="스크린샷 2022-02-15 오후 7 20 49" src="https://user-images.githubusercontent.com/81874493/154042471-60cda88d-01dd-4b2e-84aa-58dde8b0ce5a.png">
+
             <br>
 
     - HTTP Response Message
         - 응답 메시지에는 상태코드와 응답 결과를 담아 클라이언트에게 응답한다.
             
-            ![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/ebbc263b-afac-4c93-aa52-cab9eca0c204/Untitled.png)
-            
+            <img width="591" alt="스크린샷 2022-02-15 오후 7 20 55" src="https://user-images.githubusercontent.com/81874493/154042488-69c2e0ee-37d4-4394-967a-ae172949fe78.png">
+
             <br>
 
         - 응답 메시지 포멧
             
-            ![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/9d13dd18-4ebd-426f-a560-5eb31e0fa571/Untitled.png)
-            
+            <img width="270" alt="스크린샷 2022-02-15 오후 7 20 59" src="https://user-images.githubusercontent.com/81874493/154042512-9cf5bf83-a856-4f61-8a8c-1cf21ac2d9ad.png">
+
 
 <br>
 
@@ -310,8 +310,8 @@ URL 해독 이후 브라우저는 HTTP 프로토콜을 이용하여 웹서버에
 
 - DNS 리졸버 내부 동작
     
-    ![스크린샷 2022-02-15 오후 3.25.38.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/d6d9e1ed-d236-4e9e-8cb7-06779396220b/스크린샷_2022-02-15_오후_3.25.38.png)
-    
+    <img width="254" alt="스크린샷 2022-02-15 오후 7 21 07" src="https://user-images.githubusercontent.com/81874493/154042560-43f55152-286f-4ff4-84bf-44f6a7efa149.png">
+
     1. 애플리케이션에서 리졸버를 호출하는 부분에 이르르면 제어권이 리졸버에게 넘어감
     2. 리졸버는 DNS 서버에 IP 주소를 문의를 위한 메시지를 만든다.
         
@@ -398,7 +398,7 @@ EX)
 
 ### 3) DNS 서버 찾기
 
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/ab7c1d15-4c6f-4323-8218-5cda267cc9dc/Untitled.jpeg)
+<img width="345" alt="스크린샷 2022-02-15 오후 7 21 21" src="https://user-images.githubusercontent.com/81874493/154042594-b8a4c4a9-3cee-4622-9dd0-346b96545720.png">
 
 <DNS 서버 찾기 동작>
 
@@ -416,7 +416,7 @@ EX)
     
     >⇒ 반복
     
-5. 반복 이후 [`www.lab.glasscom.com`](http://www.lab.glasscom.com) 의 상위 DNS 서버인 lab DNS서버가 정보를 가지고 있으므로
+5. 반복 이후 `www.lab.glasscom.com` 의 상위 DNS 서버인 lab DNS서버가 정보를 가지고 있으므로
     
     >⇒ 클라이언트와 가장 가까운 DNS 서버에게 IP 주소를 응답한다.
     
@@ -477,7 +477,7 @@ EX)
 
 ### 2) 데이터의 송수신
 
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/3b722a8b-70df-489e-af41-28262c6a7724/Untitled.jpeg)
+<img width="587" alt="스크린샷 2022-02-15 오후 7 21 32" src="https://user-images.githubusercontent.com/81874493/154042683-369e01e7-17ba-443f-8da8-2eb611b6aa67.png">
 
 <Socket 라이브러리를 이용한 데이터 송 * 수신 동작 이미지>
 
@@ -508,7 +508,7 @@ EX)
 
 ### 3) 데이터 송수신 단계
 
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/850384be-9763-4150-8c75-3b7718a3d95b/Untitled.jpeg)
+<img width="717" alt="스크린샷 2022-02-15 오후 7 21 38" src="https://user-images.githubusercontent.com/81874493/154042710-ad507c07-ea78-4777-8cbb-3795f569ec9b.png">
 
 **1) 소켓 작성 단계**
 
