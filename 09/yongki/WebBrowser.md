@@ -19,8 +19,8 @@
 2. URL을 웹 브라우저가 해석한다.
 </dt></dl>
 
-    http:     //    www.naver.com   / + dir + / + file
-    프로토콜        웹서버명        URI(Uniform Resource Identifier)
+    http:     //    www.naver.com:80                / + dir + / + file
+    프로토콜        도메인명:포트번호(생략가능)      URI(Uniform Resource Identifier)
 
 URL을 해석하여 어디에 엑세스해야 하는지가 판명된다.
 
@@ -76,6 +76,8 @@ OS에 송신을 의뢰할 때는 도메인명이 아니라 IP주소로
 메시지를 받을 상대를 지정해야 한다.
 
 도메인명은 사용자들이 기억하기 쉬운 형태이고, IP주소가 실제 통신에 사용되기 때문이다.
+
+> 여담으로 도메인명은 그대로 두고, IP주소만 바뀔수도 있다.
 
 <details>
 <summary><b>IP주소와 네트워크</b></summary>
