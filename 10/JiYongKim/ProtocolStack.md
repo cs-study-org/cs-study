@@ -36,7 +36,7 @@
 
 ### 02) 전체적인 구성
 
-![ㅇ.jpeg](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/f0870e0b-3dd9-415f-8708-bbb0a1596b58/ㅇ.jpeg)
+<img width="528" alt="스크린샷 2022-02-21 오후 7 51 40" src="https://user-images.githubusercontent.com/81874493/154941071-c414907e-d560-47e1-b546-92945f6fffc3.png">
 
 - 네트워크 애플리케이션
     - 일반적 네트워크를 통해 데이터의 송 수신이 이루어지는 애플리케이션을 의미한다.
@@ -149,7 +149,7 @@ ex)
 
 ### 03) ‘소켓을 생성한다?’ 의 의미
 
-![스크린샷 2022-02-21 오후 3.50.39.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/2d55f3f6-012b-4259-a001-5d6e3603fda7/스크린샷_2022-02-21_오후_3.50.39.png)
+<img width="674" alt="스크린샷 2022-02-21 오후 7 51 50" src="https://user-images.githubusercontent.com/81874493/154941105-ec8a0088-19ec-4465-b5e8-863745967a8c.png">
 
 `netstat`  :  소켓의 내용을 화면에 표시하는 명령어
 
@@ -175,8 +175,8 @@ ex)
 ⇒ 프로토콜 스택에서 어떻게 동작하는지 확인해 보자.
 
 <br>
-
-![ㅇㄴ.jpeg](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/b669cce2-c8f2-474f-9d51-7ce18c2f27de/ㅇㄴ.jpeg)
+ㄹ
+<img width="571" alt="스크린샷 2022-02-21 오후 7 51 58" src="https://user-images.githubusercontent.com/81874493/154941136-213cec79-3f0b-4d73-b696-a24f4fae21af.png">
 
 브라우저나 어플리케이션이 Socket 라이브러리의 Socket 을 호출하였을 때,
 
