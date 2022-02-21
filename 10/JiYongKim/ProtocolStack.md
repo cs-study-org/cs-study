@@ -149,6 +149,8 @@ ex)
 
 ### 03) ‘소켓을 생성한다?’ 의 의미
 
+<br>
+
 <img width="674" alt="스크린샷 2022-02-21 오후 7 51 50" src="https://user-images.githubusercontent.com/81874493/154941105-ec8a0088-19ec-4465-b5e8-863745967a8c.png">
 
 `netstat`  :  소켓의 내용을 화면에 표시하는 명령어
@@ -175,7 +177,7 @@ ex)
 ⇒ 프로토콜 스택에서 어떻게 동작하는지 확인해 보자.
 
 <br>
-ㄹ
+
 <img width="571" alt="스크린샷 2022-02-21 오후 7 51 58" src="https://user-images.githubusercontent.com/81874493/154941136-213cec79-3f0b-4d73-b696-a24f4fae21af.png">
 
 브라우저나 어플리케이션이 Socket 라이브러리의 Socket 을 호출하였을 때,
