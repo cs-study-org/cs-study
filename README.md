@@ -6,19 +6,19 @@
 
 <div align="center">
 <a href="http://www.yes24.com/Product/Goods/98997716">
-      <img width="120" src="http://image.yes24.com/goods/98997716/XL">
+      <img src="http://image.yes24.com/goods/98997716/M">
 </a>
 
 <a href="http://www.yes24.com/Product/Goods/31950404">
-      <img width="120" src="http://image.yes24.com/goods/31950404/XL">
+      <img src="http://image.yes24.com/goods/31950404/M">
 </a>
 
 <a href="http://www.yes24.com/Product/Goods/90640081">
-      <img width="120" src="http://image.yes24.com/goods/90640081/XL">
+      <img src="http://image.yes24.com/goods/90640081/M">
 </a>
 
 <a href="http://www.yes24.com/Product/Goods/45543957">
-      <img width="120" src="http://image.yes24.com/goods/45543957/XL">
+      <img src="http://image.yes24.com/goods/45543957/M">
 </a>
 </div>
 
