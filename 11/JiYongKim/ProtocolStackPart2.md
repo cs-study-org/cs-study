@@ -97,8 +97,8 @@
 
     - 하나의 패킷에 넣을 수 있는 데이터의 크기 기준
         
-        ![KakaoTalk_Photo_2022-03-02-21-57-48.jpeg](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/1020f9ae-2d36-4dc6-916d-f3c5b519ef50/KakaoTalk_Photo_2022-03-02-21-57-48.jpeg)
-        
+        <img width="571" alt="스크린샷 2022-03-03 오전 6 51 16" src="https://user-images.githubusercontent.com/81874493/156455702-1b62c8eb-c698-4568-8348-4ed706dd8e4b.png">
+
         (프로토콜 스택은 MTU라는 매개변수를 바탕으로 한 패킷에 저장할 수 있는 데이터의 크기를 판단)
         
         - MTU (Maximum Transmission Unit) : 한 패킷으로 운반 할 수 있는 디지털 데이터의 최대 길이
@@ -195,7 +195,7 @@
     ⇒ 분할한 조각을 한 개씩 패킷에 넣어 송신한다.
     
 
-![KakaoTalk_Photo_2022-03-02-22-51-45.jpeg](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/4907c51c-f98e-4b5b-ae6b-08b4d2d2b78a/KakaoTalk_Photo_2022-03-02-22-51-45.jpeg)
+<img width="519" alt="스크린샷 2022-03-03 오전 6 51 26" src="https://user-images.githubusercontent.com/81874493/156455734-d57ae711-3ab2-4d91-a534-229622abbf5e.png">
 
 1. 송신용 메모리 버퍼의 데이터를 MSS 크기에 맞추어 분할한다.
 2. 분할한 데이터를 순서별로 패킷에 넣어 송신한다.
@@ -222,8 +222,8 @@ ACK 번호와 시퀀스 번호를 통해 데이터의 정상 도착을 확인하
 
 - 시퀀스 번호 & ACK 번호
     
-    ![KakaoTalk_Photo_2022-03-02-23-33-52.jpeg](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/7c650e6a-7d01-481d-b41c-6cb89a99caa4/KakaoTalk_Photo_2022-03-02-23-33-52.jpeg)
-    
+    <img width="565" alt="스크린샷 2022-03-03 오전 6 51 32" src="https://user-images.githubusercontent.com/81874493/156455763-5096b4b6-67db-4b93-9407-897b0f448ce4.png">
+
     - 시퀀스 번호 : 데이터를 분할하여 송신하는 경우 송신 개시 부터 데이터의 몇번 째 바이트에 해당하는 값으로 TCP 헤더에 기록하여 데이터의 순서를 보장한다.
         
         <br>
@@ -241,7 +241,7 @@ ACK 번호와 시퀀스 번호를 통해 데이터의 정상 도착을 확인하
 
 실제 확인 과정)
 
-![ㄴㄴㄴㄴ.jpeg](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/4147a045-7a01-448e-8250-5fe4fef66911/ㄴㄴㄴㄴ.jpeg)
+<img width="698" alt="스크린샷 2022-03-03 오전 6 51 40" src="https://user-images.githubusercontent.com/81874493/156455778-7aa40729-188c-425c-a09d-9575ff0202d9.png">
 
 <br>
 
@@ -374,8 +374,8 @@ TCP에서는 데이터를 송신 이후 송신에 대한 응답으로 ACK 번호
 <br>
 
 **<윈도우 제어방식의 개념>**
-
-![KakaoTalk_Photo_2022-03-03-02-58-35.jpeg](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/0de57586-5d79-4bcb-a0a1-27551447ef3f/KakaoTalk_Photo_2022-03-03-02-58-35.jpeg)
+f
+<img width="522" alt="스크린샷 2022-03-03 오전 6 51 51" src="https://user-images.githubusercontent.com/81874493/156455805-a5f9c6a6-20b0-4b2c-9429-c9b0d2607e6e.png">
 
 - 윈도우 제어 방식이란?
     
