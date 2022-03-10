@@ -14,19 +14,19 @@
 
 <계층별 구성도>
 
-![스크린샷 2022-03-10 오후 5.36.53.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/81eedfec-4366-41e9-8789-cb1baf3929f6/스크린샷_2022-03-10_오후_5.36.53.png)
+<img width="405" alt="스크린샷 2022-03-11 오전 2 06 01" src="https://user-images.githubusercontent.com/81874493/157721203-7d2662f1-2193-425a-8acc-2b0752285710.png">
 
 <br>
 
 ## 01) TCP 혹은 UDP 프로토콜 담당 부분에서 헤더와 데이터를 IP 프로토콜 담당 부분에게 넘긴다.
 
-![스크린샷 2022-03-10 오후 5.41.55.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/ace0ad3a-6f05-4caa-b75a-056e38bf871e/스크린샷_2022-03-10_오후_5.41.55.png)
+<img width="684" alt="스크린샷 2022-03-11 오전 2 06 07" src="https://user-images.githubusercontent.com/81874493/157721219-94ec5700-0517-4436-b0b0-fa0bc52b2efe.png">
 
 <br>
 
 ## 02) IP 프로토콜 담당 부분은 받은 데이터에 IP 헤더와 MAC 헤더를 붙이게 된다.
 
-![스크린샷 2022-03-10 오후 5.50.09.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/2d0756d4-ca8f-4ad6-bc22-e1b5edb576d8/스크린샷_2022-03-10_오후_5.50.09.png)
+<img width="671" alt="스크린샷 2022-03-11 오전 2 06 12" src="https://user-images.githubusercontent.com/81874493/157721239-89bbd235-c32f-4b79-9f75-258e7c321e3b.png">
 
 - IP header
     - 송신처 IP : 송신할 주체의 LAN adapter에 기록된 IP를 기록
@@ -43,8 +43,8 @@
             
             - ARP를 통해 수신처의 MAC 주소를 찾아 기록한다.
                 
-                ![스크린샷 2022-03-10 오후 6.33.57.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/6129fcc3-5206-4932-a386-167c179bb394/스크린샷_2022-03-10_오후_6.33.57.png)
-                
+                <img width="576" alt="스크린샷 2022-03-11 오전 2 06 18" src="https://user-images.githubusercontent.com/81874493/157721257-0b967fbe-dd14-4231-a4a5-59fc9857313e.png">
+
                 1) Rounting Table 에 기록되어 있는 처음으로 패킷을 받는 라우터 에게 MAC주소 의뢰를 한다. 
                 
                 2) 라우터는 요청받은 IP가 누구인지 브로드케스트를 통해 물어본다
@@ -71,7 +71,7 @@
 
 ## 03) IP프로토콜 담당에서 LAN Driver를 통해 패킷 송신을 의뢰한다.
 
-![스크린샷 2022-03-10 오후 6.41.45.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/c839f9c5-1e51-4b78-942b-c6debc1a4512/스크린샷_2022-03-10_오후_6.41.45.png)
+<img width="497" alt="스크린샷 2022-03-11 오전 2 06 25" src="https://user-images.githubusercontent.com/81874493/157721276-b59e61b3-4072-4ece-a64c-64bd22d35eec.png">
 
 - 구성을 완료한 패킷 전송을 요청하기 위해 LAN adapter에게 송신을 요청하여야 한다.
     
@@ -86,7 +86,7 @@
 
 ## 04) LAN adapter 가 패킷을 송신한다.
 
-![스크린샷 2022-03-10 오후 11.29.23.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/663aac37-601b-4081-abac-24a60331c6e2/스크린샷_2022-03-10_오후_11.29.23.png)
+<img width="653" alt="스크린샷 2022-03-11 오전 2 06 34" src="https://user-images.githubusercontent.com/81874493/157721302-498f4866-f645-4788-b396-53f9d3ac7c0b.png">
 
 - 버퍼 메모리 : 송수신 하는 패킷을 일시적으로 저장하는 메모리 영역
     
@@ -105,8 +105,8 @@
 2. 복사를 마친 후 패킷을 송신하도록 MAC 회로에 명령을 보내어 MAC 회로 작업이 시작
 3. MAC회로에서 제어용 데이터를 추가한다.
     
-    ![스크린샷 2022-03-11 오전 12.10.00.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/db77cb3b-0db9-4591-a06b-14deb78717a9/스크린샷_2022-03-11_오전_12.10.00.png)
-    
+    <img width="682" alt="스크린샷 2022-03-11 오전 2 06 39" src="https://user-images.githubusercontent.com/81874493/157721322-b019123d-d451-4907-a51a-ece71d65199e.png">
+
     - 프리앰블과 스타트 프레임 딜리미터
         - 프리앰블 : 타이밍 맞춤
         - 스타트 프레임 딜리미터 (SFD) : 프레임의 개시 위치 발견
@@ -127,8 +127,8 @@
 5. PHY(MAU) 회로는 이 신호를 케이블에 송출할 수 있는 형식으로 변환하여 송신한다.
 6. 송신한 패킷은 중계장치들을 경유하여 수신측에게 도착한다.
     
-    ![스크린샷 2022-03-11 오전 12.47.03.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/3084fac2-6482-4fac-be80-05c2a5d775d6/스크린샷_2022-03-11_오전_12.47.03.png)
-    
+    <img width="663" alt="스크린샷 2022-03-11 오전 2 06 43" src="https://user-images.githubusercontent.com/81874493/157721347-b050511a-349e-4c23-8b5a-d1c2477e4189.png">
+
     - 패킷의 수신측 IP와 Routing table을 통해 중계장치들을 경유하여 수신측에게 패킷이 도착하게 된다.
     
 
@@ -136,12 +136,12 @@
 
 ## 05) 패킷의 수신
 
-![스크린샷 2022-03-11 오전 1.31.39.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/8dd6b749-0732-4d50-9d70-f896bd8372bd/스크린샷_2022-03-11_오전_1.31.39.png)
+<img width="406" alt="스크린샷 2022-03-11 오전 2 06 48" src="https://user-images.githubusercontent.com/81874493/157721370-91e3b5a6-5f82-4340-bd54-081b6cf192b7.png">
 
 1. 수신측에서 패킷은 PHY(MAU)에서 디지털 데이터로 변환하여 버퍼 메모리에 저장한다.
     
-    ![스크린샷 2022-03-11 오전 12.10.00.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/db77cb3b-0db9-4591-a06b-14deb78717a9/스크린샷_2022-03-11_오전_12.10.00.png)
-    
+    <img width="626" alt="스크린샷 2022-03-11 오전 2 06 52" src="https://user-images.githubusercontent.com/81874493/157721381-d9186fd6-4bb1-435c-947e-729e3f154c66.png">
+
     - 패킷의 맨 앞부터 계산을 적용하여 FCS의 값을 계산하고 패킷의 끝의 FCS값과 비교하여 오류 패킷을 검사한다.
     
     <br>
