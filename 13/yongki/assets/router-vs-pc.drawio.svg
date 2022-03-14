@@ -1,0 +1,132 @@
+<svg host="65bd71144e" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="642px" height="361px" viewBox="-0.5 -0.5 642 361" content="&lt;mxfile&gt;&lt;diagram id=&quot;za0nB7f8mrNtt2hVmEDL&quot; name=&quot;페이지-1&quot;&gt;7Vnbbts4EP0avha62Ir0qFvah7YoNgts95GRaIsoLRoUHdv79TukSMuyZEdpjaBpDBgBZ0SOOOcMZ5gR8tPV7qPA6+oLLwlDnlPukJ8hzwtdD/4qxb5VBJHTKpaClq3K7RQP9D9ilHbahpak6U2UnDNJ131lweuaFLKnw0LwbX/agrP+W9d4SQaKhwKzofYfWsrKuOXddfpPhC4r+2Y3iNonK2wnG0+aCpd8e6Tyc+SngnPZjla7lDCFncWlXXd/5ulhY4LUcsoCv13whNnG+IbyBEUZSlKUpyiKUeKgPEPhTA3aLcu9xaHZ0hXDNUiJsUOEJLuze3EPHkJkEL4iUuxhillwZ15gg8KI2w5hzzG66ghd307EhtXlwXLnOAyM7+M4REMcBs5WeK2GEj8qVdJILKSJTQdkCDaJaU0EyK6WGcPrhurZ7YyKsvIz3vONtHaslCwoYylnXK2u+XRI/YuQzvuQRkNIoxFEZ1cA1B7VKYiCP5Ji9hccVVwvNbhD8ErB139jsSTSKNac1pKI/AmwaIxuBEXJ1+YhIwu79pFLyVdGEMbzg1Ht9jyBHziROh/maA7bTUF2Oxl+arqQKa8bKYB5ZYPgRm5JI6fSF43T9wxB3jUIcn+JoEqumAn0bUUleVjjQk3dQsJvD4PKvLjjjwMSC6ZzXUXLktRXo+soBtzJmch5Fnj/hcAbYx1IL7aGGfhSY0kSvqnLZsDmYZ/TCPZuBJ9NjP4wE755vkdq+Y3v3dnLxJvne3arsD9fYfd9il6j4M7f9fmc/fkFN7gR/K4K7t2N73dVcMMRvgOmKtEjDJa6JOUpimcoclEeo8RXfRPYVJ6gMEWho56GoHR1byUzT60N0RlJUOQjqIUwiF01M89QNEdRqq1lyr4atwth3937TwMQKJT9YINSyn+Qk6AZiSPM6BJCLCuIChBQqICgBWaxebCCINSRPBa+QiFOShNlkyLqmVaGKZ/nu0PhfBgR/hUKt42qXpMMyLtHcaoHwHRoaE4CTXM7mA3TQdcwO24fget9CpDnLxYLrygGfMGTMngM5sF1ULVtmr1NaUNY3XDkpB2UvwTsMIF+Sy9hNi0xXQ6jE49ftcvoDzPI5/irDh3IBwFKZiZVqPwxoen6WjHUEvV7BtGkpAzn0VNwKlB1b7s9rXGEIg15HKM41INAHeopibWf4MZS4FHO/enubjjpUmWAn43g7o3F8hVgn411l05w/xIf6lWsotpUszeLr+u8IsD+yCcJlSXuUGyvA7Fj7hHJ4ZZxj6LIKlN7a9CRHSbqYvKGrweX87p/wtXYPxyu+8Ib6OTDMMzSpFySByMaxI5AJjsqvxvn1fhfNf7gzY2Y7Y6eZXsr1LCt79aCEo6XKblbpyW7sMRNpbFuF5ax+gTa7Qs091T5dsSF2v5lJsBbvhEF6ZdyaftHF6qGIAxL+tS3/wL4Qew+kLb3+O4rs5//Dw==&lt;/diagram&gt;&lt;/mxfile&gt;">
+    <defs/>
+    <g>
+        <path d="M 0 23 L 0 0 L 200 0 L 200 23" fill="rgb(255, 255, 255)" stroke="rgb(0, 0, 0)" stroke-miterlimit="10" pointer-events="all"/>
+        <path d="M 0 23 L 0 360 L 200 360 L 200 23" fill="none" stroke="rgb(0, 0, 0)" stroke-miterlimit="10" pointer-events="none"/>
+        <path d="M 0 23 L 200 23" fill="none" stroke="rgb(0, 0, 0)" stroke-miterlimit="10" pointer-events="none"/>
+        <g fill="rgb(0, 0, 0)" font-family="Helvetica" font-weight="bold" pointer-events="none" text-anchor="middle" font-size="12px">
+            <text x="99.5" y="16">
+                라우터
+            </text>
+        </g>
+        <rect x="50" y="90" width="90" height="40" fill="none" stroke="rgb(0, 0, 0)" pointer-events="none"/>
+        <path d="M 50 110 L 80 110 L 110 110 L 140 110" fill="none" stroke="rgb(0, 0, 0)" stroke-miterlimit="10" pointer-events="none"/>
+        <path d="M 80 90 L 80 110 L 80 130" fill="none" stroke="rgb(0, 0, 0)" stroke-miterlimit="10" pointer-events="none"/>
+        <path d="M 110 90 L 110 110 L 110 130" fill="none" stroke="rgb(0, 0, 0)" stroke-miterlimit="10" pointer-events="none"/>
+        <path d="M 50 90 M 140 90 M 140 110 M 50 110" fill="none" stroke="rgb(0, 0, 0)" stroke-linecap="square" stroke-miterlimit="10" pointer-events="none"/>
+        <path d="M 50 90 M 80 90 M 80 110 M 50 110" fill="none" stroke="rgb(0, 0, 0)" stroke-linecap="square" stroke-miterlimit="10" pointer-events="none"/>
+        <path d="M 80 90 M 110 90 M 110 110 M 80 110" fill="none" stroke="rgb(0, 0, 0)" stroke-linecap="square" stroke-miterlimit="10" pointer-events="none"/>
+        <path d="M 110 90 M 140 90 M 140 110 M 110 110" fill="none" stroke="rgb(0, 0, 0)" stroke-linecap="square" stroke-miterlimit="10" pointer-events="none"/>
+        <path d="M 50 110 M 140 110 M 140 130 M 50 130" fill="none" stroke="rgb(0, 0, 0)" stroke-linecap="square" stroke-miterlimit="10" pointer-events="none"/>
+        <path d="M 50 110 M 80 110 M 80 130 M 50 130" fill="none" stroke="rgb(0, 0, 0)" stroke-linecap="square" stroke-miterlimit="10" pointer-events="none"/>
+        <path d="M 80 110 M 110 110 M 110 130 M 80 130" fill="none" stroke="rgb(0, 0, 0)" stroke-linecap="square" stroke-miterlimit="10" pointer-events="none"/>
+        <path d="M 110 110 M 140 110 M 140 130 M 110 130" fill="none" stroke="rgb(0, 0, 0)" stroke-linecap="square" stroke-miterlimit="10" pointer-events="none"/>
+        <g transform="translate(-0.5 -0.5)">
+            <switch>
+                <foreignObject pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility" style="overflow: visible; text-align: left;">
+                    <div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 83px; height: 1px; padding-top: 75px; margin-left: 56px;">
+                        <div data-drawio-colors="color: rgb(0, 0, 0); " style="box-sizing: border-box; font-size: 0px; text-align: center;">
+                            <div style="display: inline-block; font-size: 12px; font-family: Helvetica; color: rgb(0, 0, 0); line-height: 1.2; pointer-events: none; white-space: normal; overflow-wrap: normal;">
+                                <b>
+                                    중계 대상을
+                                    <br/>
+                                    등록한 표
+                                </b>
+                            </div>
+                        </div>
+                    </div>
+                </foreignObject>
+                <text x="97" y="79" fill="rgb(0, 0, 0)" font-family="Helvetica" font-size="12px" text-anchor="middle">
+                    중계 대상을...
+                </text>
+            </switch>
+        </g>
+        <path d="M 10 193 L 10 170 L 190 170 L 190 193" fill="#fff2cc" stroke="#d6b656" stroke-miterlimit="10" pointer-events="none"/>
+        <path d="M 10 193 L 10 350 L 190 350 L 190 193" fill="none" stroke="#d6b656" stroke-miterlimit="10" pointer-events="none"/>
+        <path d="M 10 193 L 190 193" fill="none" stroke="#d6b656" stroke-miterlimit="10" pointer-events="none"/>
+        <g fill="rgb(0, 0, 0)" font-family="Helvetica" font-weight="bold" pointer-events="none" text-anchor="middle" font-size="12px">
+            <text x="99.5" y="186">
+                포트 부분
+            </text>
+        </g>
+        <path d="M 440 23 L 440 0 L 640 0 L 640 23" fill="rgb(255, 255, 255)" stroke="rgb(0, 0, 0)" stroke-miterlimit="10" pointer-events="none"/>
+        <path d="M 440 23 L 440 360 L 640 360 L 640 23" fill="none" stroke="rgb(0, 0, 0)" stroke-miterlimit="10" pointer-events="none"/>
+        <path d="M 440 23 L 640 23" fill="none" stroke="rgb(0, 0, 0)" stroke-miterlimit="10" pointer-events="none"/>
+        <g fill="rgb(0, 0, 0)" font-family="Helvetica" font-weight="bold" pointer-events="none" text-anchor="middle" font-size="12px">
+            <text x="539.5" y="16">
+                PC
+            </text>
+        </g>
+        <path d="M 450 193 L 450 170 L 630 170 L 630 193" fill="#fff2cc" stroke="#d6b656" stroke-miterlimit="10" pointer-events="none"/>
+        <path d="M 450 193 L 450 350 L 630 350 L 630 193" fill="none" stroke="#d6b656" stroke-miterlimit="10" pointer-events="none"/>
+        <path d="M 450 193 L 630 193" fill="none" stroke="#d6b656" stroke-miterlimit="10" pointer-events="none"/>
+        <g fill="rgb(0, 0, 0)" font-family="Helvetica" font-weight="bold" pointer-events="none" text-anchor="middle" font-size="12px">
+            <text x="539.5" y="186">
+                LAN 어댑터
+            </text>
+        </g>
+        <rect x="480" y="210" width="120" height="30" fill="none" stroke="rgb(0, 0, 0)" pointer-events="none"/>
+        <g transform="translate(-0.5 -0.5)">
+            <switch>
+                <foreignObject pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility" style="overflow: visible; text-align: left;">
+                    <div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 118px; height: 1px; padding-top: 225px; margin-left: 481px;">
+                        <div data-drawio-colors="color: rgb(0, 0, 0); " style="box-sizing: border-box; font-size: 0px; text-align: center;">
+                            <div style="display: inline-block; font-size: 12px; font-family: Helvetica; color: rgb(0, 0, 0); line-height: 1.2; pointer-events: none; white-space: normal; overflow-wrap: normal;">
+                                <b>
+                                    버퍼 메모리
+                                </b>
+                            </div>
+                        </div>
+                    </div>
+                </foreignObject>
+                <text x="540" y="229" fill="rgb(0, 0, 0)" font-family="Helvetica" font-size="12px" text-anchor="middle">
+                    버퍼 메모리
+                </text>
+            </switch>
+        </g>
+        <rect x="480" y="270" width="120" height="30" fill="none" stroke="rgb(0, 0, 0)" pointer-events="none"/>
+        <g transform="translate(-0.5 -0.5)">
+            <switch>
+                <foreignObject pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility" style="overflow: visible; text-align: left;">
+                    <div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 118px; height: 1px; padding-top: 285px; margin-left: 481px;">
+                        <div data-drawio-colors="color: rgb(0, 0, 0); " style="box-sizing: border-box; font-size: 0px; text-align: center;">
+                            <div style="display: inline-block; font-size: 12px; font-family: Helvetica; color: rgb(0, 0, 0); line-height: 1.2; pointer-events: none; white-space: normal; overflow-wrap: normal;">
+                                <b>
+                                    MAC 회로
+                                </b>
+                            </div>
+                        </div>
+                    </div>
+                </foreignObject>
+                <text x="540" y="289" fill="rgb(0, 0, 0)" font-family="Helvetica" font-size="12px" text-anchor="middle">
+                    MAC 회로
+                </text>
+            </switch>
+        </g>
+        <g transform="translate(-0.5 -0.5)">
+            <switch>
+                <foreignObject pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility" style="overflow: visible; text-align: left;">
+                    <div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 108px; height: 1px; padding-top: 180px; margin-left: 261px;">
+                        <div data-drawio-colors="color: rgb(0, 0, 0); " style="box-sizing: border-box; font-size: 0px; text-align: center;">
+                            <div style="display: inline-block; font-size: 12px; font-family: Helvetica; color: rgb(0, 0, 0); line-height: 1.2; pointer-events: none; white-space: normal; overflow-wrap: normal;">
+                                역할이 동일하다
+                            </div>
+                        </div>
+                    </div>
+                </foreignObject>
+                <text x="315" y="184" fill="rgb(0, 0, 0)" font-family="Helvetica" font-size="12px" text-anchor="middle">
+                    역할이 동일하다
+                </text>
+            </switch>
+        </g>
+        <path d="M 440 90 L 640 90" fill="none" stroke="rgb(0, 0, 0)" stroke-miterlimit="10" stroke-dasharray="3 3" pointer-events="none"/>
+    </g>
+    <switch>
+        <g requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility"/>
+        <a transform="translate(0,-5)" xlink:href="https://www.diagrams.net/doc/faq/svg-export-text-problems" target="_blank">
+            <text text-anchor="middle" font-size="10px" x="50%" y="100%">
+                Viewer does not support full SVG 1.1
+            </text>
+        </a>
+    </switch>
+</svg>
