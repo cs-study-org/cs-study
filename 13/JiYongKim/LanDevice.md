@@ -4,11 +4,11 @@
 
 ## <전체 구성도>
 
-![스크린샷 2022-03-24 오후 7.42.58.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/e37211d0-1c5e-4358-bdba-3e99a58ed7cb/스크린샷_2022-03-24_오후_7.42.58.png)
+<img width="715" alt="스크린샷 2022-03-25 오전 2 18 26" src="https://user-images.githubusercontent.com/81874493/159973812-deecbdba-d6d5-4446-9d66-42f7da0a90f4.png">
 
 ## 01) Hub
 
-![스크린샷 2022-03-24 오후 7.43.49.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/6ec02eb5-bfb9-4d31-95b6-320ebbd53a49/스크린샷_2022-03-24_오후_7.43.49.png)
+<img width="547" alt="스크린샷 2022-03-25 오전 2 18 55" src="https://user-images.githubusercontent.com/81874493/159973837-f33efe72-870b-455b-8883-56ea8fd966e6.png">
 
 - 패킷 하나하나가 독립적으로 신호로 변경되어 전송된다
     - 패킷 내부의 데이터나 TCP 프로토콜 제어 정보등은 패킷의 운반에는 영향을 미치지 않는다.
@@ -21,7 +21,7 @@
 
 ## 02) Switching Hub
 
-![스크린샷 2022-03-24 오후 7.44.50.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/f867d8b4-8b5c-4239-9d9e-99ad07477f62/스크린샷_2022-03-24_오후_7.44.50.png)
+<img width="575" alt="스크린샷 2022-03-25 오전 2 19 01" src="https://user-images.githubusercontent.com/81874493/159973869-9155440c-f72e-4d1e-9ecc-f3d15d5cecac.png">
 
 - 신호가 스위칭 허브로 들어오면 패킷으로 다시 구성하여 주소 테이블을 통해 신호를 중계한다.
     - 주소 테이블은 스위칭 허브에 RJ45를 꽂을수 있는 포트 별 MAC주소표로 중계를 진행한다.
@@ -44,7 +44,7 @@
 
 ## 03)Router
 
-![스크린샷 2022-03-24 오후 8.23.40.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/c2f16caa-5874-4327-ab4d-5b9d9fc387ad/스크린샷_2022-03-24_오후_8.23.40.png)
+<img width="702" alt="스크린샷 2022-03-25 오전 2 19 09" src="https://user-images.githubusercontent.com/81874493/159973908-36d5ba98-0040-4537-b0e6-a0bed3859f0c.png">
 
 - 스위칭 허브를 경유한 패킷은 결국 라우터의 포트로 들어와 라우팅 테이블을 통해 다른 대역의 주소로 패킷을 중계한다.
 - 라우팅 테이블은 IP주소로 중계 대상을 판단한다.
