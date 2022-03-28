@@ -22,7 +22,7 @@
 
     기기의 포트 부분의 포트가 
     
-    수신한 패킷의 수신처 MAC 주소에 해당하는 패킷만 수신하고, 그 외의 패킷은 폐기한다.
+    수신한 패킷의 수신처 MAC 주소가 기기의 MAC 주소가 동일한 경우에만 패킷을 수신하고, 그 외의 패킷은 폐기한다.
 
 > 🤔 "아무도 송신중이지 않다는 것을 확인한다."를 이더넷 규칙이라 설명한다.
 
@@ -50,7 +50,7 @@
 
 라우터의 역할은
 
-    다음 중계 대상을 선정한다.
+    다음 중계 대상을 선정하고, 패킷을 운반한다.
 
 구조를 보면, 스위칭 허브와 라우터는 매우 유사하게 생겼다.
 
@@ -163,11 +163,27 @@
 
 ### TCP 데이터 분할 vs IP 패킷 분할
 
-TCP의 데이터 분할로 인해 나눠진 데이터 조각들은 각자의 패킷에 저장된다.
+검색을 해보니 정확한 용어는 TCP Segmentation vs IP Fragmentation 이다.
 
-IP 패킷 분할은 이 패킷을 분할하는 것이다.
+TCP의 데이터 분할로 인해 나눠진 데이터의 조각들은 각자의 패킷에 저장된다.
 
-    ...
+IP 패킷 분할은 이 패킷 하나를 분할하는 것이다.
+
+MTU[^MTU]의 MSS를 기준으로 분할한다.
+
+    MTU----------------------------
+                          MSS------
+    +---------+----------+--------+
+    | IP 헤더 | TCP 헤더 | 데이터 |
+    +---------+----------+--------+
+
+[^MTU]: 하나의 패킷이 운반할 수 있는 헤더를 포함한 데이터의 전체 길이
+
+MTU는 라우터의 `포트 부분`의 포트의 종류에 의해 결정되는데, 
+
+MTU에서 헤더를 제외한 MSS와 패킷의 길이를 비교하여 MSS 보다 패킷의 길이가 클 시 분할한다.
+
+<center><img width="60%" src="assets/tcp-segamentation-vs-ip-fragmentation.drawio.svg"></center>
 
 ## 중계 장치 간 차이점
 
@@ -189,3 +205,5 @@ IP 패킷 분할은 이 패킷을 분할하는 것이다.
 ## 참고 문헌
 
 [「성공과 실패를 결정하는 1%의 네트워크 원리」 챕터3 요약본 ](https://yjksw.github.io/one-percent-network-5/) ━ *FromCoding*
+
+[Difference between IP fragmentation and TCP segmentation](https://forum.networklessons.com/t/difference-between-ip-fragmentation-and-tcp-segmentation/1815/2) ━ *NetworkLessons*
