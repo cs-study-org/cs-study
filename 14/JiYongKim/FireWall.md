@@ -4,7 +4,7 @@
 
 ### A) 라우터에서 직접 사내 웹서버를 연결하는 경우
 
-![스크린샷 2022-03-30 오후 6.00.13.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/7c93d4d3-3b0f-46de-ad2f-6d89f90beea3/스크린샷_2022-03-30_오후_6.00.13.png)
+<img width="698" alt="스크린샷 2022-03-30 오후 7 38 02" src="https://user-images.githubusercontent.com/81874493/160813172-83607f92-3573-454e-a1f5-724cc1e9a3a0.png">
 
 - 사내 LAN에 서버를 설치하고 인터넷에서 웹서버에 직접 액세스 되는 경우
 - 현재 위와 같은 모델은 사용하지 않음
@@ -18,7 +18,7 @@
 
 ### B) 방화벽을 통해 분리하는 경우
 
-![스크린샷 2022-03-30 오후 6.11.00.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/22fd26ef-319e-4a9f-94d8-d52536ee1d80/스크린샷_2022-03-30_오후_6.11.00.png)
+<img width="708" alt="스크린샷 2022-03-30 오후 7 38 08" src="https://user-images.githubusercontent.com/81874493/160813187-4dd74964-f0be-4949-aef6-2d4890fd4827.png">
 
 - 방화벽을 두고 사내LAN과 서버를 분리하는 경우 ( 일반화된 방식 )
 - 방화벽의 역할
@@ -28,7 +28,7 @@
 
 ### C) 데이터센터에 웹 서버를 설치하는 경우
 
-![스크린샷 2022-03-30 오후 6.40.43.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/6e30631f-c1b4-417a-a484-0f910fc67225/스크린샷_2022-03-30_오후_6.40.43.png)
+<img width="557" alt="스크린샷 2022-03-30 오후 7 38 13" src="https://user-images.githubusercontent.com/81874493/160813209-c28ab735-da57-4496-af92-0b7cd0eda709.png">
 
 - 통신회사의 데이터센터라는 시설에 서버를 설치하거나 프로바이더 소유 서버를 빌려쓰는 형태
 - 인터넷 중심 부분에 고속회선으로 접속되어 있어 고속 액세스가 가능
@@ -38,7 +38,7 @@
 
 ## 02) 방화벽의 원리 동작
 
-![스크린샷 2022-03-30 오후 6.51.55.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/138b2843-6741-4a01-986b-464416f9de6d/스크린샷_2022-03-30_오후_6.51.55.png)
+<img width="688" alt="스크린샷 2022-03-30 오후 7 38 21" src="https://user-images.githubusercontent.com/81874493/160813220-027d5d1e-0db8-43c6-b782-9430bdc52947.png">
 
 방화벽의 개념 : 특정 서버와 해당 서버 안 특정 애플리케이션에 액세스하는 패킷만 통과시키고 그외의 패킷을 차단
 
@@ -81,7 +81,7 @@
 
 ### 방화벽의 통과
 
-![스크린샷 2022-03-30 오후 7.08.13.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/314b656d-04dc-4140-afa0-1e05a219ea0a/스크린샷_2022-03-30_오후_7.08.13.png)
+![Uploading 스크린샷 2022-03-30 오후 7.38.26.png…]()
 
 - 패킷이 방화벽에 도착하면
     1. 조건을 통해 통과시킬지 차단할지 결정
