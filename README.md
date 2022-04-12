@@ -5,21 +5,40 @@
 ## 교재
 
 <div align="center">
-<a href="http://www.yes24.com/Product/Goods/98997716">
-      <img src="http://image.yes24.com/goods/98997716/M">
-</a>
-
-<a href="http://www.yes24.com/Product/Goods/31950404">
-      <img src="http://image.yes24.com/goods/31950404/M">
-</a>
-
-<a href="http://www.yes24.com/Product/Goods/90640081">
-      <img src="http://image.yes24.com/goods/90640081/M">
-</a>
-
-<a href="http://www.yes24.com/Product/Goods/45543957">
-      <img src="http://image.yes24.com/goods/45543957/M">
-</a>
+<table>
+      <tr>
+            <th colspan="2">1-8주차</th>
+            <th colspan="2">9-16주차</th>
+            <th>-</th>
+      </tr>
+      <tr>
+            <td>
+                  <a href="http://www.yes24.com/Product/Goods/98997716">
+                        <img src="http://image.yes24.com/goods/98997716/M">
+                  </a>
+            </td> 
+            <td>
+            <a href="http://www.yes24.com/Product/Goods/31950404">
+                  <img src="http://image.yes24.com/goods/31950404/M">
+            </a>
+            </td> 
+            <td>
+            <a href="http://www.yes24.com/Product/Goods/90640081">
+                  <img src="http://image.yes24.com/goods/90640081/M">
+            </a>
+            </td> 
+            <td>
+            <a href="http://www.yes24.com/Product/Goods/45543957">
+                  <img src="http://image.yes24.com/goods/45543957/M">
+            </a>
+            </td> 
+            <td>
+            <a href="http://www.yes24.com/Product/Goods/27893960">
+                  <img src="http://image.yes24.com/goods/27893960/M">
+            </a>
+            </td> 
+      </tr>
+</table>
 </div>
 
 ## 규칙
