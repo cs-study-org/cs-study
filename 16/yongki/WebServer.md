@@ -121,7 +121,75 @@
 
 ##  HTTP 버전별 특징
 
-    ...
+<table>
+  <tr>
+    <th colspan="2"></th>    
+    <th>1.0</th>
+    <th colspan="2">1.1</th>
+    <th colspan="2">2.0</th>
+  </tr>
+  <tr>
+    <td colspan="2"></td>
+    <td><img src="assets/http-1.0.drawio.svg"/></td>
+    <td><img src="assets/http-1.1-persistent.drawio.svg"/></td>
+    <td><img src="assets/http-1.1-pipelining.drawio.svg"/></td>
+    <td><img src="assets/http-2.0-multiplexed.drawio.svg"/></td>
+    <td><img src="assets/http-2.0-server-push.drawio.svg"/></td>
+  </tr>
+  <tr>
+    <td rowspan="4">특징</td>
+    <td>요청별 응답 순서</td>
+    <td colspan="3"><center>순차</center></td>    
+    <td colspan="2"><center>랜덤</center></td>    
+  </tr>
+  <tr>
+    <td>요청-응답</td>
+    <td colspan="2">핑퐁</td>    
+    <td>파이프라이닝</td>
+    <td>멀티플렉싱 스트림</td>
+    <td>서버 푸시</td>
+  </tr>
+  <tr>
+    <td>동시 전송</td>
+    <td>불가능</td>
+    <td colspan="4"><center>가능</center></td>    
+  </tr>
+  <tr>
+    <td>리소스 요청 예측</td>
+    <td><center>-</center></td>
+    <td colspan="2">리소스 인라인</td>
+    <td><center>-</center></td>
+    <td>서버 푸시</td>
+  </tr>
+  <tr>
+    <td colspan="2">개선점</td>
+    <td>HTTP 헤더 도입</td>
+    <td colspan="2">
+      Connection당 여러 요청 처리<br/>
+      (HTTP 헤더 <code>keep-alive</code>필드)
+    </td>    
+    <td>
+<p>
+
+식별자가 있는 데이터(스트림) 형식으로 응답
+
+데이터 간 우선순위 설정 가능
+
+    cf. image파일은 css파일 이후에 렌더링되도록
+</p>
+    </td> 
+    <td>요청당 연관된 여러 리소스 응답</td> 
+  </tr>
+  <tr>
+    <td rowspan="2" colspan="2">단점</td>
+    <td rowspan="2">Connection당 하나의 요청 처리</td>
+    <td colspan="4">응답 병목현상</td>
+  </tr>
+  <tr>
+    <td colspan="2">HTML 크기 증가</td>    
+    <td colspan="2"><center>-</center></td>
+  </tr>
+</table>
 
 <hr/>
 
@@ -130,3 +198,7 @@
 [소켓 프로그래밍 동기와 비동기 차이](https://okky.kr/article/562664) ━ *Okky*
 
 [비동기 처리와 스레드풀](https://kukuta.tistory.com/371) ━ *진리는어디에*
+
+[HTTP 버전별 특징 TCP 연결](https://github.com/cs-study-org/cs-study/blob/master/05/JiYongKim/CS_terminology.md) ━ *Github*
+
+[HTTP 버전별 특징](https://yceffort.kr/2021/05/http1-vs-http2) ━ *yceffort*
