@@ -8,6 +8,8 @@
     - [본문](#본문)
     - [여러 개 소켓 처리 방식](#여러-개-소켓-처리-방식)
   - [HTTP 버전별 특징](#http-버전별-특징)
+    - [요청-응답 상세](#요청-응답-상세)
+    - [리소스 요청 예측](#리소스-요청-예측)
   - [참고 문헌](#참고-문헌)
 
 ## 들어가며
@@ -155,9 +157,10 @@ I/O 발생시, `BeginInvoke()`를 호출하여 백그라운드의 스레드풀�
 
 비동기 작업의 결과값은 `EndInvoke()`에 매개변수를 담아 호출함으로써 받아올 수 있다.
 
-> 🤔 큐에 등록된 콜백 함수를 받으면, HTTP 1버전에 해당한 것인가
-
 > 🤔 실제 사용한 `BeginAccept()`와 `EndAccept()`를 같은 맥락으로 볼 수 있는가
+
+> 🤔 ThreadID의 정확한 의미, 
+> 실제 제한된 스레드의 식별자라면, A 스레드로 작업한 b, e 작업의 응답만 가져올 수 있는것인지
 
 ##  HTTP 버전별 특징
 
@@ -178,7 +181,7 @@ I/O 발생시, `BeginInvoke()`를 호출하여 백그라운드의 스레드풀�
     <td><img src="assets/http-2.0-server-push.drawio.svg"/></td>
   </tr>
   <tr>
-    <td rowspan="4">특징</td>
+    <td rowspan="3">특징</td>
     <td>요청별 응답 순서</td>
     <td colspan="3"><center>순차</center></td>    
     <td colspan="2"><center>랜덤</center></td>    
@@ -191,47 +194,66 @@ I/O 발생시, `BeginInvoke()`를 호출하여 백그라운드의 스레드풀�
     <td>서버 푸시</td>
   </tr>
   <tr>
-    <td>동시 전송</td>
-    <td>불가능</td>
-    <td colspan="4"><center>가능</center></td>    
-  </tr>
-  <tr>
-    <td>리소스 요청 예측</td>
-    <td><center>-</center></td>
-    <td colspan="2">리소스 인라인</td>
-    <td><center>-</center></td>
-    <td>서버 푸시</td>
-  </tr>
-  <tr>
-    <td colspan="2">개선점</td>
-    <td>HTTP 헤더 도입</td>
+    <td>요청 처리</td>
+    <td>Connection당 하나의 요청 처리</td>
     <td colspan="2">
-      Connection당 여러 요청 처리<br/>
+      Connection당 여러 요청 순차 처리<br/>
       (HTTP 헤더 <code>keep-alive</code>필드)
     </td>    
-    <td>
-<p>
-
-식별자가 있는 데이터(스트림) 형식으로 응답
-
-데이터 간 우선순위 설정 가능
-
-    cf. image파일은 css파일 이후에 렌더링되도록
-</p>
-    </td> 
-    <td>요청당 연관된 여러 리소스 응답</td> 
-  </tr>
-  <tr>
-    <td rowspan="2" colspan="2">단점</td>
-    <td rowspan="2">Connection당 하나의 요청 처리</td>
-    <td colspan="4">응답 병목현상</td>
-  </tr>
-  <tr>
-    <td colspan="2">HTML 크기 증가</td>    
-    <td colspan="2"><center>-</center></td>
-  </tr>
+    <td colspan="2">
+      Connection당 여러 요청 랜덤 처리<br/>    
+    </td>
+  </tr>  
 </table>
 </div>
+
+> 🤔 윈도우 제어 방식의 패킷 최소화는 몇 버전부터 지원하나
+
+### 요청-응답 상세
+
+**HTTP 1.1**
+
+한 개의 Connection 안의 여러 개의 요청-응답이 가능해도
+
+앞 순서의 응답에 대한 병목현상이 있다.
+
+**HTTP 2.0**
+
+요청-응답이 스트림을 통해 보내진다.
+
+스트림은
+
+    식별자가 있는 데이터를 의미한다.
+
+스트림 생성은
+
+    한 Connection 안에서 TCP 연결 없이 일방적으로 만듬으로써, 시간 절약한다.
+
+한 개의 스트림이 하나의 요청-응답을 맡는다.
+
+한 개의 Connection 위에 여러 개의 스트림이 동시에 만들어질 수 있다.
+
+즉, 여러 개의 요청-응답을 동시 처리할 수 있다.
+
+스트림 간에는 우선순위를 설정할 수 있어, 중요한 리소스를 먼저 받도록 할 수 있다.
+
+    cf. image파일은 css파일 이후에 렌더링되도록
+
+### 리소스 요청 예측
+
+**HTTP 1.1**
+
+리소스 인라인은
+
+    HTML 문서 안에 관련 리소스를 인라인 시키는 것이다.
+
+    이는 HTML 크기를 증가시킨다.
+
+**HTTP 2.0**
+
+서버 푸시는
+
+    한 개의 요청당 관련된 여러 리소스를 응답하는 것이다.
 
 <hr/>
 
@@ -247,6 +269,6 @@ I/O 발생시, `BeginInvoke()`를 호출하여 백그라운드의 스레드풀�
 
 [동기 메서드를 비동기 방식으로 호출](https://docs.microsoft.com/ko-kr/dotnet/standard/asynchronous-programming-patterns/calling-synchronous-methods-asynchronously#defining-the-test-method-and-asynchronous-delegate) ━ *MicrosoftDocs*
 
-[HTTP 버전별 특징 TCP 연결](https://github.com/cs-study-org/cs-study/blob/master/05/JiYongKim/CS_terminology.md) ━ *Github*
+[HTTP 버전별 그림자료](https://github.com/cs-study-org/cs-study/blob/master/05/JiYongKim/CS_terminology.md) ━ *Github*
 
 [HTTP 버전별 특징](https://yceffort.kr/2021/05/http1-vs-http2) ━ *yceffort*
