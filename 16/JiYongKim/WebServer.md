@@ -14,7 +14,7 @@
 
 <서버 애플리케이션의 구조>
 
-![스크린샷 2022-04-14 오후 4.46.55.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/c50916db-3c8b-4b50-a73c-8ead26915baa/스크린샷_2022-04-14_오후_4.46.55.png)
+<img width="724" alt="스크린샷 2022-04-15 오후 6 29 34" src="https://user-images.githubusercontent.com/81874493/163554663-05fb5a7a-0d23-418f-ad40-0c44d7111971.png">
 
 1. 서버 프로그램 작동하여 설정 파일 읽기등의 초기화 동작 완료
 2. 서버 애플리케이션의 접속을 기다리는 곳에서 소켓 작성하고 소켓을 클라이언트에서의 접속 동작을 기다리는 상태로 만들고 대기
@@ -65,7 +65,7 @@
 
 <서버측의 동작 과정>
 
-![스크린샷 2022-04-14 오후 5.16.20.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/d4dcc1a8-1019-49b1-9e2e-b13c1b7c6deb/스크린샷_2022-04-14_오후_5.16.20.png)
+<img width="703" alt="스크린샷 2022-04-15 오후 6 29 42" src="https://user-images.githubusercontent.com/81874493/163554682-727836f8-9418-400f-97ca-e6ec36f3057a.png">
 
 1) 우선 서버 애플리케이션의 클라이언트의 접속을 기다리는 곳을 동작 시킨다.
 
@@ -198,8 +198,8 @@
     
     ## HTTP 역사
     
-    ![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/8dfa717f-88e7-4866-8659-55ae15d5d255/Untitled.png)
-    
+    <img width="467" alt="스크린샷 2022-04-15 오후 6 35 07" src="https://user-images.githubusercontent.com/81874493/163554825-4433d49e-49e2-4ef4-8230-a682bf8a1da9.png">  
+
     ⇒ HTTP/1.1에 대부분의 기능이 들어있고 이후 버전은 성능개선에 초점
     
     ⇒ HTTP/1.1 에 대해서 공부하는 것이 중요
@@ -211,8 +211,8 @@
     
     ⇒ 현재 HTTP/1.1 주로 사용
     
-    ![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/85bf237b-0c55-4f40-968d-6abcba2ae91d/Untitled.png)
-    
+    <img width="673" alt="스크린샷 2022-04-15 오후 6 29 51" src="https://user-images.githubusercontent.com/81874493/163554849-af6ec66c-c939-46f1-be97-b9d9c5a54b8d.png">
+
     ⇒ 2, 3 도 많이사용
     
     ⇒ 결국은 HTTP/1.1 스펙을 잘 알면 된다.
@@ -228,8 +228,8 @@
     
     ## 클라이언트 서버 구조
     
-    ![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/2a658655-47af-4258-92cb-14b0ad26b6eb/Untitled.png)
-    
+    <img width="451" alt="스크린샷 2022-04-15 오후 6 29 57" src="https://user-images.githubusercontent.com/81874493/163554880-aef945f1-43a1-4b3e-b107-2c496dd02439.png">
+
     1. 클라이언트가 HTTP메세지를 통해 서버에 요청
     2. 클라이언트는 서버에서 응답이 올때까지 무작정 기다림
     3. 서버에서 응답 결과가 오면 그때 응답을 열어서 동작하게 됨
@@ -263,8 +263,8 @@
         
         <**Stateful 상태 유지**>
         
-        ![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/8f20f0c5-6e2e-419e-807c-ac07b4c5c984/Untitled.png)
-        
+        <img width="425" alt="스크린샷 2022-04-15 오후 6 30 09" src="https://user-images.githubusercontent.com/81874493/163554917-2374e050-ac49-48c9-8e1e-cd88bb0e591e.png">
+
         ⇒ Stateful ⇒ 서버가 클라이언트의 이전 상태를 보존
         
         (예시에서는 문맥(Context)을 보존한다)
@@ -273,8 +273,8 @@
         
         (점원이 중간에 바뀜)
         
-        ![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/1c2630b5-a35f-4f18-b26d-b2fe000b65c6/Untitled.png)
-        
+        <img width="346" alt="스크린샷 2022-04-15 오후 6 30 14" src="https://user-images.githubusercontent.com/81874493/163554930-547aa2ce-ab0b-4844-a338-2279b422bcb0.png">
+
         ⇒Stateless ⇒ 서버가 클라이언트의 이전 상태를 보존하지 않음
         
         (예시에서는 문맥을 보존하지 않는다)
@@ -285,24 +285,24 @@
         
         <**Stateful 상태 유지**>
         
-        ![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/bf1aefe4-6ded-4b73-b986-00818ebdbfe0/Untitled.png)
-        
+        <img width="390" alt="스크린샷 2022-04-15 오후 6 30 19" src="https://user-images.githubusercontent.com/81874493/163554955-1afe2a64-87aa-4a03-a32f-f35ee509012e.png">
+
         1. 점원은 노트북이라는 문맥 상태를 유지
         2. 점원은 노트북, 2개 구매라는 상태 유지
         3. 점원은 노트북, 2개 구매, 신용카드 결재 상태를 유지
         
         <**stateless 무상태**>
         
-        ![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/3ea97daa-e3b7-4eff-ae9d-4d4546b170fc/Untitled.png)
-        
+        <img width="587" alt="스크린샷 2022-04-15 오후 6 30 24" src="https://user-images.githubusercontent.com/81874493/163554967-89a37981-bf19-48d8-a159-5856171005f3.png">
+
         ⇒ 문맥 상태를 유지하지 않기때문에 이러한 대화를 해야된다.
         
         **여기서 중요한점 !!!** 
         
         **무상태 에서 점원이 중간에 변경되면???!?!?**
         
-        ![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/c35f7a9b-8b88-40f0-9241-ddda29662c38/Untitled.png)
-        
+        <img width="484" alt="스크린샷 2022-04-15 오후 6 30 28" src="https://user-images.githubusercontent.com/81874493/163554984-ecf7aec9-1038-4387-860e-57dd1fde2d0e.png">
+
     
     결론)
     
@@ -335,28 +335,24 @@
     
     **#상태 유지**
     
-    ![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/2b04f671-144e-44fc-8a7d-293bcff15b7e/Untitled.png)
-    
-    ![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/1cc17df1-bbd6-478c-9b3f-42e32e3d3470/Untitled.png)
-    
+    <img width="664" alt="스크린샷 2022-04-15 오후 6 30 45" src="https://user-images.githubusercontent.com/81874493/163555022-aa62f5a9-fb1a-47e3-b07f-8198736e9d0c.png">
+
     ⇒ 따로 상태 유지된 정보가 사라져 결제를 처음부터 다시 시작해야함
     
     **#무상태** 
     
-    ![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/2708980b-9266-4d83-9676-6a9570f9ed16/Untitled.png)
-    
-    ![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/4632799d-63cb-4640-99ec-4faa7ac7ed78/Untitled.png)
-    
+    <img width="689" alt="스크린샷 2022-04-15 오후 6 30 55" src="https://user-images.githubusercontent.com/81874493/163555041-7fd4378b-6d52-453e-b586-dde59b0cb8a9.png">
+
     ⇒ 장애시에도 다른 서버로 대체 가능 왜? 무상태이기 때문
     
-    ![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/b4e2ff1e-ad22-42f5-9e2c-e9ca78160b88/Untitled.png)
-    
+    <img width="683" alt="스크린샷 2022-04-15 오후 6 31 01" src="https://user-images.githubusercontent.com/81874493/163555079-737b08d8-8ec8-4ea6-82d2-7c11f7adcc27.png">
+
     ⇒ 무상태 설계시 수평확장에 유리하게 작용할 수 있다.
     
     **마지막 stateless의 한계**
     
-    ![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/4f49f64e-a588-4e18-93bc-163fc2745762/Untitled.png)
-    
+    <img width="416" alt="스크린샷 2022-04-15 오후 6 31 05" src="https://user-images.githubusercontent.com/81874493/163555104-c5cd3a92-da0a-4927-93cb-dabeb0c0eda8.png">
+
     ⇒ **웹 애플리케이션을 설계할 때에는 최대한 무상태로 설계한다**
     
     ⇒ **상태 유지는 어쩔 수 없는 경우(로그인)만 최소한으로 사용한다.**
@@ -369,16 +365,16 @@
     
     #1
     
-    ![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/46451b0b-856f-4dd4-9e91-2c079f762b17/Untitled.png)
-    
+    <img width="519" alt="스크린샷 2022-04-15 오후 6 31 16" src="https://user-images.githubusercontent.com/81874493/163555144-24b516e0-1b6e-4a2d-98fc-0aac166227fa.png">
+
     #2
     
-    ![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/afdc3a9f-8fb7-4703-9b27-dd8667dbcc15/Untitled.png)
-    
+    <img width="486" alt="스크린샷 2022-04-15 오후 6 31 18" src="https://user-images.githubusercontent.com/81874493/163555161-6ecd3b49-dee7-49f0-a5e5-7c73479d936a.png">
+
     #3
     
-    ![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/edb52791-4099-42d1-bc32-7257de00b973/Untitled.png)
-    
+    <img width="667" alt="스크린샷 2022-04-15 오후 6 31 22" src="https://user-images.githubusercontent.com/81874493/163555188-c495d3f9-f4c7-46a2-8cff-47e0b8a01b8f.png">
+
     ⇒위 그림과 같이  클라이언트는 서버와 연결이 유지되어 있음
     
     ⇒ 연결을 유지하는 서버의 자원은 계속 소모 되고 있다.
@@ -394,12 +390,12 @@
     
     #1
     
-    ![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/452a1b50-f2d1-4e96-8f2f-a4aba722d802/Untitled.png)
-    
+    <img width="484" alt="스크린샷 2022-04-15 오후 6 31 28" src="https://user-images.githubusercontent.com/81874493/163555216-a1eb94de-387b-440d-93bf-d05f33ef59c3.png">
+
     #2
     
-    ![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/455615ee-e58b-4755-9066-e32dd96a28cb/Untitled.png)
-    
+    <img width="475" alt="스크린샷 2022-04-15 오후 6 31 31" src="https://user-images.githubusercontent.com/81874493/163555223-8f8eed69-4f10-4dc7-b0d0-8f86707588e4.png">
+
     ⇒ 위 그림은 요청이 올때 연결하고 응답이 완료되면 연결을 끊는다.
     
     장점)
@@ -433,18 +429,18 @@
     
     **<초기>**
     
-    ![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/2fc2506c-eb69-431e-98f2-329b7cf1a3f6/Untitled.png)
-    
+    <img width="485" alt="스크린샷 2022-04-15 오후 6 31 37" src="https://user-images.githubusercontent.com/81874493/163555249-dec45265-4f3f-4ba7-9519-e16ee0031343.png">
+
     **<지속 연결 사용>**
     
-    ![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/7209064c-8927-481d-a01d-ce18b64e69ab/Untitled.png)
-    
+    <img width="519" alt="스크린샷 2022-04-15 오후 6 31 43" src="https://user-images.githubusercontent.com/81874493/163555259-2a090e59-3dcd-47aa-9a39-983f34a3e064.png">
+
     ⇒ 내부 매커니즘에 따라 웬만한 HTML 페이지 하나를 다 받을 때까지는 지속연결을 유지 후 종료
     
     참고)
     
-    ![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/badc1ea8-7e3c-4185-ad60-a9353bcf2f1f/Untitled.png)
-    
+    <img width="464" alt="스크린샷 2022-04-15 오후 6 31 47" src="https://user-images.githubusercontent.com/81874493/163555325-b0fcbe7c-f406-4c5a-a822-af7c52f24f2b.png">
+
     ⇒ 수만면이 동시 접속시 대용량 트패픽
     
     ⇒ 이런경우 비연결성 소용이 없다.
@@ -459,34 +455,35 @@
     
     <HTTP 요청 메세지 구조>
     
-    ![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/9f1605f5-6b29-45c7-b267-193b5e88763b/Untitled.png)
-    
+    <img width="263" alt="스크린샷 2022-04-15 오후 6 31 53" src="https://user-images.githubusercontent.com/81874493/163555348-defbda02-17d7-452a-ae8b-800064311cfd.png">
+
     <HTTP 응답 메세지 구조>
     
-    ![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/9d13dd18-4ebd-426f-a560-5eb31e0fa571/Untitled.png)
-    
+    <img width="274" alt="스크린샷 2022-04-15 오후 6 31 56" src="https://user-images.githubusercontent.com/81874493/163555364-893ced82-ff24-496a-aea2-167243cc71bc.png">
+
     ⇒ 구조가 약간 다르다 
     
     ⇒ 형식적 구조를 확인해 보자
     
-    ![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/269d1599-420e-439f-a323-bb3bfbf2cfbc/Untitled.png)
-    
-    ![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/7b9c1590-94a2-4bfe-b223-543f5c8cdcd1/Untitled.png)
-    
+    <img width="518" alt="스크린샷 2022-04-15 오후 6 32 02" src="https://user-images.githubusercontent.com/81874493/163555388-c3c48a7d-771d-4b39-b1d6-1b9e0d60d361.png">
+
+    <img width="702" alt="스크린샷 2022-04-15 오후 6 32 08" src="https://user-images.githubusercontent.com/81874493/163555407-6b97d913-bc2f-4d79-b085-6c44d852ba8a.png">
+
     <요청>
     
-    ![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/3a85aaca-73a5-4aeb-8e56-99d05b1ab5e0/Untitled.png)
-    
+    <img width="694" alt="스크린샷 2022-04-15 오후 6 32 15" src="https://user-images.githubusercontent.com/81874493/163555425-474c3f5d-50c6-406a-b2f9-a394b6855e4f.png">
+
     <응답>
     
-    ![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/620955aa-08eb-49a6-9b67-a142cd2e5ddb/Untitled.png)
-    
+    <img width="665" alt="스크린샷 2022-04-15 오후 6 32 19" src="https://user-images.githubusercontent.com/81874493/163555438-7c56b897-5afe-49f8-9c9c-33648c433c6f.png">
+
     **이제 세세히 하나씩 확인해 보자**
     
     - 요청 메세지
         
-        ![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/a9dc523e-e408-4d57-b3cc-ad6d98938688/Untitled.png)
         
+        <img width="511" alt="스크린샷 2022-04-15 오후 6 32 24" src="https://user-images.githubusercontent.com/81874493/163555633-bd5e171e-e1da-4af9-bd3a-b81baf7e85a8.png">
+
         - **시작 라인(START-LINE)**
             
             **종류** : **(request-line(요청) / status-line(응답))**
@@ -533,8 +530,8 @@
             
         - 응답 메세지
         
-        ![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/26e4b631-556c-41c1-8997-502d1b026de4/Untitled.png)
-        
+        <img width="513" alt="스크린샷 2022-04-15 오후 6 32 31" src="https://user-images.githubusercontent.com/81874493/163555666-4686cabe-b107-49af-b243-1232cc8f9df4.png">
+
         - **시작 라인(START-LINE)**
         
         **종류** :  **(request-line(요청) / status-line(응답))**
@@ -579,14 +576,14 @@
         
         field-name ":" OWS field-value OWS (OWS : 띄어쓰기 허용)
         
-        ![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/51931375-ed53-4711-8cae-09c1f0bfd6f9/Untitled.png)
-        
+        <img width="657" alt="스크린샷 2022-04-15 오후 6 32 38" src="https://user-images.githubusercontent.com/81874493/163555696-0fc69e0f-cfe6-4e1a-ab6a-fb31159f4373.png">
+
         ⇒Host,Content-Type등 이부분은 대소문자 구분 안함
         
         ⇒ value값 즉 [www.google.com](http://www.google.com) 이부분은 대소문자 구분함
         
-        ![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/01cb0778-6e03-45c8-9171-3d5e3539c494/Untitled.png)
-        
+        <img width="656" alt="스크린샷 2022-04-15 오후 6 32 44" src="https://user-images.githubusercontent.com/81874493/163555720-a6cb9686-779e-446a-99cb-ee9d1dd845b6.png">
+
         ⇒ 즉 **헤더에는 메세지 body 부분 빼고 필요한 모든 메타데이터 정보가 다 들어있는 곳**
         
     
@@ -594,8 +591,8 @@
     
     - **HTTP 메세지 바디**
         
-        ![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/445c1ddc-fb55-4517-93c4-574254e74680/Untitled.png)
-        
+        <img width="651" alt="스크린샷 2022-04-15 오후 6 32 49" src="https://user-images.githubusercontent.com/81874493/163555734-3cfcc745-4657-4856-902d-2a6130d304ca.png">
+
     
     =============================================
     
