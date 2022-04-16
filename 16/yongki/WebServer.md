@@ -83,26 +83,32 @@
   <th colspan="2">포트 번호</th>
 </tr>
 <tr>
-  <td>이전 이해한 정의</td>
-  <td>재정립한 정의</td>
+  <td align="center">이전 이해한 정의</td>
+  <td align="center">재정립한 정의</td>
 </tr>
 <tr>
   <td>
 <p>
 
-    포트 번호는 소켓 한개를 담당
+클라이언트와 서버 구분 없이 포트 번호는
 
-    포트 번호당 PC의 프로그램 한개를 담당
+    소켓 한개를 담당
+
+    이는 PC의 프로그램 한개를 담당
 </p>
   </td>
   <td>
 <p>
     
-    클라이언트 측에서는 미사용 값당 소켓 한개를 담당하며,
-
-    서버 측에서는 PC의 프로그램을 식별하는 요도며,
+클라이언트 측의 포트 번호는
     
-    프로토콜 스택이 포트 번호를 식별해 접속하는 클라이언트 별로 다른 소켓을 부여한다.
+    소켓 한개를 담당
+
+서버 측의 포트 번호는
+
+    PC의 프로그램을 식별하는 용도며,
+    
+    프로토콜 스택이 포트 번호를 식별해 접속하는 클라이언트 별로 다른 소켓을 부여
 </p>
   </td>
 </tr>
@@ -133,34 +139,33 @@
 
 학부 수업에서 해본 비동기 방식은 "*대리자를 사용한 비동기 프로그래밍*"이다.
 
+대리자를 사용하면 비동기 방식으로 동기 메서드를 호출할 수 있다.
+
+> 이 부분이 대리자를 사용한 이유였는지 확실히 알 수 없다. 
+
+또한, 스레드풀의 스레드를 사용하는 방식이다.
+
+    스레드 개수에 제한을 둬서 한번에 만들어놓고, 
+
+    비동기 작업이 생길 때마다 스레드 풀에서 스레드를 꺼내와 사용하고 작업이 끝나면 소멸하지 않고 스레드풀에 반납하는 방식이다.
+
+    이는, 스레드의 생성, 소멸 비용을 최소화할 수 있다.
+
 <div align="center">
 <img width="60%" src="assets/apm-delegate.drawio.svg"/>
 </div>
 
-대리자를 사용하면 비동기 방식으로 동기 메서드를 호출할 수 있다.
+동작과정은 이렇다.
 
-스레드풀의 스레드를 사용하는 방식이다.
+1. 클라이언트로 I/O 요청이 동시 발생시, `BeginAccept()`를 호출하여 백그라운드의 스레드풀에게 작업을 시작하게 한다.
 
-    스레드 개수에 제한을 둬서 한번에 만들어놓고, 
+2. 백그라운드의 스레드풀은 `IAsyncResult 객체`를 즉시 리턴함으로써, 애플리케이션은 다음 I/O를 바로 받을 수 있다.
 
-    비동기 작업이 생길 때마다 풀에서 스레드를 꺼내와 사용하고 작업이 끝나면 소멸하지 않고 스레드풀에 반납하는 방식이다.
+3. `IAsyncResult 객체` 인스턴스는 소켓 한개의 비동기 작업의 상태를 알고 있으며,
 
-    이는, 스레드의 생성, 소멸 비용을 최소화할 수 있다.
+    비동기 작업의 결과값은 `EndAccpet()`에 `IAsyncResult`인스턴스를 매개변수로 담아 호출함으로써 받아올 수 있다.
 
-I/O 발생시, `BeginInvoke()`를 호출하여 백그라운드의 스레드풀에게 작업을 시작하게 한다.
-
-백그라운드의 스레드풀은 `IAsyncResult 객체`를 즉시 리턴하고 다음 I/O를 바로 받을 수 있다.
-
-`IAsyncResult 객체`는 어떤 스레드를 가리키는 지 알 수 있게 한다.
-
-`IAsyncResult 객체`의 인스턴스는 비동기 작업의 상태를 알고 있으며,
-
-비동기 작업의 결과값은 `EndInvoke()`에 매개변수를 담아 호출함으로써 받아올 수 있다.
-
-> 🤔 실제 사용한 `BeginAccept()`와 `EndAccept()`를 같은 맥락으로 볼 수 있는가
-
-> 🤔 ThreadID의 정확한 의미, 
-> 실제 제한된 스레드의 식별자라면, A 스레드로 작업한 b, e 작업의 응답만 가져올 수 있는것인지
+4. 완료된 작업 순서대로 클라이언트에게 I/O 요청에 대한 응답 메세지를 준다.
 
 ##  HTTP 버전별 특징
 
@@ -183,12 +188,12 @@ I/O 발생시, `BeginInvoke()`를 호출하여 백그라운드의 스레드풀�
   <tr>
     <td rowspan="3">특징</td>
     <td>요청별 응답 순서</td>
-    <td colspan="3"><center>순차</center></td>    
-    <td colspan="2"><center>랜덤</center></td>    
+    <td colspan="3" align="center">순차</td>    
+    <td colspan="2" align="center">랜덤</td>    
   </tr>
   <tr>
     <td>요청-응답</td>
-    <td colspan="2">핑퐁</td>    
+    <td colspan="2" align="center">핑퐁</td>    
     <td>파이프라이닝</td>
     <td>멀티플렉싱 스트림</td>
     <td>서버 푸시</td>
@@ -207,7 +212,8 @@ I/O 발생시, `BeginInvoke()`를 호출하여 백그라운드의 스레드풀�
 </table>
 </div>
 
-> 🤔 윈도우 제어 방식의 패킷 최소화는 몇 버전부터 지원하나
+> 윈도우 제어 방식의 패킷 최소화도 병목현상을 처리하지 못했기 때문에,
+  1.x버전에서만 지원한다고 생각한다.
 
 ### 요청-응답 상세
 
@@ -268,6 +274,8 @@ I/O 발생시, `BeginInvoke()`를 호출하여 백그라운드의 스레드풀�
 [비동기 델리게이트](https://www.csharpstudy.com/Threads/async-delegate.aspx) ━ *예제로 배우는 C# 프로그래밍*
 
 [동기 메서드를 비동기 방식으로 호출](https://docs.microsoft.com/ko-kr/dotnet/standard/asynchronous-programming-patterns/calling-synchronous-methods-asynchronously#defining-the-test-method-and-asynchronous-delegate) ━ *MicrosoftDocs*
+
+[비동기 서버 소켓 사용](https://docs.microsoft.com/ko-kr/dotnet/framework/network-programming/using-an-asynchronous-server-socket) ━ *MicrosoftDocs*
 
 [HTTP 버전별 그림자료](https://github.com/cs-study-org/cs-study/blob/master/05/JiYongKim/CS_terminology.md) ━ *Github*
 
