@@ -8,33 +8,33 @@
 <table>
       <tr>
             <th colspan="2">1-8주차</th>
-            <th colspan="2">9-16주차</th>
+            <th colspan="2">9-19주차</th>
             <th>-</th>
       </tr>
       <tr>
             <td>
                   <a href="http://www.yes24.com/Product/Goods/98997716">
-                        <img src="http://image.yes24.com/goods/98997716/M">
+                        <img src="assets/images/computer-structure.jpg">
                   </a>
             </td> 
             <td>
             <a href="http://www.yes24.com/Product/Goods/31950404">
-                  <img src="http://image.yes24.com/goods/31950404/M">
+                  <img src="assets/images/computer-systems.jpg">
             </a>
             </td> 
             <td>
             <a href="http://www.yes24.com/Product/Goods/90640081">
-                  <img src="http://image.yes24.com/goods/90640081/M">
+                  <img src="assets/images/network(1).jpg">
             </a>
             </td> 
             <td>
             <a href="http://www.yes24.com/Product/Goods/45543957">
-                  <img src="http://image.yes24.com/goods/45543957/M">
+                  <img src="assets/images/network(2).jpg">
             </a>
             </td> 
             <td>
             <a href="http://www.yes24.com/Product/Goods/27893960">
-                  <img src="http://image.yes24.com/goods/27893960/M">
+                  <img src="assets/images/database.jpg">
             </a>
             </td> 
       </tr>
