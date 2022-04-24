@@ -41,6 +41,112 @@
 </table>
 </div>
 
+<details>
+<summary><b>주차별 주제</b></summary>
+<div align="center">
+<table>
+      <tr>
+            <th colspan="2">컴퓨터 구조</th>
+            <th colspan="2">네트워크</th>
+      </tr>
+      <tr>
+            <td>
+                  <a href="https://github.com/cs-study-org/cs-study/tree/master/01">1주차</a>
+            </td>
+            <td>컴퓨터 내부의 언어체계</td>
+            <td>
+                  <a href="https://github.com/cs-study-org/cs-study/tree/master/09">9주차</a>
+            </td>
+            <td>웹 브라우저</td>
+      </tr>
+      <tr>
+            <td>
+                  <a href="https://github.com/cs-study-org/cs-study/tree/master/02">2주차</a>
+            </td>
+            <td>전자 회로의 조합 논리</td>
+            <td>
+                  <a href="https://github.com/cs-study-org/cs-study/tree/master/10">10주차</a>
+            </td>
+            <td>프로토콜 스택 Part 1</td>
+      </tr>
+      <tr>
+            <td>
+                  <a href="https://github.com/cs-study-org/cs-study/tree/master/03">3주차</a>
+            </td>
+            <td>메모리 사용과 관리</td>
+            <td>
+                  <a href="https://github.com/cs-study-org/cs-study/tree/master/11">11주차</a>
+            </td>
+            <td>프로토콜 스택 Part 2</td>
+      </tr>
+      <tr>
+            <td>
+                  <a href="https://github.com/cs-study-org/cs-study/tree/master/04">4주차</a>
+            </td>
+            <td>입출력과 네트워킹</td>
+            <td>
+                  <a href="https://github.com/cs-study-org/cs-study/tree/master/12">12주차</a>
+            </td>
+            <td>LAN 어댑터</td>
+      </tr>
+      <tr>
+            <td>
+                  <a href="https://github.com/cs-study-org/cs-study/tree/master/05">5주차</a>
+            </td>
+            <td>데이터 구조와 처리</td>
+            <td>
+                  <a href="https://github.com/cs-study-org/cs-study/tree/master/13">13주차</a>
+            </td>
+            <td>LAN 기기</td>
+      </tr>
+      <tr>
+            <td>
+                  <a href="https://github.com/cs-study-org/cs-study/tree/master/06">6주차</a>
+            </td>
+            <td>프로그래밍 언어 처리</td>
+            <td>
+                  <a href="https://github.com/cs-study-org/cs-study/tree/master/14">14주차</a>
+            </td>
+            <td>방화벽</td>
+      </tr>
+      <tr>
+            <td>
+                  <a href="https://github.com/cs-study-org/cs-study/tree/master/07">7주차</a>
+            </td>
+            <td>시스템 프로그래밍</td>
+            <td>
+                  <a href="https://github.com/cs-study-org/cs-study/tree/master/15">15주차</a>
+            </td>
+            <td>부하 분산</td>
+      </tr>
+      <tr>
+            <td>
+                  <a href="https://github.com/cs-study-org/cs-study/tree/master/08">8주차</a>
+            </td>
+            <td>병렬성과 비동기성</td>
+            <td>
+                  <a href="https://github.com/cs-study-org/cs-study/tree/master/16">16주차</a>
+            </td>
+            <td>웹 서버, HTTP 버전별 특징</td>
+      </tr>
+      <tr>
+            <td align="center" rowspan="3" colspan="2">-</td>  
+            <td>
+                  <a href="https://github.com/cs-study-org/cs-study/tree/master/17">17-18주차</a>
+            </td>
+            <td>TCP vs UDP</td>
+      </tr>      
+      <tr>            
+            <td>
+                  <a href="https://github.com/cs-study-org/cs-study/tree/master/19">19주차</a>
+            </td>
+            <td>TCP 흐름제어, 혼잡제어</td>
+      </tr>
+</table>      
+</div>
+
+</details>
+
 ## 규칙
 1. 스터디원들은 PR이 올라오면 바로바로 피드백 답글을 남긴다.
 2. 매주 스터디원들이 돌아가면서 한명이 발표자료 1개와 발표를 맡는다.
