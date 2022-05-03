@@ -132,10 +132,16 @@
       <tr>
             <td align="center" rowspan="3" colspan="2">-</td>  
             <td>
-                  <a href="https://github.com/cs-study-org/cs-study/tree/master/17">17-18주차</a>
+                  <a href="https://github.com/cs-study-org/cs-study/tree/master/17">17주차</a>
             </td>
-            <td>TCP vs UDP</td>
+            <td>트랜스포트 계층 개요</td>
       </tr>      
+      <tr>            
+            <td>
+                  <a href="https://github.com/cs-study-org/cs-study/tree/master/18">18주차</a>
+            </td>
+            <td>신뢰성 있는 데이터 전송 및 TCP</td>
+      </tr>
       <tr>            
             <td>
                   <a href="https://github.com/cs-study-org/cs-study/tree/master/19">19주차</a>
