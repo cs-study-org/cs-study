@@ -140,13 +140,13 @@
             <td>
                   <a href="https://github.com/cs-study-org/cs-study/tree/master/18">18주차</a>
             </td>
-            <td>신뢰성 있는 데이터 전송 및 TCP</td>
+            <td>TCP 흐름제어 및 오류제어</td>
       </tr>
       <tr>            
             <td>
                   <a href="https://github.com/cs-study-org/cs-study/tree/master/19">19주차</a>
             </td>
-            <td>TCP 흐름제어, 혼잡제어</td>
+            <td>TCP 혼잡제어</td>
       </tr>
 </table>      
 </div>
