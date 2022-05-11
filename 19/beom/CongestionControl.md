@@ -104,6 +104,8 @@ TCP Tahoe는 처음에는 Slow Start를 사용하다가 임계점에 도달하�
 
 TCP Reno는 TCP Tahoe와 비슷하지만 3 ACK Duplicate와 timeout 대처하는 방법이 다른다.
 
+이유는 3 ACK Duplicate와 timeout을 비교했을 때 3ACK Duplicate는 timeout에 비해 큰 혼잡이 아니라는 가정하에 가볍게 대처하는 방식이다.
+
 - 처음 Window size는 1 MSS이다.
 - 임계점까지는 Slow Start를 사용한다.(window size가 2배씩 증가)
 - 임계점 부터는 AIMD방식을 사용한다.(window size가 1씩 증가)
