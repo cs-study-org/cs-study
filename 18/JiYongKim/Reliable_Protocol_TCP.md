@@ -53,8 +53,8 @@
         
         <TCP Segment(TCP Header + Data Stream(일부분, as chunk))의 Header> 
         
-        ![https://steemitimages.com/640x0/https://github.com/znxkznxk1030/cs_study/raw/master/tcp_header.png](https://steemitimages.com/640x0/https://github.com/znxkznxk1030/cs_study/raw/master/tcp_header.png)
-        
+        <img width="609" alt="스크린샷 2022-05-12 오후 4 55 28" src="https://user-images.githubusercontent.com/81874493/168023076-4027182e-87ca-473d-95d1-3303b43730ec.png">
+
         위 TCP Header에서 오류를 체크하는 부분은 128비트 부터 시작하는 Checksum부분이다.
         
         이 Checksum Error Detecting을 통해 수신자는 송신자가 보낸 데이터가 제대로 보내졌는지 확인 할수 있으며 
@@ -75,8 +75,8 @@
 
     - **순서가 뒤바뀐 TCP Segment는 어떻게 처리하지?**
         
-        ![https://steemitimages.com/640x0/https://github.com/znxkznxk1030/cs_study/raw/master/tcp_header.png](https://steemitimages.com/640x0/https://github.com/znxkznxk1030/cs_study/raw/master/tcp_header.png)
-        
+        <img width="609" alt="스크린샷 2022-05-12 오후 4 55 28" src="https://user-images.githubusercontent.com/81874493/168023108-86a42790-79a0-49f7-bd77-00aebd5f39e0.png">
+
         순서가 뒤바뀐 TCP도 역시 전혀 문제가 되지 않는다.
         
         >⇒  왜냐하면 Sequence number가 있기 때문에 수신자 측에서 이러한 Sequence number순서대로 데이터 청크 (data chunks)들을 잘 붙여주기만 하면 되기 때문이다.
