@@ -106,6 +106,10 @@ TCP Reno는 TCP Tahoe와 비슷하지만 3 ACK Duplicate와 timeout 대처하는
 
 이유는 3 ACK Duplicate와 timeout을 비교했을 때 3ACK Duplicate는 timeout에 비해 큰 혼잡이 아니라는 가정하에 가볍게 대처하는 방식이다.
 
+- timeout : 시간내에 패킷응답이 아예 오지 않는 것
+- 3 ACK duplicate : timeout이 발생하기 이전에 중복 ACK이 3개 온다는 의미로 패킷의 전송은 잘 이루어 지고 있다는 의미
+
+**동작 방식**
 - 처음 Window size는 1 MSS이다.
 - 임계점까지는 Slow Start를 사용한다.(window size가 2배씩 증가)
 - 임계점 부터는 AIMD방식을 사용한다.(window size가 1씩 증가)
