@@ -120,13 +120,13 @@
 
 <제1 정규형이 아닌 테이블>
 
-![스크린샷 2022-05-27 오후 4.23.18.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/926930d0-5d42-438a-9cbb-196abd846e75/스크린샷_2022-05-27_오후_4.23.18.png)
+<img width="293" alt="스크린샷 2022-05-27 오후 5 26 04" src="https://user-images.githubusercontent.com/81874493/170661621-e43d9f4d-6099-4be8-97a4-33c627df88a3.png">
 
 <br>
 
 <제 1 정규화 테이블>
 
-![스크린샷 2022-05-27 오후 4.24.04.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/012ce795-790a-4905-b9b8-e660d9df3894/스크린샷_2022-05-27_오후_4.24.04.png)
+<img width="272" alt="스크린샷 2022-05-27 오후 5 26 08" src="https://user-images.githubusercontent.com/81874493/170661647-41b2c0c0-d3c7-4af8-8608-bf26c45cc989.png">
 
 <br>
 
@@ -140,7 +140,7 @@
 
 <제 2 정규화가 되지 않은 테이블>
 
-![스크린샷 2022-05-27 오후 4.25.23.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/fe80441c-bd48-4b11-b39d-a3e73633b1f5/스크린샷_2022-05-27_오후_4.25.23.png)
+<img width="721" alt="스크린샷 2022-05-27 오후 5 26 12" src="https://user-images.githubusercontent.com/81874493/170661665-8d2fab9b-e15e-4edf-a86b-73d7eda94331.png">
 
 이 테이블에서 기본키는 (학생번호, 강좌이름)으로 복합키이며 (학생번호, 강좌이름)인 기본키는 성적을 결정하고 있다.
 
@@ -151,7 +151,7 @@
 
 <제 2 정규화 테이블>
 
-![스크린샷 2022-05-27 오후 4.25.46.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/e16ed84e-70cb-492d-b607-6d5590274517/스크린샷_2022-05-27_오후_4.25.46.png)
+<img width="703" alt="스크린샷 2022-05-27 오후 5 26 17" src="https://user-images.githubusercontent.com/81874493/170661679-48f26ddb-51eb-4754-96c0-8712b8f22f58.png">
 
 <br>
 
@@ -165,8 +165,11 @@
 
 <제 3 정규화가 되지 않은 테이블 >
 
-![스크린샷 2022-05-27 오후 4.27.18.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/4bd597bb-837a-4209-843b-458119d1976b/스크린샷_2022-05-27_오후_4.27.18.png)
+<img width="698" alt="스크린샷 2022-05-27 오후 5 26 21" src="https://user-images.githubusercontent.com/81874493/170661703-3683427f-9f7a-4827-afec-6165c1828f95.png">
 
 <br>
 
 <제 3 정규화 테이블>
+
+<img width="674" alt="스크린샷 2022-05-27 오후 5 26 28" src="https://user-images.githubusercontent.com/81874493/170661754-5a3fd3d9-3e3e-4527-9e14-0f5fb7ffa662.png">
+
