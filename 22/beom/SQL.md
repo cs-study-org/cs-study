@@ -126,9 +126,10 @@ datetime은 query할 때 날짜 계산을 더하기 빼기 등 **산술식**으�
 - CROSS JOIN
 - SELF JOIN
 
-**[ INNER JOIN ]**
+**[ INNER JOIN ]**</br>
 ![이너 조인](assets/0.png)
-교집합으로, 기준 테이블과 join 테이블의 중복된 값을 보여준다.
+
+</br>교집합으로, 기준 테이블과 join 테이블의 중복된 값을 보여준다.</br>
 
 ```sql
 SELECT
@@ -137,9 +138,10 @@ FROM EX_TABLE A
 INNER JOIN JOIN_TABLE B ON A.NO_EMP = B.NO_EMP
 ```
 
-**[ LEFT OUTER JOIN ]**
+**[ LEFT OUTER JOIN ]**</br>
 ![레프트 아우터 조인](assets/1.png)
-기준 테이블값과 조인테이블과 중복된 값을 보여준다.
+
+</br>기준 테이블값과 조인테이블과 중복된 값을 보여준다.</br>
 
 왼쪽 테이블 기준으로 JOIN을 한다고 생각하면 편하다.
 
@@ -150,9 +152,10 @@ FROM EX_TABLE A
 LEFT OUTER JOIN JOIN_TABLE B ON A.NO_EMP = B.NO_EMP
 ```
 
-**[ RIGHT OUTER JOIN ]**
+**[ RIGHT OUTER JOIN ]**</br>
 ![라이트 아우터 조인](assets/2.png)
-LEFT OUTER JOIN과는 반대로 오른쪽 테이블 기준으로 JOIN하는 것이다.
+
+</br>LEFT OUTER JOIN과는 반대로 오른쪽 테이블 기준으로 JOIN하는 것이다.</br>
 
 ```sql
 SELECT
@@ -161,9 +164,10 @@ FROM EX_TABLE A
 RIGHT OUTER JOIN JOIN_TABLE B ON A.NO_EMP = B.NO_EMP
 ```
 
-**[ FULL OUTER JOIN ]**
+**[ FULL OUTER JOIN ]**</br>
 ![풀 아우터 조인](assets/3.png)
-합집합을 말한다. A와 B 테이블의 모든 데이터가 검색된다.
+
+</br>합집합을 말한다. A와 B 테이블의 모든 데이터가 검색된다.</br>
 
 ```sql
 SELECT
@@ -172,11 +176,12 @@ FROM EX_TABLE A
 FULL OUTER JOIN JOIN_TABLE B ON A.NO_EMP = B.NO_EMP
 ```
 
-**[ CROSS JOIN ]**
-![크로스 조인](assets/4.png)
-모든 경우의 수를 전부 표현해주는 방식
+**[ CROSS JOIN ]**</br>
 
-A가 3개, B가 4개면 총 3*4 = 12개의 데이터가 검색된다.
+![크로스 조인](assets/4.png)
+</br>모든 경우의 수를 전부 표현해주는 방식
+
+A가 3개, B가 4개면 총 3*4 = 12개의 데이터가 검색된다.</br>
 
 ```sql
 SELECT
@@ -185,11 +190,12 @@ FROM EX_TABLE A
 CROSS JOIN JOIN_TABLE B
 ```
 
-**[ SELF JOIN ]**
+**[ SELF JOIN ]**</br>
 ![셀프 조인](assets/5.png)
-자기자신과 자기자신을 조인하는 것
 
-하나의 테이블을 여러번 복사해서 조인한다고 생각하면 편하다.
+</br>자기자신과 자기자신을 조인하는 것
+
+하나의 테이블을 여러번 복사해서 조인한다고 생각하면 편하다.</br>
 
 ```sql
 SELECT
