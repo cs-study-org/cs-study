@@ -13,7 +13,7 @@
 
 ## sql문 조작
 
-![스크린샷 2022-06-01 오후 5.22.32.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/f209e27f-0839-4b70-bdc5-e62de3c7f18f/스크린샷_2022-06-01_오후_5.22.32.png)
+<img width="703" alt="스크린샷 2022-06-02 오후 2 38 18" src="https://user-images.githubusercontent.com/81874493/171560436-a69312b9-e9d4-422d-bbc0-9b64c9c6b7a7.png">
 
 명령어 
 
@@ -32,8 +32,8 @@
     
     - Create 형식 지정자
         
-        ![스크린샷 2022-06-01 오후 5.21.42.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/2b108075-a9e6-43a3-b5da-be4db5ddc4f0/스크린샷_2022-06-01_오후_5.21.42.png)
-        
+        <img width="635" alt="스크린샷 2022-06-02 오후 2 38 27" src="https://user-images.githubusercontent.com/81874493/171560451-13faec3b-7306-430c-b7bb-2104380f43d9.png">
+
 - DROP
     - DROP DATABASE 데이터베이스이름
     - DROP TABLE 테이블이름
@@ -128,15 +128,15 @@ JOIN 이란 두개 이상의 테이블을 결합하여 데이터를 검색하�
 - Inner join
     - 두 테이블의 교집합으로 공통된 값을 출력
         
-        ![스크린샷 2022-06-02 오후 2.19.18.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/d7a5c976-b09c-4cd8-af73-1eed3185fe1e/스크린샷_2022-06-02_오후_2.19.18.png)
-        
+        <img width="657" alt="스크린샷 2022-06-02 오후 2 38 34" src="https://user-images.githubusercontent.com/81874493/171560469-15e1a559-4617-4012-a5d7-6d955955e3f2.png">
+
         <br>
 
 - full outer join
     - 두 테이블의 합집합으로 공통된 값은 공통 값 끼리 묶여 출력되며, 공통되지 않은 부분도 함께 출력
         
-        ![스크린샷 2022-06-02 오후 2.20.43.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/ede8d28a-7cbc-432a-b14b-dbbd58e64394/스크린샷_2022-06-02_오후_2.20.43.png)
-        
+        <img width="647" alt="스크린샷 2022-06-02 오후 2 38 40" src="https://user-images.githubusercontent.com/81874493/171560479-5b9018e5-52cb-467d-800f-6238f3bc72fb.png">
+
         <br>
 
 - left outer join
@@ -144,8 +144,8 @@ JOIN 이란 두개 이상의 테이블을 결합하여 데이터를 검색하�
         
         왼쪽 테이블의 값은 모두 다 나오지만 오른 쪽 테이블의 값은 매칭이 되는게 없으면 출력 되지 않는다.
         
-        ![스크린샷 2022-06-02 오후 2.21.56.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/08543a2e-e466-4b6f-b0cc-d9f39dd45907/스크린샷_2022-06-02_오후_2.21.56.png)
-        
+        <img width="643" alt="스크린샷 2022-06-02 오후 2 38 45" src="https://user-images.githubusercontent.com/81874493/171560490-88f94863-e0a2-4aa9-b7b4-8f50ebe3b75f.png">
+
         <br>
 
 - right outer join
@@ -153,8 +153,8 @@ JOIN 이란 두개 이상의 테이블을 결합하여 데이터를 검색하�
         
         오른쪽 테이블의 값은 모두 다 나오지만 왼쪽 테이블의 값은 매칭이 되는게 없으면 출력 되지 않는다.
         
-        ![스크린샷 2022-06-02 오후 2.22.52.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/7501fec6-03ec-4991-98be-981591f0914d/스크린샷_2022-06-02_오후_2.22.52.png)
-        
+        <img width="661" alt="스크린샷 2022-06-02 오후 2 38 49" src="https://user-images.githubusercontent.com/81874493/171560501-e64b0d5d-b8f1-40fb-a932-3e730ca50509.png">
+
 
 <br>
 
