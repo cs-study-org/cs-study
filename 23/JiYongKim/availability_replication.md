@@ -169,16 +169,16 @@ MySQL 의 빈로그 혹은 바이너리 로그는 MySQL 서버 인스턴스의 �
 
 - 장애 발생시 서비스 유지 및 백업
     
-    ![스크린샷 2022-06-08 오후 7.08.13.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/57126a13-c571-4c72-bfb8-676487bea5c3/스크린샷_2022-06-08_오후_7.08.13.png)
-    
+    <img width="482" alt="스크린샷 2022-06-08 오후 9 07 30" src="https://user-images.githubusercontent.com/81874493/172612446-dd7919fc-de63-478a-8f34-c147918efb65.png">
+
     Master 서버에 DBMS의 등록/수정/업데이터가 생기는 즉시 Slave 서버의 변경된 데이터를 전달하여 데이터의 백업을 할수 있으며, 또한 Master 서버의 장애가 생겼을 경우 Slave 서버로 변경하여 사용할수 있다.
     
     <br>
 
 - DBMS의 부화분산
     
-    ![스크린샷 2022-06-08 오후 7.09.20.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/bc55df67-c80e-411a-8cc6-87810b39367b/스크린샷_2022-06-08_오후_7.09.20.png)
-    
+    <img width="483" alt="스크린샷 2022-06-08 오후 9 07 36" src="https://user-images.githubusercontent.com/81874493/172612468-f28e5ed0-1c4d-4ff4-86f7-efc19b7c546e.png">
+
     사용자의 폭주로 인해 1대의 DB서버로 감당할수 없을때, MySQL 리플리케이션(Replication)을 이용하여 같은 DB 데이터를 여러대를 만들수 있기에 부하를 분산이 가능하다.
     
 
