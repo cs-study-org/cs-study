@@ -120,3 +120,4 @@ But! 단점이 존재한다.</br>
 ## 참고문헌
 [데이터베이스 온라인 백업](https://www.ibm.com/docs/ko/license-metric-tool?topic=database-backing-up-db2)
 
+[손상된 데이터베이스 복구](https://dataonair.or.kr/db-tech-reference/d-guide/dbms-2/?mod=document&uid=62487)
