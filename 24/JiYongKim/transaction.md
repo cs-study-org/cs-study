@@ -64,8 +64,8 @@
         - 내가 적은 쿼리문과 데이터를 최종적으로 데이터베이스에 반영하는 COMMIT과
         - 실패했을때 COMMINT 시점으로 다시 되돌아가는 ROLLBACK이 존재
         
-        ![스크린샷 2022-06-16 오전 4.29.37.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/5000c563-a029-466c-b5c9-988b4af5e38e/스크린샷_2022-06-16_오전_4.29.37.png)
-        
+        <img width="658" alt="스크린샷 2022-06-22 오후 3 56 06" src="https://user-images.githubusercontent.com/81874493/174964323-5891f591-c1c9-4d8a-877d-bad05f99af6e.png">
+
         1. 활동 : 트랜잭션이 실행 중에 있는 상태, 연산들이 정상적으로 실행 중인 상태
         2. 실패 : 트랜잭션이 실행에 오류가 발생하여 중단된 상태
         3. 철회 : 트랜잭션이 비정상적으로 종료되어 ROLLBACK 연산을 수행한 상태
@@ -78,8 +78,8 @@
             - COMMIT을 수행하면 하나의 트랜잭션 과정을 종료하는 것
             - COMMIT을 수행하면 이전 데이터가 완전히 UPDATE 된다.
             
-            ![스크린샷 2022-06-16 오전 4.30.46.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/88cb4e0b-6b88-4894-8076-90cc858808d9/스크린샷_2022-06-16_오전_4.30.46.png)
-            
+            <img width="624" alt="스크린샷 2022-06-22 오후 3 56 14" src="https://user-images.githubusercontent.com/81874493/174964334-a1a33231-1a73-4b26-93ed-6a72e16dd0d3.png">
+
             - 위 그림에서 첫번째 COMMIT후 그 뒤에 UPDATE 문으로 데이터를 갱신하고(3), DELETE문으로 데이터를 삭제하고(4), INSERT 문을 사용해 데이터를 삽입(5)한다.
                 
                 ⇒ 만약 이 모든 과정이 오류 없이 수행되었다면 지금까지 실행한 모든 작업(3,4,5)을 데이터베이스에 영구 저장하라는 명령으로 COMMIT을 수행한다.
@@ -90,8 +90,8 @@
                 
                 ⇒ 즉, 마지막 COMMIT을 완료한 시점으로 다시 돌아가 COMMIT하여 저장한 것만 복구한다.
                 
-                ![스크린샷 2022-06-16 오전 4.33.36.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/96377175-6e98-4ca3-9039-51862aff89bf/스크린샷_2022-06-16_오전_4.33.36.png)
-                
+                <img width="590" alt="스크린샷 2022-06-22 오후 3 56 19" src="https://user-images.githubusercontent.com/81874493/174964352-5bdb5d6a-912d-4c83-90be-c8690971e4ed.png">
+
             - 위 그림에서 ROLLBACK 명령은 마지막으로 수행한 COMMIT 명령까지만 청상처리(1,2)된 상태로 유지한다.
             - 그 이후에 수행했던 모든 DML 명령어 작업(3,4,5)들을 취소시켜 이전 상태로 원상 복귀 시킨다.
             - 트랜잭션은 이렇든 ALL-OR-Nothing 방식으로 DML 명령어들을 처리한다.
@@ -113,8 +113,8 @@
                 
                 ## redo.log
                 
-                ![스크린샷 2022-06-16 오전 4.58.40.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/9d75d8da-7402-4733-95c2-7a529825d37f/스크린샷_2022-06-16_오전_4.58.40.png)
-                
+                <img width="593" alt="스크린샷 2022-06-22 오후 3 56 28" src="https://user-images.githubusercontent.com/81874493/174964374-029d7316-9efb-4e2f-82ac-7c5cb43512ee.png">
+
                 ORACLE_BASE 아래 oradata 디렉토리를 보면 redo.log 파일들이 있다.
                 
                 ⇒ 이 파일들은 **Recovery 작업을 하기 위해 Oracle의 Background Process인 LGWR(Log Writer)가 수시로 입력해주고 있는 파일** 이다.
@@ -123,8 +123,8 @@
                 
                 ## **Oracle Databas 구성과 데이터를 디스크에 쓰기**
                 
-                ![스크린샷 2022-06-16 오전 4.59.14.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/2c9e1fbe-9f9b-49b8-bf4b-b6b4ce71c716/스크린샷_2022-06-16_오전_4.59.14.png)
-                
+                <img width="592" alt="스크린샷 2022-06-22 오후 3 56 35" src="https://user-images.githubusercontent.com/81874493/174964403-d9da55cd-160a-4d19-af33-74a45c5fc256.png">
+
                 Oracle Database의 구조는 크게 3가지 구성요소를 갖고 있다.
                 
                 - **Control File**
@@ -144,8 +144,8 @@
                 
                 ## **LGWR(Log Writer)**
                 
-                ![스크린샷 2022-06-16 오전 5.02.19.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/546024e3-87f0-462d-a1cd-008dceafc62e/스크린샷_2022-06-16_오전_5.02.19.png)
-                
+                <img width="598" alt="스크린샷 2022-06-22 오후 3 56 43" src="https://user-images.githubusercontent.com/81874493/174964429-677eab99-cf78-409b-8ab2-b2a807cf8b98.png">
+
                 **LGWR은 LOG BUFFER에 저장되는 데이터베이스의 변경사항을 로그파일로 기록한다.**
                 
                 그 로그 파일이 redo.log 파일이고 계속 생성되는 것이 아니라 각 데이터베이스 서버마다 갯수가 다르지만 redo.log 파일은 **기본 2개는 있어야 한다**. 
@@ -160,8 +160,8 @@
                 
                 ## **Log Switch Event**
                 
-                ![스크린샷 2022-06-16 오후 2.36.43.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/0a70e93e-954b-455d-b65c-f697c30c701d/스크린샷_2022-06-16_오후_2.36.43.png)
-                
+                <img width="594" alt="스크린샷 2022-06-22 오후 3 56 50" src="https://user-images.githubusercontent.com/81874493/174964443-8d958be0-422e-4516-910f-26f598b531eb.png">
+
                 계속해서 그룹1에 변경된 내용을 기록하면 언젠가는 기록할 공간이 부족하게될 시기온다.
                 
                 이때 **Log Switch라는 이벤트가 발생**하는데, **다른 그룹으로 대상을 변경하여 기록**하는 것 이다. Log Switch Event가 발생하면 Checkpoint Event라는 것이 발생하고
@@ -170,8 +170,8 @@
                 
                 ## **Checkpoint Event**
                 
-                ![스크린샷 2022-06-16 오후 2.37.46.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/39729fee-e0d1-498d-9681-6ec7e21ef2b2/스크린샷_2022-06-16_오후_2.37.46.png)
-                
+                <img width="602" alt="스크린샷 2022-06-22 오후 3 56 56" src="https://user-images.githubusercontent.com/81874493/174964463-f7d5aab7-d95b-4080-86d1-e97078e24e86.png">
+
                 **Checkpoint Event는 DBC 메모리의 변경된 정보를 실제 물리 DB File에 적용하는 이벤트이다.**
                 
                  그럼 Checkpoint Event가 완료되면 redo log file는 어떻게 될까?
@@ -184,8 +184,8 @@
                 
                 ## **Log File Full**
                 
-                ![스크린샷 2022-06-16 오후 2.40.04.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/be6f69db-82b0-4067-a01a-d3a1fa12f158/스크린샷_2022-06-16_오후_2.40.04.png)
-                
+                <img width="588" alt="스크린샷 2022-06-22 오후 3 57 01" src="https://user-images.githubusercontent.com/81874493/174964489-2d152df8-8f4c-468c-9f02-1806e36f935e.png">
+
                 Checkpoint의 전진으로 더 이상 필요없게되버린 Group1의 내용을 위의 이미지에 이어서 생각해본다면,
                 
                  만약 group1을 전부 사용하고 Log Switch가 발생해서 Group2에다 기록하다가 **Group2까지 더 이상 기록할 공간이 없다면 어떻게 해야할까?**
@@ -196,8 +196,8 @@
                 
                  **Checkpoint Event가 완료될때까지 기다려야한다.**
                 
-                ![스크린샷 2022-06-16 오후 2.42.21.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/daf1e3bc-06ed-4e60-b18d-d6b1e4adb981/스크린샷_2022-06-16_오후_2.42.21.png)
-                
+                <img width="523" alt="스크린샷 2022-06-22 오후 3 57 09" src="https://user-images.githubusercontent.com/81874493/174964511-2042b8c7-2727-4ad1-965b-8b48093b2f26.png">
+
                 **1. Log Switch 발생 --> Checkpoint Event**
                 
                 Log Switch 발생
@@ -319,7 +319,7 @@
 
 ## 블로킹(Blocking)
 
-![스크린샷 2022-06-16 오전 5.30.31.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/cfb8a645-6747-441f-8702-1f708b3715b0/스크린샷_2022-06-16_오전_5.30.31.png)
+<img width="688" alt="스크린샷 2022-06-22 오후 3 57 19" src="https://user-images.githubusercontent.com/81874493/174964542-44ef1ec5-fe1f-44f7-9d78-61553bcb79c1.png">
 
 **블로킹은 Lock간(베타 - 베타, 베타 - 공유)의 경합이 발생하여 특정 Transaction이 작업을 진행하지 못하고 멈춰선 상태**를 말한다.
 
@@ -360,7 +360,7 @@
 
 ## 교착상태(DeadLock)
 
-![스크린샷 2022-06-16 오전 5.31.09.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/c432400c-da6c-415a-aaef-95b5a0406d1a/스크린샷_2022-06-16_오전_5.31.09.png)
+<img width="513" alt="스크린샷 2022-06-22 오후 3 57 26" src="https://user-images.githubusercontent.com/81874493/174964558-b0658f03-e7d1-4605-95b7-6d760433160f.png">
 
 **교착상태는 두 트랜잭션이 각각 Lock을 설정하고 다음 서로의 Lock에 접근하여 값을 얻어오려고 할 때 이미 각각의 트랜잭션에 의해 Lock이 설정되어 있기 때문에 양쪽 트랜잭션 모두 영원히 처리가 되지않게 되는 상태**를 말한다.
 
