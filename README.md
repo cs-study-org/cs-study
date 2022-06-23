@@ -9,7 +9,7 @@
       <tr>
             <th colspan="2">1-8주차</th>
             <th colspan="2">9-19주차</th>
-            <th>-</th>
+            <th colspan="2">20-27주차</th>
       </tr>
       <tr>
             <td>
@@ -43,110 +43,149 @@
 
 <details>
 <summary><b>주차별 주제</b></summary>
+
+> 🔥는 중요 챕터를 의미합니다.
+
 <div align="center">
 <table>
       <tr>
             <th colspan="2">컴퓨터 구조</th>
             <th colspan="2">네트워크</th>
+            <th colspan="2">데이터베이스</th>
       </tr>
       <tr>
             <td>
-                  <a href="https://github.com/cs-study-org/cs-study/tree/master/01">1주차</a>
+                  <a href="https://github.com/cs-study-org/cs-study/tree/main/01">1주차</a>
             </td>
             <td>컴퓨터 내부의 언어체계</td>
             <td>
-                  <a href="https://github.com/cs-study-org/cs-study/tree/master/09">9주차</a>
+                  <a href="https://github.com/cs-study-org/cs-study/tree/main/09">9주차</a>
             </td>
             <td>웹 브라우저</td>
+            <td>
+                  <a href="https://github.com/cs-study-org/cs-study/tree/main/20">20주차</a>
+            </td>
+            <td>데이터베이스 필요성과 인덱스 🔥</td>
       </tr>
       <tr>
             <td>
-                  <a href="https://github.com/cs-study-org/cs-study/tree/master/02">2주차</a>
+                  <a href="https://github.com/cs-study-org/cs-study/tree/main/02">2주차</a>
             </td>
             <td>전자 회로의 조합 논리</td>
             <td>
-                  <a href="https://github.com/cs-study-org/cs-study/tree/master/10">10주차</a>
+                  <a href="https://github.com/cs-study-org/cs-study/tree/main/10">10주차</a>
             </td>
             <td>프로토콜 스택 Part 1</td>
+            <td>
+                  <a href="https://github.com/cs-study-org/cs-study/tree/main/21">21주차</a>
+            </td>
+            <td>테이블 설계와 릴레이션</td>
       </tr>
       <tr>
             <td>
-                  <a href="https://github.com/cs-study-org/cs-study/tree/master/03">3주차</a>
+                  <a href="https://github.com/cs-study-org/cs-study/tree/main/03">3주차</a>
             </td>
             <td>메모리 사용과 관리</td>
             <td>
-                  <a href="https://github.com/cs-study-org/cs-study/tree/master/11">11주차</a>
+                  <a href="https://github.com/cs-study-org/cs-study/tree/main/11">11주차</a>
             </td>
             <td>프로토콜 스택 Part 2</td>
+            <td>
+                  <a href="https://github.com/cs-study-org/cs-study/tree/main/22">22주차</a>
+            </td>
+            <td>SQL문의 특징과 잘 다루는 법</td>
       </tr>
       <tr>
             <td>
-                  <a href="https://github.com/cs-study-org/cs-study/tree/master/04">4주차</a>
+                  <a href="https://github.com/cs-study-org/cs-study/tree/main/04">4주차</a>
             </td>
             <td>입출력과 네트워킹</td>
             <td>
-                  <a href="https://github.com/cs-study-org/cs-study/tree/master/12">12주차</a>
+                  <a href="https://github.com/cs-study-org/cs-study/tree/main/12">12주차</a>
             </td>
             <td>LAN 어댑터</td>
+             <td>
+                  <a href="https://github.com/cs-study-org/cs-study/tree/main/23">23주차</a>
+            </td>
+            <td>가용성과 데이터의 복제 🔥</td>
       </tr>
       <tr>
             <td>
-                  <a href="https://github.com/cs-study-org/cs-study/tree/master/05">5주차</a>
+                  <a href="https://github.com/cs-study-org/cs-study/tree/main/05">5주차</a>
             </td>
             <td>데이터 구조와 처리</td>
             <td>
-                  <a href="https://github.com/cs-study-org/cs-study/tree/master/13">13주차</a>
+                  <a href="https://github.com/cs-study-org/cs-study/tree/main/13">13주차</a>
             </td>
             <td>LAN 기기</td>
+             <td>
+                  <a href="https://github.com/cs-study-org/cs-study/tree/main/24">24주차</a>
+            </td>
+            <td>트랜잭션과 무결성 ·무정지성 🔥</td>
       </tr>
       <tr>
             <td>
-                  <a href="https://github.com/cs-study-org/cs-study/tree/master/06">6주차</a>
+                  <a href="https://github.com/cs-study-org/cs-study/tree/main/06">6주차</a>
             </td>
             <td>프로그래밍 언어 처리</td>
             <td>
-                  <a href="https://github.com/cs-study-org/cs-study/tree/master/14">14주차</a>
+                  <a href="https://github.com/cs-study-org/cs-study/tree/main/14">14주차</a>
             </td>
             <td>방화벽</td>
+            <td>
+                  <a href="https://github.com/cs-study-org/cs-study/tree/main/25">25주차</a>
+            </td>
+            <td>스토리지 기술의 변천과 데이터베이스에 끼치는 영향</td>
       </tr>
       <tr>
             <td>
-                  <a href="https://github.com/cs-study-org/cs-study/tree/master/07">7주차</a>
+                  <a href="https://github.com/cs-study-org/cs-study/tree/main/07">7주차</a>
             </td>
             <td>시스템 프로그래밍</td>
             <td>
-                  <a href="https://github.com/cs-study-org/cs-study/tree/master/15">15주차</a>
+                  <a href="https://github.com/cs-study-org/cs-study/tree/main/15">15주차</a>
             </td>
             <td>부하 분산</td>
+            <td>
+                  <a href="https://github.com/cs-study-org/cs-study/tree/main/26">26주차</a>
+            </td>
+            <td>
+                  트랜잭션 격리수준 🔥<br/>
+                  REDO vs UNDO vs 바이너리 로그
+            </td>
       </tr>
       <tr>
             <td>
-                  <a href="https://github.com/cs-study-org/cs-study/tree/master/08">8주차</a>
+                  <a href="https://github.com/cs-study-org/cs-study/tree/main/08">8주차</a>
             </td>
             <td>병렬성과 비동기성</td>
             <td>
-                  <a href="https://github.com/cs-study-org/cs-study/tree/master/16">16주차</a>
+                  <a href="https://github.com/cs-study-org/cs-study/tree/main/16">16주차</a>
             </td>
             <td>웹 서버, HTTP 버전별 특징</td>
+            <td>
+                  <a href="https://github.com/cs-study-org/cs-study/tree/main/27">27주차</a>
+            </td>
+            <td>트랜잭션 locking</td>
       </tr>
       <tr>
             <td align="center" rowspan="3" colspan="2">-</td>  
             <td>
-                  <a href="https://github.com/cs-study-org/cs-study/tree/master/17">17주차</a>
+                  <a href="https://github.com/cs-study-org/cs-study/tree/main/17">17주차</a>
             </td>
             <td>트랜스포트 계층 개요</td>
       </tr>      
       <tr>            
             <td>
-                  <a href="https://github.com/cs-study-org/cs-study/tree/master/18">18주차</a>
+                  <a href="https://github.com/cs-study-org/cs-study/tree/main/18">18주차</a>
             </td>
-            <td>TCP 흐름제어 및 오류제어</td>
+            <td>TCP 흐름제어 및 오류제어 🔥</td>
       </tr>
       <tr>            
             <td>
-                  <a href="https://github.com/cs-study-org/cs-study/tree/master/19">19주차</a>
+                  <a href="https://github.com/cs-study-org/cs-study/tree/main/19">19주차</a>
             </td>
-            <td>TCP 혼잡제어</td>
+            <td>TCP 혼잡제어 🔥</td>
       </tr>
 </table>      
 </div>
@@ -193,6 +232,6 @@
 ## 제출방법 [참고](https://thenkl.slack.com/archives/C02QJJ5PYBF/p1639707595001100?thread_ts=1639707087.001000&cid=C02QJJ5PYBF)
 1. 폴더 및 파일 구성은 `해당주차/본인이름/md파일`을 따라주세요.
 
-2. 각자의 브랜치를 생성하여 master 브랜치로 보내는 방식으로 제출해주세요. 브랜치의 이름은 본인 이름으로 하되, 이전 주차의 PR이 승인되지 않을 시를 대비해 `이름/해당주차`의 형식을 사용하세요.
+2. 각자의 브랜치를 생성하여 main 브랜치로 보내는 방식으로 제출해주세요. 브랜치의 이름은 본인 이름으로 하되, 이전 주차의 PR이 승인되지 않을 시를 대비해 `이름/해당주차`의 형식을 사용하세요.
 
 3. 커밋메세지는 `행위: 내용 명시적` 으로 작성해주세요.
