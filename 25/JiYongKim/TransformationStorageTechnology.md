@@ -60,8 +60,8 @@ ROWID는 **해당 데이터를 찾아가는 유일한 주소 값**이며 우리�
     
     ROWID란?
     
-    ![스크린샷 2022-06-23 오전 5.50.40.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/246cc756-eb5c-48af-b4a3-a7c552bf86b8/스크린샷_2022-06-23_오전_5.50.40.png)
-    
+    <img width="297" alt="스크린샷 2022-06-27 오후 3 44 44" src="https://user-images.githubusercontent.com/81874493/175876509-ecc20ff5-e976-4772-a75d-420f435dc951.png">
+
     - 테이블에서 행의 위치를 지정하는 논리적 주소값
     - DB 전체에 중복되지 않은 유일한 값으로 테이블에 새로운 행이 삽입시 테이블 내부에서 의사 컬럼 형태로 자동적 생성됨
     - 테이블의 특정 레코드를 랜덤하게 접근하기 위해해 주로 사용된다.
@@ -234,7 +234,7 @@ ROWID는 **해당 데이터를 찾아가는 유일한 주소 값**이며 우리�
 
 <샤딩(sharding)>
 
-![스크린샷 2022-06-23 오후 3.52.55.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/b360e0cf-5439-496f-9c48-cd88cac0a49f/스크린샷_2022-06-23_오후_3.52.55.png)
+<img width="720" alt="스크린샷 2022-06-27 오후 3 45 08" src="https://user-images.githubusercontent.com/81874493/175876462-99a3f5a5-7769-422c-ba78-9bf319a88570.png">
 
 샤딩(sharding)이란 하나의 거대한 데이터베이스나 네트워크 시스템을 여러 개의 작은 조각으로 나누어 분산 저장하여 관리하는 것을 말한다.
 
@@ -291,7 +291,7 @@ MySQL에서는 주로 C / C++ 사용하여 작성되었으며 **mutex**를 이�
 
 < Blocking >
 
-![스크린샷 2022-06-23 오전 8.27.48.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/53ac757e-e0c6-4cc1-8a93-6dea580396f5/스크린샷_2022-06-23_오전_8.27.48.png)
+<img width="694" alt="스크린샷 2022-06-27 오후 3 45 13" src="https://user-images.githubusercontent.com/81874493/175876563-92a4216d-88fc-499b-8c08-9e27d42ee527.png">
 
 블로킹은 Lock들의 경합(Race condition이라고도 합니다)이 발생하여 특정 세션이 작업을 진행하지 못하고 멈춰 선 상태를 의미한다.
 
