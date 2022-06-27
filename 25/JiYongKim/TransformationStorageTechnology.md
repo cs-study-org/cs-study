@@ -28,8 +28,8 @@
 
 - **Sequential Access**
     
-    ![스크린샷 2022-06-23 오전 5.57.48.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/475f1508-15ea-4ab3-8006-31de35373a49/스크린샷_2022-06-23_오전_5.57.48.png)
-    
+    <img width="300" alt="스크린샷 2022-06-27 오후 3 44 36" src="https://user-images.githubusercontent.com/81874493/175876683-e0bcbd42-3103-4dd1-a534-aa5a6760c447.png">
+
     - 논리적 또는 물리적으로 연결된 순서에 따라 순차적으로 Block을 읽는 방식
     - Sagment Header 에 Extent정보를 Map의 key로 가지고 있고 해당 Extent의 첫 Block부터 연속해서 읽게되면 Sequential Access 가 가능하게 되며, 이러한 방식을 **Full Table Scan** 이라고 한다.
     - Table Full Scan의 경우에는 한 번에 여러 개의 블록을 액세스할 수 있다.
