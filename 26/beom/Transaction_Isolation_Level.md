@@ -1,7 +1,8 @@
 # 트랜잭션 격리 수준
 
 ## Isolation Level이란?
-트랜잭션에서 일관성이 없는 데이터를 허용하도록 하는 수준
+- 트랜잭션에서 일관성이 없는 데이터를 허용하도록 하는 수준
+- 동시에 DB에 접근할 때 그 접근을 어떻게 제어할지에 대한 설정
 
 ## Isolation Level의 필요성
 - 데이터베이스는 ACID 같이 트랜잭션이 원자적이면서도 독립적인 수행을 하도록 한다.
@@ -13,7 +14,7 @@
 
 ## Isolation Level의 종류
 > 뒤로 갈수록 트랜잭션 간의 데이터 격리 정도가 높아지며, 동시에 동시성도 떨어짐</br>
-> 뒤로 갈수록 비용이 증가한다.
+> 뒤로 갈수록 비용 및 데이터 정합성이 증가한다.
 
 ### Read Uncommitted(Level 0)
 - SELECT 문장이 수행되는 동안 해당 데이터에 Shared Lock이 걸리지 않는 계층
@@ -25,14 +26,16 @@
 - SELECT 문장이 수행되는 동안 해당 데이터에 Shared Lock이 걸리는 Level
 - 트랜잭션이 수행되는 동안 다른 트랜잭션이 접근할 수 없어 대기하게 된다.
 - Commit이 이루어진 트랜잭션만 조회할 수 있다.
-> 즉, 어떤 사용자가 A라는 데이터를 B라는 데이터로 변경하는 동안 다른 사용자는 해당 데이터에 접근할 수 없다.
+> 즉, 어떤 사용자가 A라는 데이터를 B라는 데이터로 변경하는 동안 다른 사용자는 Undo로그에 있는 이전 데이터(A)를 읽고 트랜잭션이 끝난 뒤 B를 읽을 수 있다.
 - 대부분의 SQL Server가 Default로 사용하는 Isolation Level
 
 ### Repeatable Read(Level 2)
 - 트랜잭션이 완료될 때까지 SELECT 문장이 사용하는 모든 데이터에 Shared Lock이 걸리는 Level
-- 트랜잭션이 범위 내에서 조회한 데이터의 내용이 항상 동일함을 보장한다.
-> 즉, 다른 사용자는 트랜잭션 영역에 해당하는 데이터에 대한 수정 불가능
+- 트랜잭션이 범위 내에서 조회한 데이터의 내용이 항상 **동일함을 보장**한다.
+> 즉, 같은 트랜잭션 내에서 한 번 조회한 데이터를 반복해서 조회해도 동일한 결과를 보장한다.
 - MySQL에서 Default로 사용하는 Isolation Level
+
+> Read Commited 격리 수준 또한 MVCC를 이용해 Commit 되기 전의 데이터를 보여주나 Repeatable Read와 Read Commited의 차이는 언두 영역에 백업된 레코드의 여러 버전 가운데 몇 번째 이전의 버전까지 찾아 들어가야 하는지에 있다.
 
 ### Serializable(Level 3)
 - 트랜잭션이 완료될 때까지 SELECT 문장이 사용하는 모든 데이터에 Shared Lock이 걸리는 Level
@@ -58,4 +61,6 @@
 [트랜잭션 격리수준 참고문헌](https://github.com/WeareSoft/tech-interview/blob/master/contents/db.md)
 
 [트랜잭션 격리수준 참고문헌2](https://github.com/gyoogle/tech-interview-for-developer/blob/master/Computer%20Science/Database/Transaction%20Isolation%20Level.md)
+
+[트랜잭션 격리수준 참고문헌3](https://zzang9ha.tistory.com/381)
 
