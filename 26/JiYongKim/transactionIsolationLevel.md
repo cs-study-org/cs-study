@@ -49,7 +49,7 @@
 
 **< Dirty Read >**
 
-![스크린샷 2022-06-30 오후 4.02.16.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/946f2614-8a70-4861-aea6-dc3180106134/스크린샷_2022-06-30_오후_4.02.16.png)
+<img width="675" alt="스크린샷 2022-07-06 오후 11 03 16" src="https://user-images.githubusercontent.com/81874493/177568978-18554887-f1ac-4b97-a75a-00f1f87c54d2.png">
 
 **Dirty Read는 다른 트랜잭션에 의해 수정됐지만 아직 커밋되지 않은 데이터를 읽는 것**을 말합니다.
 
@@ -63,7 +63,7 @@ T1이 아직 commit 하지 않은 시점에서 T2가 데이터를 읽게되고
 
 **< Non-Repeatable Read >**
 
-![스크린샷 2022-06-30 오후 4.02.26.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/965910ad-9973-49d5-a762-6b430f9220f8/스크린샷_2022-06-30_오후_4.02.26.png)
+<img width="705" alt="스크린샷 2022-07-06 오후 11 03 24" src="https://user-images.githubusercontent.com/81874493/177569010-17032509-362c-4375-a24b-d332951fe740.png">
 
 **Non-Repeatable Read는 한 트랜잭션 내에서 같은 Key를 가진 Row를 두 번 읽었는데 그 사이에 값이 변경되거나 삭제되어 결과가 다르게 나타나는 현상**을 말한다.
 
@@ -71,7 +71,7 @@ T1이 아직 commit 하지 않은 시점에서 T2가 데이터를 읽게되고
 
 **< Phantom Read >**
 
-![스크린샷 2022-06-30 오후 4.03.07.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/8bfbdeab-e06c-4e71-abe9-757b64249b67/스크린샷_2022-06-30_오후_4.03.07.png)
+<img width="708" alt="스크린샷 2022-07-06 오후 11 03 30" src="https://user-images.githubusercontent.com/81874493/177569030-a429c90f-3b66-41e0-be0c-4adf04b467b7.png">
 
 Phantom Read는**한 트랜잭션 내에서 같은 쿼리를 두 번 수행했는데, 첫 번째 쿼리에서 없던 유령(Phantom) 레코드가 두 번째 쿼리에서 나타나는 현상**을 말한다.
 
@@ -90,8 +90,8 @@ Phantom Read는**한 트랜잭션 내에서 같은 쿼리를 두 번 수행했�
 
 - **READ UNCOMMITTED(커밋되지 않은 읽기)**
     
-    ![스크린샷 2022-07-01 오후 7.04.47.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/d413945a-ecce-495c-ae4e-c5eccad4cd97/스크린샷_2022-07-01_오후_7.04.47.png)
-    
+    <img width="514" alt="스크린샷 2022-07-06 오후 11 03 40" src="https://user-images.githubusercontent.com/81874493/177569073-faaf14bc-cc5c-483c-b50a-c1655298bbad.png">
+
     - 각 트랜잭션에서의 변경 내용이 `COMMIT`이나 `ROLLBACK` 여부에 상관 없이 다른 트랜잭션에서 값을 읽을 수 있다.
     - 정합성에 문제가 많은 격리 수준이기 때문에 사용하지 않는 것을 권장한다.
     - 위의 그림과 같이 `Commit`이 되지 않는 상태지만 `Update`된 값을 다른 트랜잭션에서 읽을 수 있다.
@@ -106,8 +106,8 @@ Phantom Read는**한 트랜잭션 내에서 같은 쿼리를 두 번 수행했�
 
 - **READ COMMITTED(커밋된 읽기)**
     
-    ![스크린샷 2022-07-01 오후 7.03.00.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/c1d70df6-844c-42af-ad02-c8b056d67357/스크린샷_2022-07-01_오후_7.03.00.png)
-    
+    <img width="476" alt="스크린샷 2022-07-06 오후 11 03 48" src="https://user-images.githubusercontent.com/81874493/177569113-4d056ff2-bac5-4730-b8ae-d6c6cf80517f.png">
+
     READ COMMITTED는
     
     - 다른 트랜잭션에서 일어난 변경사항이 커밋되지 않았다면, 실제 테이블의 값을 가져오는 게 아니라 Undo 영역에 백업된 레코드에서 값을 가져오게 되는 격리수준 이다.
@@ -125,8 +125,8 @@ Phantom Read는**한 트랜잭션 내에서 같은 쿼리를 두 번 수행했�
 
 - **REPEATABLE READ(반복 가능한 읽기)**
     
-    ![스크린샷 2022-07-01 오후 7.05.11.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/4db91e51-dc9f-4a25-8635-707a9c57dcfc/스크린샷_2022-07-01_오후_7.05.11.png)
-    
+    <img width="560" alt="스크린샷 2022-07-06 오후 11 03 57" src="https://user-images.githubusercontent.com/81874493/177569141-dccd4dcf-9826-4205-b4f0-61e35ac7cb75.png">
+
     - MySQL에서는 트랜잭션마다 트랜잭션 ID를 부여하여 트랜잭션 ID보다 작은 트랜잭션 번호에서 변경한 것만 읽게 된다.
     - Undo 공간에 백업해두고 실제 레코드 값을 변경한다.
         - 백업된 데이터는 불필요하다고 판단하는 시점에 주기적으로 삭제한다.
