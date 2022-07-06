@@ -86,7 +86,7 @@ Phantom Read는**한 트랜잭션 내에서 같은 쿼리를 두 번 수행했�
 <br>
 
 <details>
-<summary>READ UNCOMMITTED(커밋되지 않은 읽기)<summary>
+<summary>READ UNCOMMITTED(커밋되지 않은 읽기)</summary>
 
 - **READ UNCOMMITTED(커밋되지 않은 읽기)**
     
