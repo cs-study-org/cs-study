@@ -2,11 +2,13 @@
 
 - [트랜잭션 락](#트랜잭션-락)
   - [DBMS의 락](#dbms의-락)
-    - [수동 vs 자동](#수동-vs-자동)
+    - [락을 수동으로 거냐 vs 자동으로 거냐](#락을-수동으로-거냐-vs-자동으로-거냐)
     - [Shared Lock vs Exclusive Lock](#shared-lock-vs-exclusive-lock)
     - [잠금 비용 & 동시성 비용](#잠금-비용--동시성-비용)
-  - [InnoDB엔진의 레코드 락](#innodb엔진의-레코드-락)
-    - [인덱스 레코드에 락이 걸리는 이유](#인덱스-레코드에-락이-걸리는-이유)
+  - [InnoDB엔진의 락과 트랜잭션 격리 수준의 연관성](#innodb엔진의-락과-트랜잭션-격리-수준의-연관성)
+    - [Record lock과 READ COMMITTED](#record-lock과-read-committed)
+    - [Gap lock과 REPEATABLE READ](#gap-lock과-repeatable-read)
+    - [Dead lock과 SERIALIZABLE](#dead-lock과-serializable)
   - [참고 문헌](#참고-문헌)
 
 ## DBMS의 락
@@ -31,82 +33,136 @@ unlock(&mutex);
 
     b. 정확히 하나의 스레드가 락을 획득한 상태이다.
 
-### 수동 vs 자동
+락은 트랜잭션이 커밋되거나 롤백될때 함께 unlock 된다.
+
+### 락을 수동으로 거냐 vs 자동으로 거냐
 
 일반적으로 스레드는 프로그래머가 생성하고 운영체제가 제어하는데, 
 
 스레드에 대한 제어권을 락을 통해 일부 프로그래머가 가질 수 있는 것이다.
 
-프로그래머는 락을 통해 프로세스들의 혼란스런 실행 순서에 어느 정도를 질서를 부여할 수 있다.
+    프로그래머는 락을 통해 프로세스들의 혼란스런 실행 순서에 어느 정도 질서를 부여할 수 있다.
 
-이렇듯 락을 쿼리마다 사용자가 명시적으로 걸어 줄 수도 있지만
+이렇듯 락을 쿼리마다 사용자가 수동적으로 걸어 줄 수도 있지만
 
-일반적으로 트랜잭션 격리 수준에 따라 락을 DBMS가 걸어준다.
+일반적으로 트랜잭션 격리 수준에 따라 락을 DBMS가 자동으로 걸어준다.
+
+후자를 다뤄보겠다.
 
 ### Shared Lock vs Exclusive Lock
 
-락 타입을 나누어 사용한다.
+InnoDB엔진은 락 타입을 나누어 사용한다.
 
-    검색에서는 경쟁에서 자유롭게 하고
+    Shared lock은 검색에서 경쟁에서 자유롭게 하고
 
-    갱신에서는 경쟁을 제한하고자 하기 때문이다.
+    Exclusive lock은 갱신에서 경쟁을 제한하고자 하기 때문이다.
 
 다음은 락 타입별 경쟁 여부 관계이다.
 
-|                | Shared Lock | Exclusive Lock |
+|                | Shared lock | Exclusive lock |
 |:--------------:|:-----------:|:--------------:|
-|   Shared Lock  |      O      |        X       |
-| Exclusive Lock |      X      |        X       |
+|   Shared lock  |      O      |        X       |
+| Exclusive lock |      X      |        X       |
 
-> 🤔 Shared Lock을 거는 것과 걸지 않은 것의 차이
+여기서 Shared lock이 걸린 상태에서 Exclusive lock이 접근하지 못하는 것이
+
+레코드에 Shared Lock을 거는 것과 아무것도 걸지 않은 것의 차이이다.
 
 ### 잠금 비용 & 동시성 비용
 
-락을 걸어야할 페이지가 많다면, 그럴바에 테이블 전체에 락을 걸어버리는 편이 한번에 처리하여 잠금 비용이 낮아져 효율적이다.
+락을 걸어야할 페이지가 많다면, 그럴바에 테이블 전체에 락을 걸어 한번에 처리하여 
 
-반면에 락의 범위가 넓어질수록 동시에 접근할 수 없는 자원이 많아지므로 동시성 비용이 높아져 비효율적이다.
+    잠금 비용이 낮아져 효율적이다.
 
-## InnoDB엔진의 레코드 락
+반면에, 락의 범위가 넓어질수록 동시에 접근할 수 없는 자원이 많아지므로 
 
-InnoDB엔진은 레코드 락으로 뛰어난 동시성 처리를 제공한다.
+    동시성 측면에서 비효율적이다.
 
-레코드 락은 인덱스 레코드에 걸리는 락을 말한다.
+## InnoDB엔진의 락과 트랜잭션 격리 수준의 연관성
 
-### 인덱스 레코드에 락이 걸리는 이유
-
-결국 갱신 또한 검색 이후 이뤄지기 때문에 검색 성능의 영향을 받는다고 생각한다.
-
-인덱스 레코드는 일반 레코드에 락이 걸리는 것보다 현저히 적은 레코드에 락이 걸린다.
-
-먼저 인덱스가 걸린 레코드에 락이 걸리는 상황이다.
-
-23개의 레코드를 갱신할 것이다.
+c1컬럼이 있는 t테이블에는 `t.c1 = 13`인 레코드와 `t.c1 = 17`인 레코드가 존재한다.
 
 ```sql
-SELECT * FROM employees WHERE first_name="Mary" AND YEAR(hire_date) = 1990;
+(Transaction A)
+(1) SELECT c1 FROM t WHERE c1 BETWEEN 10 and 20 FOR UPDATE;
+(2) SELECT c1 FROM t WHERE c1 BETWEEN 10 and 20 FOR UPDATE;
+(3) COMMIT;
 ```
-
-다음과 같이 현재 날짜로 고용 날짜를 갱신하면 450 레코드가 락이 걸린다.
 
 ```sql
-SET SESSION AUTOCOMMIT=OFF;
-
-UPDATE employees SET hire_date=DATE_FORMAT(NOW(), '%Y-%m-%d') WHERE first_name="Mary" AND YEAR(hire_date) = 1990;
-
-SELECT LOCK_MODE, COUNT(*) FROM performance_schema.data_locks WHERE OBJECT_NAME='employees' GROUP BY LOCK_MODE;
+(Transaction B)
+(1) INSERT INTO t VALUES(15);
+(2) COMMIT;
 ```
 
-다른 세션에서 관련 레코드 한개라도 갱신하면 락 대기가 걸린다.
+### Record lock과 READ COMMITTED    
 
-```bash
-Query 1: Lock wait timeout exceeded; try restarting transaction
+두 트랜잭션이 다음과 같은 순서가 실행됬다면
+
+```sql
+(Transaction A, B - READ COMMITTED)
+
+(A-1) SELECT c1 FROM t WHERE c1 BETWEEN 10 and 20 FOR UPDATE;  -- 13, 17 (lock with 13, 17)
+(B-1) INSERT INTO t VALUES(15);                                -- no lock wait
+(B-2) COMMIT;
+(A-2) SELECT c1 FROM t WHERE c1 BETWEEN 10 and 20 FOR UPDATE;  -- 13, 15, 17 (phantom read)
+(A-3) COMMIT;
 ```
 
-이제 인덱스를 제거하고 위 과정을 그대로 진행하였을 때 즉, 일반 레코드에 락이 걸리는 상황이다.
+### Gap lock과 REPEATABLE READ
 
-300911 레코드가 락이 걸린다.
+두 트랜잭션이 다음과 같은 순서가 실행됬다면
 
-즉, 테이블의 모든 레코드가 락이 걸린 것이다.
+```sql
+(Transaction A, B - REPEATABLE READ)
+
+(A-1) SELECT c1 FROM t WHERE c1 BETWEEN 10 and 20 FOR UPDATE;  -- 13, 17 (lock with 10 - 20)
+(B-1) INSERT INTO t VALUES(15);                                -- lock wait
+(B-2) COMMIT;
+(A-2) SELECT c1 FROM t WHERE c1 BETWEEN 10 and 20 FOR UPDATE;  -- 13, 17
+(A-3) COMMIT;
+
+                                                               -- (B-1) query execute
+```    
+
+지난 스터디때 InnoDB의 REPETABLE READ는 phantom read가 걸리지 않는 이유이다.
+
+### Dead lock과 SERIALIZABLE
+
+데드락에 걸림으로써 레코드를 안전하게 보호할 수 있다.
+
+```sql
+(Transaction A)
+(1) SELECT COUNT(c1) FROM t WHERE c1 = 'xyz';                       
+(2) DELETE FROM t WHERE c1 = 'xyz';
+(3) COMMIT;
+```
+
+```sql
+(Transaction B)
+(1) INSERT INTO t(c1, c2) VALUES('xyz', 1), ('xyz', 2), ('xyz', 3);
+(2) COMMIT;
+```
+
+```sql
+(Transaction A, B - READ COMMITTED)
+
+(A-1) SELECT COUNT(c1) FROM t WHERE c1 = 'xyz';                       -- 0 
+(B-1) INSERT INTO t(c1, c2) VALUES('xyz', 1), ('xyz', 2), ('xyz', 3); 
+(B-2) COMMIT;
+(A-2) DELETE FROM t WHERE c1 = 'xyz';                                 -- 3 rows deleted
+(A-3) COMMIT;
+```
+
+```sql
+(Transaction A, B - SERIALIZABLE)
+
+(A-1) SELECT COUNT(c1) FROM t WHERE c1 = 'xyz';                       -- 0 (0 record is s lock)
+(B-1) INSERT INTO t(c1, c2) VALUES('xyz', 1), ('xyz', 2), ('xyz', 3);
+(B-2) COMMIT;
+(A-2) DELETE FROM t WHERE c1 = 'xyz';                                 -- 1 rows deleted
+(A-3) COMMIT;
+```
 
 <hr/>
 
@@ -114,4 +170,4 @@ Query 1: Lock wait timeout exceeded; try restarting transaction
 
 [잠금 비용 & 동시성 비용](https://jeong-pro.tistory.com/94) ━ *Tistory*
 
-[REPEATABLE READ에서 락 대기](https://hoing.io/archives/4713) ━ *Taes-k DevLog*
+[Lock으로 이해하는 Transaction의 Isolation Level](https://suhwan.dev/2019/06/09/transaction-isolation-level-and-lock/) ━ *Taes-k DevLog*
