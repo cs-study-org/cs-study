@@ -2,8 +2,8 @@
 
 - [트랜잭션 락](#트랜잭션-락)
   - [DBMS의 락](#dbms의-락)
-    - [락을 수동으로 거냐 vs 자동으로 거냐](#락을-수동으로-거냐-vs-자동으로-거냐)
-    - [Shared Lock vs Exclusive Lock](#shared-lock-vs-exclusive-lock)
+    - [락을 자동으로 거냐 vs 수동으로 거냐](#락을-자동으로-거냐-vs-수동으로-거냐)
+    - [Shared lock vs Exclusive lock](#shared-lock-vs-exclusive-lock)
     - [잠금 비용 & 동시성 비용](#잠금-비용--동시성-비용)
   - [InnoDB엔진의 락과 트랜잭션 격리 수준의 연관성](#innodb엔진의-락과-트랜잭션-격리-수준의-연관성)
     - [Record lock과 READ COMMITTED](#record-lock과-read-committed)
@@ -35,7 +35,11 @@ unlock(&mutex);
 
 락은 트랜잭션이 커밋되거나 롤백될때 함께 unlock 된다.
 
-### 락을 수동으로 거냐 vs 자동으로 거냐
+### 락을 자동으로 거냐 vs 수동으로 거냐
+
+일반적으로 트랜잭션 격리 수준에 따라 락을 DBMS가 자동으로 걸어준다.
+
+수동으로 거는 이유는 다음과 같다.
 
 일반적으로 스레드는 프로그래머가 생성하고 운영체제가 제어하는데, 
 
@@ -43,13 +47,9 @@ unlock(&mutex);
 
     프로그래머는 락을 통해 프로세스들의 혼란스런 실행 순서에 어느 정도 질서를 부여할 수 있다.
 
-이렇듯 락을 쿼리마다 사용자가 수동적으로 걸어 줄 수도 있지만
+필자는 전자를 다뤄보겠다.
 
-일반적으로 트랜잭션 격리 수준에 따라 락을 DBMS가 자동으로 걸어준다.
-
-후자를 다뤄보겠다.
-
-### Shared Lock vs Exclusive Lock
+### Shared lock vs Exclusive lock
 
 InnoDB엔진은 락 타입을 나누어 사용한다.
 
@@ -66,7 +66,7 @@ InnoDB엔진은 락 타입을 나누어 사용한다.
 
 여기서 Shared lock이 걸린 상태에서 Exclusive lock이 접근하지 못하는 것이
 
-레코드에 Shared Lock을 거는 것과 아무것도 걸지 않은 것의 차이이다.
+레코드에 Shared lock을 거는 것과 아무것도 걸지 않은 것의 차이이다.
 
 ### 잠금 비용 & 동시성 비용
 
@@ -170,4 +170,4 @@ c1컬럼이 있는 t테이블에는 `t.c1 = 13`인 레코드와 `t.c1 = 17`인 �
 
 [잠금 비용 & 동시성 비용](https://jeong-pro.tistory.com/94) ━ *Tistory*
 
-[Lock으로 이해하는 Transaction의 Isolation Level](https://suhwan.dev/2019/06/09/transaction-isolation-level-and-lock/) ━ *Taes-k DevLog*
+[lock으로 이해하는 Transaction의 Isolation Level](https://suhwan.dev/2019/06/09/transaction-isolation-level-and-lock/) ━ *Taes-k DevLog*
