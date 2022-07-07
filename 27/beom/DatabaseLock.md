@@ -91,3 +91,14 @@ Lock의 종류는 크게 두가지로 나눌 수 있다.
 | 단점 | 충돌이 발생하면 오버헤드가 발생 | 충돌이 발생하지 않으면 오버헤드가 발생 |
 
 > 여담으로 Optimistic Lock의 성능이 많이 발생해서 기본적으로 Optimistic Lock을 사용하는 것이 좋다고한다~
+
+## 참고문헌
+
+[Lock 참고문헌1](https://sabarada.tistory.com/175)
+
+[Lock 참고문헌2](https://itdar.tistory.com/390)
+
+[Lock 참고문헌3](https://offbyone.tistory.com/225)
+
+[Lock 참고문헌4](https://www.youtube.com/watch?v=w6sFR3ZM64c)
+
