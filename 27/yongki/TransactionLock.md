@@ -13,9 +13,10 @@
 
 ## DBMS의 락
 
-> 지난 스터디때 등장했던 mutex는 POSIX 환경에서 락을 의미해 동의어라고 생각한다.
->
->     스레드간에 상호 배제(mutual exclustion) 기능을 하기 때문
+> 지난 스터디때 등장했던 mutex[^mutex]는 락과 비슷하지만 다수의 프로세스에 의해 공유하는 특징을 더한다.
+> 락은 하나의 스레드만 허용하고, 다른 프로세스와 공유하지 않는다.
+
+[^mutex]: mutual exclustion: 스레드간에 상호 배제
 
 락은 일종의 변수다.
 
@@ -132,36 +133,12 @@ c1컬럼이 있는 t테이블에는 `t.c1 = 13`인 레코드와 `t.c1 = 17`인 �
 데드락에 걸림으로써 레코드를 안전하게 보호할 수 있다.
 
 ```sql
-(Transaction A)
-(1) SELECT COUNT(c1) FROM t WHERE c1 = 'xyz';                       
-(2) DELETE FROM t WHERE c1 = 'xyz';
-(3) COMMIT;
-```
-
-```sql
-(Transaction B)
-(1) INSERT INTO t(c1, c2) VALUES('xyz', 1), ('xyz', 2), ('xyz', 3);
-(2) COMMIT;
-```
-
-```sql
-(Transaction A, B - READ COMMITTED)
-
-(A-1) SELECT COUNT(c1) FROM t WHERE c1 = 'xyz';                       -- 0 
-(B-1) INSERT INTO t(c1, c2) VALUES('xyz', 1), ('xyz', 2), ('xyz', 3); 
-(B-2) COMMIT;
-(A-2) DELETE FROM t WHERE c1 = 'xyz';                                 -- 3 rows deleted
-(A-3) COMMIT;
-```
-
-```sql
-(Transaction A, B - SERIALIZABLE)
-
-(A-1) SELECT COUNT(c1) FROM t WHERE c1 = 'xyz';                       -- 0 (0 record is s lock)
-(B-1) INSERT INTO t(c1, c2) VALUES('xyz', 1), ('xyz', 2), ('xyz', 3);
-(B-2) COMMIT;
-(A-2) DELETE FROM t WHERE c1 = 'xyz';                                 -- 1 rows deleted
-(A-3) COMMIT;
+(A-1) SELECT state FROM account WHERE id = 1;                               -- s lock on 1
+(B-1) SELECT state FROM account WHERE id = 1;                               -- s lock access ok
+(B-2) UPDATE account SET state = ‘rich’, money = money * 1000 WHERE id = 1; -- x lock access wait (all transaction fail)
+(B-3) COMMIT;
+(A-2) UPDATE account SET state = ‘rich’, money = money * 1000 WHERE id = 1;
+(A-3) COMMIT;                                                                            
 ```
 
 <hr/>
