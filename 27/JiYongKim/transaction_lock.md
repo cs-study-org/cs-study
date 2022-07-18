@@ -177,7 +177,8 @@
 
 **블로킹은 Lock간(베타 - 베타, 베타 - 공유)의 경합이 발생하여 특정 Transaction이 작업을 진행하지 못하고 멈춰선 상태**를 말한다. 위에 설명했듯이 공유락 끼리는 블로킹이 발생하지 않지만 베타락은 블로킹을 발생시킨다. 블로킹을 해소하기 위해서는 이전의 트랜잭션이 완료(커밋 OR 롤백)되어야 한다. 뒤에 들어온 트랜잭션은 이전 트랜잭션이 마무리되어야 이후 진행이 가능하다. 이런 경합은 성능에 좋지 않은 영향을 미친다. 따라서 경합을 최소화 할 필요가 있다.
 
-![https://blog.kakaocdn.net/dn/Hkc78/btqL3wfemow/apZ9CtndatkDz9ATfpLYoK/img.png](https://blog.kakaocdn.net/dn/Hkc78/btqL3wfemow/apZ9CtndatkDz9ATfpLYoK/img.png)
+
+<img width="709" alt="스크린샷 2022-07-18 오후 2 58 57" src="https://user-images.githubusercontent.com/81874493/179452620-5ba23385-05ac-4300-85a3-308db8e6ab18.png">
 
 <br>
 
@@ -206,8 +207,7 @@ DB를 사용하는 프로그래밍을 진행하면서 몇가지 주의사항
 
 <br>
 
-
-![https://blog.kakaocdn.net/dn/IAs6r/btqL39jMHtW/mzTqIspCi0K0n01KTKz0h0/img.png](https://blog.kakaocdn.net/dn/IAs6r/btqL39jMHtW/mzTqIspCi0K0n01KTKz0h0/img.png)
+<img width="668" alt="스크린샷 2022-07-18 오후 2 59 01" src="https://user-images.githubusercontent.com/81874493/179452645-a3e47aee-c0c6-4368-8cb6-23d91d5f66e7.png">
 
 이미지를 보면, Master 와 Slave 테이블이 있다. 
 
