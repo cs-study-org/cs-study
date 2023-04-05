@@ -229,7 +229,12 @@
       </div>
       </details>
 
-## 제출방법 [참고](https://thenkl.slack.com/archives/C02QJJ5PYBF/p1639707595001100?thread_ts=1639707087.001000&cid=C02QJJ5PYBF)
+## [제출방법](https://github.com/cs-study-org/cs-study/wiki/제출방법)
+
+링크를 확인해주세요.
+
+## 제출규약
+
 1. 폴더 및 파일 구성은 `해당주차/본인이름/md파일`을 따라주세요.
 
 2. 각자의 브랜치를 생성하여 main 브랜치로 보내는 방식으로 제출해주세요. 브랜치의 이름은 본인 이름으로 하되, 이전 주차의 PR이 승인되지 않을 시를 대비해 `이름/해당주차`의 형식을 사용하세요.
