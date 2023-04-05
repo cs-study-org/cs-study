@@ -129,7 +129,7 @@ Cookie 이용시,
 
 1. 캐싱
   
-    > 캐싱 동작 과정은 [링크](https://slides.com/kimyongki/deck-e6fd5d/fullscreen)를 확인하자.
+    > 캐싱 동작 과정은 [링크](https://slides.com/yongki150/deck-e6fd5d/fullscreen)를 확인하자.
 
     > 캐시 서버가 꽉 차면, 자주 사용되지 않는 데이터를 삭제한다.
      삭제 대상 선별은 운영체제의 페이지 교체 알고리즘과 비슷할 것이라 판단한다.

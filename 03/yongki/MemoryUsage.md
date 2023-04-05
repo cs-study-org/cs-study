@@ -247,7 +247,7 @@ function subdivide(x, y, size){
 subdivide(0, 0, 8);
 ```
 
-[재귀 함수 호출 흐름](https://slides.com/kimyongki/deck-8d4df2/embed)은 링크에서 슬라이드로 확인해보자.
+[재귀 함수 호출 흐름](https://slides.com/yongki150/deck-8d4df2/embed)은 링크에서 슬라이드로 확인해보자.
 
 함수에서 돌아오는 주소를 저장하는 `EBP 레지스터`가 스택 자료구조라고 한다.
 
@@ -257,7 +257,7 @@ subdivide(0, 0, 8);
 
 ### 메모리 사용
 
-[v8 메모리 사용](https://slides.com/kimyongki/deck/embed)
+[v8 메모리 사용](https://slides.com/yongki150/deck/embed)
 
 > 깃헙 마크다운에는 `iframe`을 지원하지 않아 위 링크로 들어가서 확인해주세요.
 

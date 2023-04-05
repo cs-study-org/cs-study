@@ -76,7 +76,7 @@ DBMS에서는 랜덤 I/O를 통해 작은 데이터를 읽고 쓰는 작업이 �
 
 따라서, 요즘 DBMS에는 대부분 SSD를 채택한다.
 
-## [기술의 변천](https://slides.com/kimyongki/deck-6e8c70/fullscreen) 및 향후 개선점
+## [기술의 변천](https://slides.com/yongki150/deck-6e8c70/fullscreen) 및 향후 개선점
 
 디스크 장치가 전자식 장치로 전환됨으로써 병목현상이 디스크에서 CPU 및 네트워크로 옮겨갔다.
 

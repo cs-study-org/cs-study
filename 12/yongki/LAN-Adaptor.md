@@ -59,7 +59,7 @@ ARP는
 
     이더넷을 통해 패킷을 운반한다.
 
-패킷의 이동 시나리오를 [슬라이드](https://slides.com/kimyongki/deck-4cca6f/fullscreen)를 통해 알아보자.
+패킷의 이동 시나리오를 [슬라이드](https://slides.com/yongki150/deck-4cca6f/fullscreen)를 통해 알아보자.
 
 1. 송신처는 목적지인 수신처 IP 주소를 애플리케이션으로 부터 통지받고,
 2. `송신처의 네트워크 계층`은 IP 헤더에 수신처 IP 주소를 기록한다.
