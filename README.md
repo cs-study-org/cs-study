@@ -41,10 +41,7 @@
 </table>
 </div>
 
-<details>
-<summary><b>주차별 주제</b></summary>
-
-> 🔥는 중요 챕터를 의미합니다.
+## 주차별 주제
 
 <div align="center">
 <table>
@@ -65,7 +62,7 @@
             <td>
                   <a href="https://github.com/cs-study-org/cs-study/tree/main/20">20주차</a>
             </td>
-            <td>데이터베이스 필요성과 인덱스 🔥</td>
+            <td>데이터베이스 필요성과 인덱스</td>
       </tr>
       <tr>
             <td>
@@ -107,7 +104,7 @@
              <td>
                   <a href="https://github.com/cs-study-org/cs-study/tree/main/23">23주차</a>
             </td>
-            <td>가용성과 데이터의 복제 🔥</td>
+            <td>가용성과 데이터의 복제</td>
       </tr>
       <tr>
             <td>
@@ -121,7 +118,7 @@
              <td>
                   <a href="https://github.com/cs-study-org/cs-study/tree/main/24">24주차</a>
             </td>
-            <td>트랜잭션과 무결성 ·무정지성 🔥</td>
+            <td>트랜잭션과 무결성 ·무정지성</td>
       </tr>
       <tr>
             <td>
@@ -150,7 +147,7 @@
                   <a href="https://github.com/cs-study-org/cs-study/tree/main/26">26주차</a>
             </td>
             <td>
-                  트랜잭션 격리수준 🔥<br/>
+                  트랜잭션 격리수준<br/>
                   REDO vs UNDO vs 바이너리 로그
             </td>
       </tr>
@@ -174,18 +171,19 @@
                   <a href="https://github.com/cs-study-org/cs-study/tree/main/17">17주차</a>
             </td>
             <td>트랜스포트 계층 개요</td>
+            <td align="center" rowspan="3" colspan="2">-</td>
       </tr>      
       <tr>            
             <td>
                   <a href="https://github.com/cs-study-org/cs-study/tree/main/18">18주차</a>
             </td>
-            <td>TCP 흐름제어 및 오류제어 🔥</td>
+            <td>TCP 흐름제어 및 오류제어</td>
       </tr>
       <tr>            
             <td>
                   <a href="https://github.com/cs-study-org/cs-study/tree/main/19">19주차</a>
             </td>
-            <td>TCP 혼잡제어 🔥</td>
+            <td>TCP 혼잡제어</td>
       </tr>
 </table>      
 </div>
@@ -232,11 +230,3 @@
 ## [제출방법](https://github.com/cs-study-org/cs-study/wiki/제출방법)
 
 링크를 확인해주세요.
-
-## 제출규약
-
-1. 폴더 및 파일 구성은 `해당주차/본인이름/md파일`을 따라주세요.
-
-2. 각자의 브랜치를 생성하여 main 브랜치로 보내는 방식으로 제출해주세요. 브랜치의 이름은 본인 이름으로 하되, 이전 주차의 PR이 승인되지 않을 시를 대비해 `이름/해당주차`의 형식을 사용하세요.
-
-3. 커밋메세지는 `행위: 내용 명시적` 으로 작성해주세요.
