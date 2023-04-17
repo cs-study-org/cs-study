@@ -1,4 +1,4 @@
-# [트랜잭션 격리수준](https://slides.com/kimyongki/deck-221254/fullscreen)
+# [트랜잭션 격리수준](https://slides.com/yongki150/week24/fullscreen)
 
 - [트랜잭션 격리수준](#트랜잭션-격리수준)
   - [본문](#본문)
