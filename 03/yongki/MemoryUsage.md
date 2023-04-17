@@ -247,7 +247,7 @@ function subdivide(x, y, size){
 subdivide(0, 0, 8);
 ```
 
-[재귀 함수 호출 흐름](https://slides.com/yongki150/deck-8d4df2/embed)은 링크에서 슬라이드로 확인해보자.
+[재귀 함수 호출 흐름](https://slides.com/yongki150/week03-recursive-function/embed)은 링크에서 슬라이드로 확인해보자.
 
 함수에서 돌아오는 주소를 저장하는 `EBP 레지스터`가 스택 자료구조라고 한다.
 
@@ -257,7 +257,7 @@ subdivide(0, 0, 8);
 
 ### 메모리 사용
 
-[v8 메모리 사용](https://slides.com/yongki150/deck/embed)
+[v8 메모리 사용](https://slides.com/yongki150/week03-memory-usage/embed)
 
 > 깃헙 마크다운에는 `iframe`을 지원하지 않아 위 링크로 들어가서 확인해주세요.
 
@@ -271,7 +271,7 @@ subdivide(0, 0, 8);
 
 **참조 없는 객체**는 스택 메모리로부터 참조되지 않는 객체를 말한다.
 
-이렇듯 참조 없는 객체들은 자동으로 `orinoco`가 없애주지만, 우리가 참조를 해재 하지 않은 객체가 있다면, 수동으로 관리를 해주어야할 것이다.
+이렇듯 참조 없는 객체들은 자동으로 `orinoco`가 없애주지만, 우리가 참조를 해제 하지 않은 객체가 있다면, 수동으로 관리를 해주어야할 것이다.
 
 위 재귀 함수 예제는 힙 메모리를 사용하는 부분이 많이 없어, 프로젝트 단위의 예시와 메모리 분석 툴을 통해 알아보겠다.
 

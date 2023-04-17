@@ -132,7 +132,7 @@ MySQL 서버에서 발생하는 모든 변경사항(이벤트 또는 트랜잭�
 
 즉, 로그 파일이라는 단계를 거치는 이유이다.
 
-### [복제에 사용되는 스레드](https://slides.com/yongki150/deck-1ca818/fullscreen)
+### [복제에 사용되는 스레드](https://slides.com/yongki150/week23/fullscreen)
 
  레플리카 서버는 소스 서버에 접속해 바이너리 로그 정보를 요청한다.
    

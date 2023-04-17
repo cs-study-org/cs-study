@@ -109,4 +109,4 @@ browser{
 6. 해당 소켓에 접속 동작 진행중이라는 상태로 갱신한다.
 7. 수신처 TCP는 응답을 돌려준다.
 
-전체적인 3 Way-Handsake를 [링크](https://slides.com/yongki150/deck-6258c3/embed)로 확인해보자.
+전체적인 3 Way-Handsake를 [링크](https://slides.com/yongki150/week10/embed)로 확인해보자.

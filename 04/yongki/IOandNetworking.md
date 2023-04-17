@@ -86,7 +86,7 @@
     DNS에게 서버에 대한 IP주소를 요청한다.
 3. IP주소를 받은 `웹 브라우저(이하 사용자)`는 주소를 사용하여 웹 서버에 접속한 후, 문서 루트에 있는 정보를 HTTP 요청한다.
 
-이 3번 내용부터 [슬라이드](https://slides.com/yongki150/deck-170a33/embed)로 확인해보자.
+이 3번 내용부터 [슬라이드](https://slides.com/yongki150/week04/embed)로 확인해보자.
 
 ## 스레싱
 
