@@ -554,7 +554,7 @@ Array.prototype.forEach.call(arrayLike, (value, index) => {
 <details>
 <summary>
   아래 과정과 함께 
-  <a href="https://slides.com/kimyongki/deck-eed754/embed">슬라이드</a>를
+  <a href="https://slides.com/yongki150/week05-minor-gc/embed">슬라이드</a>를
     같이 띄워두고 확인하자.
 </summary>
 
@@ -595,7 +595,7 @@ Array.prototype.forEach.call(arrayLike, (value, index) => {
 <details>
 <summary>
   아래 과정과 함께 
-  <a href="https://slides.com/kimyongki/deck-15dbf8/embed">슬라이드</a>를
+  <a href="https://slides.com/yongki150/week05-major-gc/embed">슬라이드</a>를
   같이 띄워두고 확인하자.
 </summary>
 
