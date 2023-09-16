@@ -1,6 +1,6 @@
 # Computer Science Study
 
-면접을 위한 cs 스터디 저장소입니다.
+면접 준비를 위한 cs 스터디 저장소입니다.
 
 ## 교재
 
